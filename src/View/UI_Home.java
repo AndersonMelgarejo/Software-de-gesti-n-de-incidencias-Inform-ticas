@@ -256,7 +256,7 @@ public class UI_Home extends javax.swing.JPanel {
         panelRound7.setRoundTopRight(20);
 
         jLabel10.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        jLabel10.setText("Detalle de incidencias");
+        jLabel10.setText("Seguimiento de estado de las incidencias");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

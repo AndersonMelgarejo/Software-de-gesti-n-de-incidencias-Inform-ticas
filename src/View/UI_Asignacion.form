@@ -180,7 +180,7 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Informe de Incidencias Inform&#xe1;ticas"/>
+            <Property name="text" type="java.lang.String" value="Asignaci&#xf3;n de personal para solucionar la incidencia"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI Semibold" size="24" style="0"/>
             </Property>
@@ -204,7 +204,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Acciones Tomadas"/>
+            <Property name="text" type="java.lang.String" value="Empleado asignado "/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI Semibold" size="14" style="0"/>
             </Property>
@@ -217,7 +217,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Fecha de resoluci&#xf3;n"/>
+            <Property name="text" type="java.lang.String" value="Fecha de asignaci&#xf3;n "/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI Semibold" size="14" style="0"/>
             </Property>

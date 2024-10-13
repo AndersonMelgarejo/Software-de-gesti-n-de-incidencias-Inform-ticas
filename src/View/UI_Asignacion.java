@@ -8,12 +8,12 @@ package View;
  *
  * @author LENOVO
  */
-public class UI_Informe extends javax.swing.JPanel {
+public class UI_Asignacion extends javax.swing.JPanel {
 
     /**
      * Creates new form UI_Informe
      */
-    public UI_Informe() {
+    public UI_Asignacion() {
         initComponents();
     }
 
@@ -58,7 +58,7 @@ public class UI_Informe extends javax.swing.JPanel {
         panelRound1.setRoundTopLeft(20);
         panelRound1.setRoundTopRight(20);
 
-        jLabel1.setText("Informe de Incidencias Informáticas");
+        jLabel1.setText("Asignación de personal para solucionar la incidencia");
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
 
         cbxAcciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[Seleccionar]" }));
@@ -68,10 +68,10 @@ public class UI_Informe extends javax.swing.JPanel {
             }
         });
 
-        jLabel3.setText("Acciones Tomadas");
+        jLabel3.setText("Empleado asignado ");
         jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
-        jLabel4.setText("Fecha de resolución");
+        jLabel4.setText("Fecha de asignación ");
         jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
         atxtDescripcion.setColumns(20);

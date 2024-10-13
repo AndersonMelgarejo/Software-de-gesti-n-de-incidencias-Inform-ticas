@@ -36,6 +36,7 @@ public class UI_Dashboard extends javax.swing.JFrame {
         btnPersonal = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnAsignar = new javax.swing.JButton();
         jpInternal = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
 
@@ -101,6 +102,13 @@ public class UI_Dashboard extends javax.swing.JFrame {
         jLabel1.setText("SCI");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
+        btnAsignar.setBackground(new java.awt.Color(153, 0, 51));
+        btnAsignar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnAsignar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAsignar.setText("Asignar personal");
+        btnAsignar.setBorderPainted(false);
+        btnAsignar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
         javax.swing.GroupLayout panelRound1Layout = new javax.swing.GroupLayout(panelRound1);
         panelRound1.setLayout(panelRound1Layout);
         panelRound1Layout.setHorizontalGroup(
@@ -114,7 +122,8 @@ public class UI_Dashboard extends javax.swing.JFrame {
                     .addComponent(btnInforme, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
                     .addComponent(btnDepartamento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
                     .addComponent(btnPersonal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
-                    .addComponent(btnExit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE))
+                    .addComponent(btnExit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+                    .addComponent(btnAsignar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(panelRound1Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
@@ -138,6 +147,8 @@ public class UI_Dashboard extends javax.swing.JFrame {
                 .addComponent(btnDepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAsignar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -149,7 +160,7 @@ public class UI_Dashboard extends javax.swing.JFrame {
         jpInternal.setLayout(jpInternalLayout);
         jpInternalLayout.setHorizontalGroup(
             jpInternalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 854, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jpInternalLayout.setVerticalGroup(
             jpInternalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,7 +173,7 @@ public class UI_Dashboard extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 854, Short.MAX_VALUE)
+            .addGap(0, 895, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,6 +239,7 @@ public class UI_Dashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnAsignar;
     public javax.swing.JButton btnCaategoria;
     public javax.swing.JButton btnDashboard;
     public javax.swing.JButton btnDepartamento;
