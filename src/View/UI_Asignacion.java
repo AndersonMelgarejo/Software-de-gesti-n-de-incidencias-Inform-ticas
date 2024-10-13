@@ -79,7 +79,7 @@ public class UI_Asignacion extends javax.swing.JPanel {
         atxtDescripcion.setPreferredSize(new java.awt.Dimension(232, 74));
         jScrollPane1.setViewportView(atxtDescripcion);
 
-        jLabel5.setText("Descripcion de la solución");
+        jLabel5.setText("Descripcion adicional");
         jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
         btnRegistrar.setText("Registrar");
@@ -175,10 +175,10 @@ public class UI_Asignacion extends javax.swing.JPanel {
             panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound1Layout.createSequentialGroup()
                 .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jSeparator1)
                     .addGroup(panelRound1Layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(panelRound1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
