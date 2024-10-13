@@ -4,11 +4,7 @@
  */
 package Controller;
 
-import View.UI_Categorias;
-import View.UI_Dashboard;
-import View.UI_Departamentos;
-import View.UI_Home;
-import View.UI_Personal;
+import View.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -31,6 +27,9 @@ public class DashboardController implements ActionListener {
         vista.btnDashboard.addActionListener(this);
         vista.btnDepartamento.addActionListener(this);
         vista.btnPersonal.addActionListener(this);
+        vista.btnInforme.addActionListener(this);
+        vista.btnIncidencias.addActionListener(this);
+        vista.btnExit.addActionListener(this);
         launchApp();
     }
 
@@ -70,8 +69,8 @@ public class DashboardController implements ActionListener {
             vista.btnCaategoria.setSelected(true);
         }
         if(e.getSource()==vista.btnDepartamento){
-            UI_Departamentos cate = new UI_Departamentos();
-            ChangePanel(cate);
+            UI_Departamentos depa = new UI_Departamentos();
+            ChangePanel(depa);
             resetButtons();
             vista.btnDepartamento.setSelected(true);
         }
@@ -82,11 +81,33 @@ public class DashboardController implements ActionListener {
             vista.btnPersonal.setSelected(true);
         }
         
+        if(e.getSource()==vista.btnInforme){
+            UI_Informe info = new UI_Informe();
+            ChangePanel(info);
+            resetButtons();
+            vista.btnInforme.setSelected(true);
+        }
+        
+        if(e.getSource()==vista.btnIncidencias){
+            UI_Incidencias inci = new UI_Incidencias();
+            ChangePanel(inci);
+            resetButtons();
+            vista.btnIncidencias.setSelected(true);
+        }
+        
+        if(e.getSource()==vista.btnExit){
+            System.exit(0);
+        }
+        
     }
 
     private void resetButtons() {
         vista.btnDashboard.setSelected(false);
         vista.btnCaategoria.setSelected(false);
+        vista.btnIncidencias.setSelected(false);
+        vista.btnDepartamento.setSelected(false);
+        vista.btnPersonal.setSelected(false);   
+        vista.btnInforme.setSelected(false);
     }
 
 }

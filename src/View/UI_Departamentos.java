@@ -26,6 +26,7 @@ public class UI_Departamentos extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSeparator2 = new javax.swing.JSeparator();
         panelRound1 = new Styles.PanelRound();
         jLabel1 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
@@ -50,6 +51,8 @@ public class UI_Departamentos extends javax.swing.JPanel {
         jSpinner1 = new javax.swing.JSpinner();
         jLabel9 = new javax.swing.JLabel();
         txtName1 = new javax.swing.JTextField();
+
+        jSeparator2.setForeground(new java.awt.Color(153, 0, 51));
 
         setBackground(new java.awt.Color(245, 246, 250));
 
@@ -150,11 +153,11 @@ public class UI_Departamentos extends javax.swing.JPanel {
         jButton5.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel8.setText("Piso");
         jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel8.setText("Piso");
 
-        jLabel9.setText("Salon");
         jLabel9.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel9.setText("Salon");
 
         javax.swing.GroupLayout panelRound1Layout = new javax.swing.GroupLayout(panelRound1);
         panelRound1.setLayout(panelRound1Layout);
@@ -206,9 +209,7 @@ public class UI_Departamentos extends javax.swing.JPanel {
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound1Layout.createSequentialGroup()
                                 .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelRound1Layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(datePick, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -296,6 +297,7 @@ public class UI_Departamentos extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSpinner jSpinner1;
     public javax.swing.JTable jTable1;
     private Styles.PanelRound panelRound1;
