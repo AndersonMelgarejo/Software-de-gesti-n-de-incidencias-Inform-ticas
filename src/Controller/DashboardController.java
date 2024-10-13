@@ -30,6 +30,7 @@ public class DashboardController implements ActionListener {
         vista.btnInforme.addActionListener(this);
         vista.btnIncidencias.addActionListener(this);
         vista.btnExit.addActionListener(this);
+        vista.btnAsignar.addActionListener(this);
         launchApp();
     }
 
@@ -68,37 +69,53 @@ public class DashboardController implements ActionListener {
             resetButtons();
             vista.btnCaategoria.setSelected(true);
         }
-        if(e.getSource()==vista.btnDepartamento){
+        if (e.getSource() == vista.btnDepartamento) {
             UI_Departamentos depa = new UI_Departamentos();
+            depa.txtName.putClientProperty("JTextField.placeholderText", "Ingrese el nombre del departamento");
+            depa.txtSalon.putClientProperty("JTextField.placeholderText", "Ingrese el salon del departamento");
             ChangePanel(depa);
             resetButtons();
             vista.btnDepartamento.setSelected(true);
         }
-        if(e.getSource()==vista.btnPersonal){
-            UI_Personal perso= new UI_Personal();
+        if (e.getSource() == vista.btnPersonal) {
+            UI_Personal perso = new UI_Personal();
+            perso.txtNombre.putClientProperty("JTextField.placeholderText", "Ingrese el nombre del personal");
+            perso.txtApellido.putClientProperty("JTextField.placeholderText", "Ingrese el apellido del personal");
+            perso.txtCorreo.putClientProperty("JTextField.placeholderText", "Ingrese el correo del personal");
+            perso.txtMovil.putClientProperty("JTextField.placeholderText", "Ingrese el movil del personal");
+            perso.txtPass.putClientProperty("JTextField.placeholderText", "Ingrese la contraseña del personal");
+            perso.txtUser.putClientProperty("JTextField.placeholderText", "Autogenera el usuario");
+
             ChangePanel(perso);
             resetButtons();
             vista.btnPersonal.setSelected(true);
         }
-        
-        if(e.getSource()==vista.btnInforme){
+
+        if (e.getSource() == vista.btnInforme) {
             UI_Informe info = new UI_Informe();
             ChangePanel(info);
             resetButtons();
             vista.btnInforme.setSelected(true);
         }
-        
-        if(e.getSource()==vista.btnIncidencias){
+
+        if (e.getSource() == vista.btnIncidencias) {
             UI_Incidencias inci = new UI_Incidencias();
+            inci.txtArea.putClientProperty("JTextField.placeholderText", "Ejem: A0101");
             ChangePanel(inci);
             resetButtons();
             vista.btnIncidencias.setSelected(true);
         }
-        
-        if(e.getSource()==vista.btnExit){
+
+        if (e.getSource() == vista.btnExit) {
             System.exit(0);
         }
-        
+        if (e.getSource() == vista.btnAsignar) {
+            UI_Asignacion asig = new UI_Asignacion();
+            ChangePanel(asig);
+            resetButtons();
+            vista.btnAsignar.setSelected(true);
+        }
+
     }
 
     private void resetButtons() {
@@ -106,8 +123,9 @@ public class DashboardController implements ActionListener {
         vista.btnCaategoria.setSelected(false);
         vista.btnIncidencias.setSelected(false);
         vista.btnDepartamento.setSelected(false);
-        vista.btnPersonal.setSelected(false);   
+        vista.btnPersonal.setSelected(false);
         vista.btnInforme.setSelected(false);
+        vista.btnAsignar.setSelected(false);
     }
 
 }

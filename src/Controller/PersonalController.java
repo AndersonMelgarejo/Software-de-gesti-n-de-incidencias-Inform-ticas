@@ -26,8 +26,8 @@ public class PersonalController extends PanelController implements ActionListene
     // GENERAR USUARIO ALEATORIO
     public String autoUsuario() {
         String uuid = UUID.randomUUID().toString().substring(0, 4);
-        String nombres = perso.txtNombrePE.getText().replace(" ", "");
-        String apellidos = perso.txtApellidoPE.getText().replace(" ", "");
+        String nombres = perso.txtNombre.getText().replace(" ", "");
+        String apellidos = perso.txtMovil.getText().replace(" ", "");
         return (nombres + '.' + apellidos + '.' + uuid).toLowerCase();
     }
     @Override
@@ -42,7 +42,7 @@ public class PersonalController extends PanelController implements ActionListene
     public void actionPerformed(ActionEvent e) {
     
         if (e.getSource() == perso.btnAutoGenerarUser) {            
-            perso.txtUsuarioPE.setText(autoUsuario());
+            perso.txtPass.setText(autoUsuario());
         } 
     }
     
