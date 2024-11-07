@@ -66,6 +66,7 @@ public class DashboardController implements ActionListener {
             cat.txtName.putClientProperty("JTextField.placeholderText", "Ingrese el nombre de la categoria");
             cat.datePick.putClientProperty("JTextField.placeholderText", "Ingrese el nombre de la categoria");
             ChangePanel(cat);
+            new CategoriaController(cat, vista);
             resetButtons();
             vista.btnCaategoria.setSelected(true);
         }
@@ -74,6 +75,7 @@ public class DashboardController implements ActionListener {
             depa.txtName.putClientProperty("JTextField.placeholderText", "Ingrese el nombre del departamento");
             depa.txtSalon.putClientProperty("JTextField.placeholderText", "Ingrese el salon del departamento");
             ChangePanel(depa);
+            new DepartamentoController(depa, vista);
             resetButtons();
             vista.btnDepartamento.setSelected(true);
         }
@@ -87,6 +89,7 @@ public class DashboardController implements ActionListener {
             perso.txtUser.putClientProperty("JTextField.placeholderText", "Autogenera el usuario");
 
             ChangePanel(perso);
+            new PersonalController(perso, vista);
             resetButtons();
             vista.btnPersonal.setSelected(true);
         }
@@ -94,6 +97,7 @@ public class DashboardController implements ActionListener {
         if (e.getSource() == vista.btnInforme) {
             UI_Informe info = new UI_Informe();
             ChangePanel(info);
+            new InformeController(info, vista);
             resetButtons();
             vista.btnInforme.setSelected(true);
         }
@@ -102,6 +106,7 @@ public class DashboardController implements ActionListener {
             UI_Incidencias inci = new UI_Incidencias();
             inci.txtArea.putClientProperty("JTextField.placeholderText", "Ejem: A0101");
             ChangePanel(inci);
+            new IncidenciaController(inci, vista);
             resetButtons();
             vista.btnIncidencias.setSelected(true);
         }
@@ -112,6 +117,7 @@ public class DashboardController implements ActionListener {
         if (e.getSource() == vista.btnAsignar) {
             UI_Asignacion asig = new UI_Asignacion();
             ChangePanel(asig);
+            new AsignacionController(asig, vista);
             resetButtons();
             vista.btnAsignar.setSelected(true);
         }

@@ -5,15 +5,17 @@
 package Controller;
 
 import View.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class InformeController extends PanelController {
+public class InformeController extends PanelController implements ActionListener{
 
     UI_Informe info;
 
     public InformeController(UI_Informe info, UI_Dashboard dash) {
         super(info, dash);
         this.info = info;
-        
+        info.btnRegistrar.addActionListener(this);
     }
     
 
@@ -25,6 +27,10 @@ public class InformeController extends PanelController {
     @Override
     protected void reloadWindow() {
     
+    }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        
     }
     
 }

@@ -5,16 +5,18 @@
 package Controller;
 
 import View.UI_Dashboard;
-import View.UI_Categorias;
+import View.UI_Departamentos;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  *
  * @author Renzo
  */
-public class DepartamentoController extends PanelController{
-    UI_Categorias categoria; 
+public class DepartamentoController extends PanelController implements ActionListener{
+    UI_Departamentos categoria; 
     
-    public DepartamentoController(UI_Categorias cate, UI_Dashboard api){
+    public DepartamentoController(UI_Departamentos cate, UI_Dashboard api){
         super(cate,api);
         this.categoria= cate;
     }
@@ -25,6 +27,11 @@ public class DepartamentoController extends PanelController{
 
     @Override
     protected void reloadWindow() {
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }

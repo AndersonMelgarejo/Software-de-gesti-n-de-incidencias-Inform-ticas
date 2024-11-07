@@ -6,12 +6,14 @@ package Controller;
 
 import View.UI_Asignacion;
 import View.UI_Dashboard;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  *
  * @author franc
  */
-public class AsignacionController extends PanelController {
+public class AsignacionController extends PanelController implements ActionListener{
   UI_Asignacion asignacion;
 
   public AsignacionController(UI_Asignacion asignacion, UI_Dashboard app) {
@@ -28,5 +30,10 @@ public class AsignacionController extends PanelController {
     @Override
     protected void reloadWindow() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        
     }
 }

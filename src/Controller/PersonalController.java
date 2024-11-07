@@ -27,7 +27,7 @@ public class PersonalController extends PanelController implements ActionListene
     public String autoUsuario() {
         String uuid = UUID.randomUUID().toString().substring(0, 4);
         String nombres = perso.txtNombre.getText().replace(" ", "");
-        String apellidos = perso.txtMovil.getText().replace(" ", "");
+        String apellidos = perso.txtApellido.getText().replace(" ", "");
         return (nombres + '.' + apellidos + '.' + uuid).toLowerCase();
     }
     @Override
@@ -42,7 +42,7 @@ public class PersonalController extends PanelController implements ActionListene
     public void actionPerformed(ActionEvent e) {
     
         if (e.getSource() == perso.btnAutoGenerarUser) {            
-            perso.txtPass.setText(autoUsuario());
+            perso.txtUser.setText(autoUsuario());
         } 
     }
     
