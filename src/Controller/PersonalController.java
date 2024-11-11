@@ -4,11 +4,16 @@
  */
 package Controller;
 
+import ArrayList.ListaPersonal;
+import Model.Personal;
+import Persistence.SavePersonal;
+import Processes.ProcessPersonal;
 import View.UI_Dashboard;
 import View.UI_Personal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.UUID;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,21 +22,24 @@ import java.util.UUID;
 public class PersonalController extends PanelController implements ActionListener{
 
     UI_Personal perso;
+    ListaPersonal lista;
+    Personal pe;
     public PersonalController(UI_Personal perso, UI_Dashboard apo) {
         super(perso, apo);
         this.perso=perso;
-        this.perso.btnAutoGenerarUser.addActionListener(this);
+        lista =  new ListaPersonal();
+        lista= SavePersonal.RecuperarEstudiantes();
+        ProcessPersonal.MostrarEst(perso, lista);
+        addListeners();
     }
 
-    // GENERAR USUARIO ALEATORIO
-    public String autoUsuario() {
-        String uuid = UUID.randomUUID().toString().substring(0, 4);
-        String nombres = perso.txtNombre.getText().replace(" ", "");
-        String apellidos = perso.txtApellido.getText().replace(" ", "");
-        return (nombres + '.' + apellidos + '.' + uuid).toLowerCase();
-    }
     @Override
     protected void addListeners() {
+        this.perso.btnAutoGenerarUser.addActionListener(this);
+        this.perso.btnRegistrar.addActionListener(this);
+        this.perso.btnConsultar.addActionListener(this);
+        this.perso.btnActualizar.addActionListener(this);
+        this.perso.btnEliminar.addActionListener(this);
     }
 
     @Override
@@ -41,8 +49,16 @@ public class PersonalController extends PanelController implements ActionListene
     @Override
     public void actionPerformed(ActionEvent e) {
     
-        if (e.getSource() == perso.btnAutoGenerarUser) {            
-            perso.txtUser.setText(autoUsuario());
+        if(e.getSource()==perso.btnRegistrar){
+           pe = ProcessPersonal.LeerPersonal(perso);
+           lista.Agregar(pe);
+           SavePersonal.GuardarPersonal(lista);
+           ProcessPersonal.Limpiar(perso);
+           ProcessPersonal.MostrarEst(perso, lista);
+           JOptionPane.showMessageDialog(null,"EL PERSONAL FUE REGISTRADO"); 
+        }
+        if (e.getSource() == perso.btnAutoGenerarUser) {                        
+            ProcessPersonal.generarUser(perso);
         } 
     }
     

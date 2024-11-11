@@ -1,6 +1,8 @@
 package Main;
 
+import ArrayList.ListaPersonal;
 import Controller.LoginController;
+import Persistence.SavePersonal;
 import View.UI_Login;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLaf;
@@ -33,7 +35,8 @@ public class Main {
             UIManager.put("Separator.stripeWidth", 3);
             UIManager.put("PasswordField.showRevealButton", true);
             UI_Login login = new UI_Login();
-            LoginController start = new LoginController(login);
+            ListaPersonal listaPersonal=SavePersonal.RecuperarEstudiantes();
+            LoginController start = new LoginController(login, listaPersonal);
 
         } catch (Exception e) {
             e.printStackTrace();

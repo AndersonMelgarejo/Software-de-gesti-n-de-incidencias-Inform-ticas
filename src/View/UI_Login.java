@@ -35,7 +35,7 @@ public class UI_Login extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtEmail = new javax.swing.JTextField();
+        txtUser = new javax.swing.JTextField();
         txtAccess = new javax.swing.JPasswordField();
         btnAccess = new javax.swing.JButton();
 
@@ -103,7 +103,7 @@ public class UI_Login extends javax.swing.JFrame {
         jLabel1.setText("INICIAR SESION");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        jLabel2.setText("Correo");
+        jLabel2.setText("Usuario");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
         jLabel3.setText("Contraseña");
@@ -126,7 +126,7 @@ public class UI_Login extends javax.swing.JFrame {
                         .addGap(32, 32, 32)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+                            .addComponent(txtUser, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
                             .addComponent(jLabel3)
                             .addComponent(txtAccess)
                             .addComponent(btnAccess, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -143,7 +143,7 @@ public class UI_Login extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -242,6 +242,6 @@ public class UI_Login extends javax.swing.JFrame {
     private Styles.PanelRound panelRound1;
     private Styles.PanelRound panelRound3;
     public javax.swing.JPasswordField txtAccess;
-    public javax.swing.JTextField txtEmail;
+    public javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import Persistence.SavePersonal;
 import View.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
