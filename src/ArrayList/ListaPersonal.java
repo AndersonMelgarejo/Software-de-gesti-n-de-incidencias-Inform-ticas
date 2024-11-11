@@ -29,7 +29,9 @@ public class ListaPersonal implements Serializable{
         lista.remove(pos);
     }
     public int Cantidad(){return lista.size(); }
-    
+
     public ArrayList<Personal> getLista() {        return lista;    }
     public void setLista(ArrayList<Personal> lista) {        this.lista = lista;    }
+    
+    
 }

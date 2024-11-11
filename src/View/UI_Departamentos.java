@@ -62,37 +62,37 @@ public class UI_Departamentos extends javax.swing.JPanel {
         panelRound1.setRoundTopLeft(20);
         panelRound1.setRoundTopRight(20);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         jLabel1.setText("Registro de Departamentos");
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel2.setText("Nombre");
+        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
         cbPabellon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[Seleccionar]", "A", "B" }));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel3.setText("Pabellon");
+        jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel4.setText("Fecha");
+        jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
+        jButton1.setText("Registrar");
         jButton1.setBackground(new java.awt.Color(153, 0, 51));
+        jButton1.setBorderPainted(false);
         jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Registrar");
-        jButton1.setBorderPainted(false);
 
+        jButton2.setText("Consultar");
         jButton2.setBackground(new java.awt.Color(0, 121, 153));
+        jButton2.setBorderPainted(false);
         jButton2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Consultar");
-        jButton2.setBorderPainted(false);
 
+        jButton3.setText("Actualizar");
         jButton3.setBackground(new java.awt.Color(68, 23, 38));
+        jButton3.setBorderPainted(false);
         jButton3.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Actualizar");
-        jButton3.setBorderPainted(false);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -109,8 +109,8 @@ public class UI_Departamentos extends javax.swing.JPanel {
 
         jSeparator1.setForeground(new java.awt.Color(153, 0, 51));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel6.setText("Ordenar por");
+        jLabel6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
         panelRound2.setBackground(new java.awt.Color(0, 153, 51));
         panelRound2.setRoundBottomLeft(20);
@@ -118,10 +118,10 @@ public class UI_Departamentos extends javax.swing.JPanel {
         panelRound2.setRoundTopLeft(20);
         panelRound2.setRoundTopRight(20);
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("#CAT-0000");
+        jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout panelRound2Layout = new javax.swing.GroupLayout(panelRound2);
         panelRound2.setLayout(panelRound2Layout);
@@ -142,22 +142,22 @@ public class UI_Departamentos extends javax.swing.JPanel {
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jButton4.setBackground(new java.awt.Color(128, 228, 255));
-        jButton4.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         jButton4.setText("Ordenar");
+        jButton4.setBackground(new java.awt.Color(128, 228, 255));
         jButton4.setBorderPainted(false);
+        jButton4.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
 
+        jButton5.setText("Eliminar");
         jButton5.setBackground(new java.awt.Color(255, 153, 0));
+        jButton5.setBorderPainted(false);
         jButton5.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Eliminar");
-        jButton5.setBorderPainted(false);
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel8.setText("Piso");
+        jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel9.setText("Salon");
+        jLabel9.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout panelRound1Layout = new javax.swing.GroupLayout(panelRound1);
         panelRound1.setLayout(panelRound1Layout);
