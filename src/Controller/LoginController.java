@@ -4,12 +4,15 @@
  */
 package Controller;
 
+import ArrayList.ListaPersonal;
+import Processes.ProcessLogin;
 import View.UI_Dashboard;
 import View.UI_Login;
 import com.formdev.flatlaf.FlatClientProperties;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,34 +22,39 @@ public class LoginController implements ActionListener {
 
     UI_Login login;
     UI_Dashboard dashboard = new UI_Dashboard();
-
-    public LoginController(UI_Login login) {
+    ListaPersonal listaPersonal;
+    public LoginController(UI_Login login,ListaPersonal listaPersonal) {
         this.login = login;
-        login.txtEmail.putClientProperty("JTextField.placeholderText", "Ingresa tu usuario");
-        login.txtEmail.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
+        this.listaPersonal=listaPersonal;
+        login.txtUser.putClientProperty("JTextField.placeholderText", "Ingresa tu usuario");
+        login.txtUser.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
         login.txtAccess.putClientProperty("JTextField.placeholderText", "Ingresa tu contraseña");
         if (login.jPanel2 != null) {
             login.jPanel2.putClientProperty(FlatClientProperties.STYLE, "arc: 90");
             login.jPanel2.setOpaque(false);
         }
-        login.btnAccess.addActionListener(this);
-        initialize();
-    }
-
-    void initialize() {
-        login.setLocationRelativeTo(null);
-        login.getRootPane().putClientProperty("JRootPane.titleBarForeground", Color.WHITE);
-        login.getRootPane().putClientProperty("JRootPane.titleBarBackground", new Color(153, 0, 51));
-        login.setVisible(true);
-    }
+        login.btnAccess.addActionListener(this);        
+        ProcessLogin.initialize(login);
+    }   
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == login.btnAccess) {
-            login.txtAccess.putClientProperty("JComponent.outline", "error");
-            login.txtEmail.putClientProperty("JComponent.outline", "error");
-            DashboardController controllerDash = new DashboardController(dashboard);
-            login.dispose();
+            String user = login.txtUser.getText();
+            String password = new String(login.txtAccess.getPassword());
+            
+            // Validar usuario y contraseña usando ProcessLogin
+            if (ProcessLogin.validarUsuario(user, password, listaPersonal)) {
+                // Credenciales correctas, abrir dashboard
+                DashboardController controllerDash = new DashboardController(dashboard);
+                login.dispose();
+            } else {
+                // Credenciales incorrectas, mostrar mensaje de error
+                JOptionPane.showMessageDialog(login, "Usuario o contraseña incorrectos", "Error de autenticación", JOptionPane.ERROR_MESSAGE);
+                login.txtAccess.putClientProperty("JComponent.outline", "error");
+                login.txtUser.putClientProperty("JComponent.outline", "error");
+                ProcessLogin.limpiar(login);
+            }
         }
     }
 
