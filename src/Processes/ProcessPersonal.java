@@ -24,7 +24,7 @@ public class ProcessPersonal {
         pe.cbxOrdenar.setSelectedIndex(0);
     }
     public static void MostrarEst(UI_Personal pe,ListaPersonal lista){
-       String campos[]={"ID","nombre","apellido","correo","telefono","user","password","cargo"}; 
+       String campos[]={"ID","Nombre","Apellido","Correo","Telefono","Usuario","Contraseña","Cargo"}; 
        DefaultTableModel mt = new DefaultTableModel(null,campos);
        pe.tblPersonal.setModel(mt);
        for(int i=0;i<lista.Cantidad();i++){
