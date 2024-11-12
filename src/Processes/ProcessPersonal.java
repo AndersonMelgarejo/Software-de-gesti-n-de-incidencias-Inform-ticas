@@ -50,22 +50,6 @@ public class ProcessPersonal {
         String user=(nombres + '.' + apellidos + '.' + uuid).toLowerCase();
         pe.txtUser.setText(user);
     }
-    public static boolean consultarUsuario(String user, ListaPersonal lista, UI_Personal pe) {
-        for (Personal p : lista.getLista()) {
-            if (p.getUser().equals(user)) {
-                // Si el usuario coincide, rellena los campos de UI_Personal
-                pe.txtNombre.setText(p.getNombre());
-                pe.txtApellido.setText(p.getApellido());
-                pe.txtCorreo.setText(p.getCorreo());
-                pe.txtMovil.setText(p.getTelefono());
-                pe.txtUser.setText(p.getUser());
-                pe.txtPass.setText(p.getPassword());
-                pe.cbxCargo.setSelectedItem(p.getCargo());
-                return true; // Usuario encontrado y campos rellenados
-            }
-        }
-        return false; // Usuario no encontrado
-    }
     public static boolean eliminarUsuario(String user, ListaPersonal lista) {
         for (int i = 0; i < lista.Cantidad(); i++) {
             if (lista.Recuperar(i).getUser().equals(user)) {

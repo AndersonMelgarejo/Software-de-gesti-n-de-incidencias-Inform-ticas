@@ -62,15 +62,33 @@ public class PersonalController extends PanelController implements ActionListene
            ProcessPersonal.MostrarEst(perso, lista);
            JOptionPane.showMessageDialog(null,"EL PERSONAL FUE REGISTRADO"); 
         }
-        if(e.getSource()==perso.btnConsultar){
-            String user= JOptionPane.showInputDialog("➤ Ingrese el USUARIO para buscar");
-            if(user!=null && !user.trim().isEmpty()){                
-                if (ProcessPersonal.consultarUsuario(user, lista, perso)) {
+        if (e.getSource() == perso.btnConsultar) { 
+            String id = JOptionPane.showInputDialog("➤ Ingrese el ID para buscar");
+        
+            if (id == null) {
+                return;
+            }    
+            try {
+                int pos = Integer.parseInt(id) - 1;
+                
+                if (pos >= 0 && pos < lista.Cantidad()) {
+                    Personal p = lista.Recuperar(pos);
+                        
+                    perso.txtNombre.setText(p.getNombre());
+                    perso.txtApellido.setText(p.getApellido());
+                    perso.txtCorreo.setText(p.getCorreo());
+                    perso.txtMovil.setText(p.getTelefono());
+                    perso.txtUser.setText(p.getUser());
+                    perso.txtPass.setText(p.getPassword());
+                    perso.cbxCargo.setSelectedItem(p.getCargo());
                 } else {
-                    JOptionPane.showMessageDialog(null, "🚨 El usuario "+user+" no existe 🚨", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "ID no encontrado en la lista.");
                 }
-            }            
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "ID inválido. Por favor, ingrese un número.");
+            }
         }
+
         if(e.getSource()==perso.btnActualizar){            
             pe = ProcessPersonal.LeerPersonal(perso);
             lista.Actualizar(pos, pe);
