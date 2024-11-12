@@ -7,6 +7,7 @@ import View.UI_Personal;
 import ArrayList.ListaPersonal;
 import Model.Personal;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.UUID;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -98,6 +99,7 @@ public class ProcessPersonal {
     }
     
     public static void ordenarPorNombre(ListaPersonal lista) {
+        lista.getLista().removeIf(Objects::isNull);
         int n = lista.getLista().size();
         boolean swapped;
         
@@ -128,6 +130,7 @@ public class ProcessPersonal {
     }
     
     public static void ordenarPorApellido(ListaPersonal lista) {
+        lista.getLista().removeIf(Objects::isNull);
         int n = lista.getLista().size();
         boolean swapped;
 
@@ -158,6 +161,7 @@ public class ProcessPersonal {
     }
     
     public static void ordenarPorUsuario(ListaPersonal lista) {
+        lista.getLista().removeIf(Objects::isNull);
         int n = lista.getLista().size();
         boolean swapped;
 
@@ -188,6 +192,7 @@ public class ProcessPersonal {
     }
     
     public static void ordenarPorCargo(ListaPersonal lista) {
+        lista.getLista().removeIf(Objects::isNull);
         int n = lista.getLista().size();
         boolean swapped;
 
