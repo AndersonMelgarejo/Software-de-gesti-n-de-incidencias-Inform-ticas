@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import Model.TipoIncidencia;
 import Persistence.SaveTipoIncidencia;
 import Processes.ProcessTipoIncidencia;
+import Sorting.Sorting_TiposIncidencias;
 import Structures.Arreglo_TipoIncidencias;
 
 /**
@@ -45,6 +46,8 @@ public class CategoriaController extends PanelController implements ActionListen
         categoriaui.btnConsultar.addActionListener(this);
         categoriaui.btnEliminar.addActionListener(this);
         categoriaui.btnActualizar.addActionListener(this);
+        categoriaui.btnDesc.addActionListener(this);
+        categoriaui.btnAsc.addActionListener(this);
     }
 
     @Override
@@ -62,6 +65,10 @@ public class CategoriaController extends PanelController implements ActionListen
             handleEliminarAction();
         } else if (source == categoriaui.btnActualizar) {
             handleActualizarAction();
+        } else if (source == categoriaui.btnAsc) {
+            handleAscAction();
+        } else if (source == categoriaui.btnDesc) {
+            handleDescAction();
         }
 
     }
@@ -146,6 +153,84 @@ public class CategoriaController extends PanelController implements ActionListen
             categoriaui.btnConsultar.setEnabled(true);
             editing = true;
         }
+    }
+
+    private void handleAscAction() {
+        switch (categoriaui.cbOrderBy.getSelectedIndex()) {
+            case 0:
+                ProcessTipoIncidencia.MostrarTipoIncidencia(categoriaui, arreglo.getArreglo());
+                break;
+            case 1:
+                TipoIncidencia[] arregloNivel = arreglo.getArreglo().clone();
+                arregloNivel = Sorting_TiposIncidencias.bubbleSort(arregloNivel, true);
+
+                Arreglo_TipoIncidencias arreglo02 = new Arreglo_TipoIncidencias(arregloNivel.length);
+                arreglo02.setArreglo(arregloNivel);
+                arreglo02.ActualizarContador();
+                ProcessTipoIncidencia.MostrarTipoIncidencia(categoriaui, arreglo02.getArreglo());
+                break;
+            case 2:
+                TipoIncidencia[] arregloFecha = arreglo.getArreglo().clone();
+                arregloFecha = Sorting_TiposIncidencias.insertionSort(arregloFecha, true);
+
+                Arreglo_TipoIncidencias arreglo03 = new Arreglo_TipoIncidencias(arregloFecha.length);
+                arreglo03.setArreglo(arregloFecha);
+                arreglo03.ActualizarContador();
+                ProcessTipoIncidencia.MostrarTipoIncidencia(categoriaui, arreglo03.getArreglo());
+                break;
+            case 3:
+                TipoIncidencia[] arregloCategoria = arreglo.getArreglo().clone();
+                arregloCategoria = Sorting_TiposIncidencias.selectionSort(arregloCategoria, true);
+
+                Arreglo_TipoIncidencias arreglo04 = new Arreglo_TipoIncidencias(arregloCategoria.length);
+                arreglo04.setArreglo(arregloCategoria);
+                arreglo04.ActualizarContador();
+                ProcessTipoIncidencia.MostrarTipoIncidencia(categoriaui, arreglo04.getArreglo());
+                break;
+
+            default:
+                break;
+        }
+
+    }
+
+    private void handleDescAction() {
+        switch (categoriaui.cbOrderBy.getSelectedIndex()) {
+            case 0:
+                ProcessTipoIncidencia.MostrarTipoIncidencia(categoriaui, arreglo.getArreglo());
+                break;
+            case 1:
+                TipoIncidencia[] arregloNivel = arreglo.getArreglo().clone();
+                arregloNivel = Sorting_TiposIncidencias.bubbleSort(arregloNivel, false);
+
+                Arreglo_TipoIncidencias arreglo02 = new Arreglo_TipoIncidencias(arregloNivel.length);
+                arreglo02.setArreglo(arregloNivel);
+                arreglo02.ActualizarContador();
+                ProcessTipoIncidencia.MostrarTipoIncidencia(categoriaui, arreglo02.getArreglo());
+                break;
+            case 2:
+                TipoIncidencia[] arregloFecha = arreglo.getArreglo().clone();
+                arregloFecha = Sorting_TiposIncidencias.insertionSort(arregloFecha, false);
+
+                Arreglo_TipoIncidencias arreglo03 = new Arreglo_TipoIncidencias(arregloFecha.length);
+                arreglo03.setArreglo(arregloFecha);
+                arreglo03.ActualizarContador();
+                ProcessTipoIncidencia.MostrarTipoIncidencia(categoriaui, arreglo03.getArreglo());
+                break;
+            case 3:
+                TipoIncidencia[] arregloCategoria = arreglo.getArreglo().clone();
+                arregloCategoria = Sorting_TiposIncidencias.selectionSort(arregloCategoria, false);
+
+                Arreglo_TipoIncidencias arreglo04 = new Arreglo_TipoIncidencias(arregloCategoria.length);
+                arreglo04.setArreglo(arregloCategoria);
+                arreglo04.ActualizarContador();
+                ProcessTipoIncidencia.MostrarTipoIncidencia(categoriaui, arreglo04.getArreglo());
+                break;
+
+            default:
+                break;
+        }
+
     }
 
 }
