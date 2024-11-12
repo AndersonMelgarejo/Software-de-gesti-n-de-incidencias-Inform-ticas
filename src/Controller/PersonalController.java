@@ -58,18 +58,36 @@ public class PersonalController extends PanelController implements ActionListene
             ProcessPersonal.generarUser(perso);
         }
         if(e.getSource()==perso.btnRegistrar){
-           pe = ProcessPersonal.LeerPersonal(perso);
-           if(pe==null){
-               return;
-           }
-           lista.Agregar(pe);
-           SavePersonal.GuardarPersonal(lista);
-           ProcessPersonal.Limpiar(perso);
-           ProcessPersonal.MostrarEst(perso, lista);
-           JOptionPane.showMessageDialog(null,"EL PERSONAL FUE REGISTRADO"); 
+            handleRegistrarAction();
         }
         if (e.getSource() == perso.btnConsultar) { 
-            String id = JOptionPane.showInputDialog("➤ Ingrese el ID para buscar");
+            handleConsultarAction();
+        }
+        if(e.getSource()==perso.btnActualizar){
+            handleActualizaraAction();
+        }        
+        if (e.getSource() == perso.btnEliminar) {    
+            handleEliminarAction();
+        }
+        if(e.getSource()==perso.btnOrdenar){
+            handleOrdenarAction();
+        }
+    }
+
+    private void handleRegistrarAction(){
+        pe = ProcessPersonal.LeerPersonal(perso);
+            if(pe==null){
+                return;
+            }
+            lista.Agregar(pe);
+            SavePersonal.GuardarPersonal(lista);
+            ProcessPersonal.Limpiar(perso);
+            ProcessPersonal.MostrarEst(perso, lista);
+            JOptionPane.showMessageDialog(null,"EL PERSONAL FUE REGISTRADO");
+    }
+    
+    private void handleConsultarAction(){
+        String id = JOptionPane.showInputDialog("➤ Ingrese el ID para buscar");
         
             if (id == null) {
                 return;
@@ -87,10 +105,10 @@ public class PersonalController extends PanelController implements ActionListene
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(null, "ID inválido. Por favor, ingrese un número.");
             }
-        }
-
-        if(e.getSource()==perso.btnActualizar){
-            if (editing) {
+    }
+    
+    private void handleActualizaraAction(){
+        if (editing) {
                 String id = JOptionPane.showInputDialog("Ingrese el ID del personal a actualizar");
                 if (id == null) {
                     return;
@@ -119,11 +137,11 @@ public class PersonalController extends PanelController implements ActionListene
                 perso.btnEliminar.setEnabled(true);
                 perso.btnConsultar.setEnabled(true);
                 editing = true;
-            }            
-        }
-        
-        if (e.getSource() == perso.btnEliminar) {    
-            String id = JOptionPane.showInputDialog("➤ Ingrese el ID para eliminar");
+            }    
+    }
+    
+    private void handleEliminarAction(){
+        String id = JOptionPane.showInputDialog("➤ Ingrese el ID para eliminar");
             if (id == null) {
                 return;
             } 
@@ -145,17 +163,18 @@ public class PersonalController extends PanelController implements ActionListene
                     JOptionPane.YES_NO_OPTION);
 
             // Eliminar el objeto si se confirma
-            if (confirm == JOptionPane.YES_OPTION) {
-                lista.Eliminar(pos);
-                ProcessPersonal.MostrarEst(perso, lista);
-                SavePersonal.GuardarPersonal(lista);
-            }
+                if (confirm == JOptionPane.YES_OPTION) {
+                    lista.Eliminar(pos);
+                    ProcessPersonal.MostrarEst(perso, lista);
+                    SavePersonal.GuardarPersonal(lista);
+                }
             } else {
             JOptionPane.showMessageDialog(perso, "ID no encontrado");
             }
-        }
-        if(e.getSource()==perso.btnOrdenar){
-            switch (perso.cbxOrdenar.getSelectedIndex()) {
+    }
+    
+    private void handleOrdenarAction(){
+        switch (perso.cbxOrdenar.getSelectedIndex()) {
                 case 0:
                     ProcessPersonal.MostrarEst(perso, lista);
                     break;
@@ -164,29 +183,27 @@ public class PersonalController extends PanelController implements ActionListene
                     auxiliar=lista;
                     ProcessPersonal.ordenarPorNombre(auxiliar);
                     ProcessPersonal.MostrarEst(perso, auxiliar);
-                break;
+                    break;
                 case 2:
                     ListaPersonal auxiliar2 = new ListaPersonal();
-            auxiliar2 = lista;
-            ProcessPersonal.ordenarPorApellido(auxiliar2);
-            ProcessPersonal.MostrarEst(perso, auxiliar2);            
+                    auxiliar2 = lista;
+                    ProcessPersonal.ordenarPorApellido(auxiliar2);
+                    ProcessPersonal.MostrarEst(perso, auxiliar2);            
                     break;
                 case 3:
                     ListaPersonal auxiliar3 = new ListaPersonal();
-            auxiliar3 = lista;
-            ProcessPersonal.ordenarPorCargo(auxiliar3);
-            ProcessPersonal.MostrarEst(perso, auxiliar3);
+                    auxiliar3 = lista;
+                    ProcessPersonal.ordenarPorCargo(auxiliar3);
+                    ProcessPersonal.MostrarEst(perso, auxiliar3);
                     break;
                 case 4:
                     ListaPersonal auxiliar4 = new ListaPersonal();
-            auxiliar4 = lista;
-            ProcessPersonal.ordenarPorUsuario(auxiliar4);
-            ProcessPersonal.MostrarEst(perso, auxiliar4);
-            
+                    auxiliar4 = lista;
+                    ProcessPersonal.ordenarPorUsuario(auxiliar4);
+                    ProcessPersonal.MostrarEst(perso, auxiliar4);            
                     break;
                 default:
                     break;
-            }
         }
-    }    
+    }
 }
