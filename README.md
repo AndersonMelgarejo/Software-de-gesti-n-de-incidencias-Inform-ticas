@@ -57,7 +57,7 @@ Para ejecutar el proyecto localmente, sigue los siguientes pasos:
 
 1. Clona este repositorio:
    ```bash
-   git clone (https://github.com/FrankoFPM/Proyecto_Al_Est_Datos.git)
+   git clone https://github.com/FrankoFPM/Proyecto_Al_Est_Datos.git
    ```
 2. Abre el proyecto en tu entorno de desarrollo.
 3. Compila y ejecuta el proyecto.
