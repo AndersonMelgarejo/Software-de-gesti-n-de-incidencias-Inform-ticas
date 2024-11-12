@@ -32,23 +32,24 @@ public class UI_Categorias extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         cbPrioridad = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        datePick = new Styles.DatePickerCustom();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         atxtDescripcion = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnRegistrar = new javax.swing.JButton();
+        btnConsultar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtTipos = new javax.swing.JTable();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel6 = new javax.swing.JLabel();
         panelRound2 = new Styles.PanelRound();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        cbOrderBy = new javax.swing.JComboBox<>();
+        btnAsc = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        cbCategoria = new javax.swing.JComboBox<>();
+        btnDesc = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(245, 246, 250));
 
@@ -58,47 +59,47 @@ public class UI_Categorias extends javax.swing.JPanel {
         panelRound1.setRoundTopLeft(20);
         panelRound1.setRoundTopRight(20);
 
-        jLabel1.setText("Registro de tipos de incidencias");
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+        jLabel1.setText("Registro de tipos de incidencias");
 
-        jLabel2.setText("Tipo de Incidencia");
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel2.setText("Tipo de Incidencia");
 
         cbPrioridad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[Seleccionar]", "Baja", "Media", "Alta" }));
 
-        jLabel3.setText("Nivel de prioridad");
         jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel3.setText("Nivel de prioridad");
 
-        jLabel4.setText("Fecha");
         jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel4.setText("Categoría");
 
         atxtDescripcion.setColumns(20);
         atxtDescripcion.setRows(5);
         atxtDescripcion.setPreferredSize(new java.awt.Dimension(232, 74));
         jScrollPane1.setViewportView(atxtDescripcion);
 
-        jLabel5.setText("Descripcion");
         jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel5.setText("Descripcion");
 
-        jButton1.setText("Registrar");
-        jButton1.setBackground(new java.awt.Color(153, 0, 51));
-        jButton1.setBorderPainted(false);
-        jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegistrar.setBackground(new java.awt.Color(153, 0, 51));
+        btnRegistrar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        btnRegistrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegistrar.setText("Registrar");
+        btnRegistrar.setBorderPainted(false);
 
-        jButton2.setText("Consultar");
-        jButton2.setBackground(new java.awt.Color(0, 121, 153));
-        jButton2.setBorderPainted(false);
-        jButton2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        btnConsultar.setBackground(new java.awt.Color(0, 121, 153));
+        btnConsultar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        btnConsultar.setForeground(new java.awt.Color(255, 255, 255));
+        btnConsultar.setText("Consultar");
+        btnConsultar.setBorderPainted(false);
 
-        jButton3.setText("Actualizar");
-        jButton3.setBackground(new java.awt.Color(68, 23, 38));
-        jButton3.setBorderPainted(false);
-        jButton3.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        btnActualizar.setBackground(new java.awt.Color(68, 23, 38));
+        btnActualizar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
+        btnActualizar.setText("Actualizar");
+        btnActualizar.setBorderPainted(false);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtTipos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -109,12 +110,12 @@ public class UI_Categorias extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(jtTipos);
 
         jSeparator1.setForeground(new java.awt.Color(153, 0, 51));
 
-        jLabel6.setText("Ordenar por");
         jLabel6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel6.setText("Ordenar por");
 
         panelRound2.setBackground(new java.awt.Color(0, 153, 51));
         panelRound2.setRoundBottomLeft(20);
@@ -122,10 +123,10 @@ public class UI_Categorias extends javax.swing.JPanel {
         panelRound2.setRoundTopLeft(20);
         panelRound2.setRoundTopRight(20);
 
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("#CAT-0000");
         jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("#CAT-0000");
 
         javax.swing.GroupLayout panelRound2Layout = new javax.swing.GroupLayout(panelRound2);
         panelRound2.setLayout(panelRound2Layout);
@@ -144,18 +145,25 @@ public class UI_Categorias extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbOrderBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "!Ordenar", "Nombre", "Prioridad", "Fecha" }));
 
-        jButton4.setText("Ordenar");
-        jButton4.setBackground(new java.awt.Color(128, 228, 255));
-        jButton4.setBorderPainted(false);
-        jButton4.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        btnAsc.setBackground(new java.awt.Color(51, 204, 255));
+        btnAsc.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        btnAsc.setText("Ascendente");
+        btnAsc.setBorderPainted(false);
 
-        jButton5.setText("Eliminar");
-        jButton5.setBackground(new java.awt.Color(255, 153, 0));
-        jButton5.setBorderPainted(false);
-        jButton5.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setBackground(new java.awt.Color(255, 153, 0));
+        btnEliminar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setText("Eliminar");
+        btnEliminar.setBorderPainted(false);
+
+        cbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[Seleccionar]", "Hardware", "Software" }));
+
+        btnDesc.setBackground(new java.awt.Color(128, 228, 255));
+        btnDesc.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        btnDesc.setText("Descendente");
+        btnDesc.setBorderPainted(false);
 
         javax.swing.GroupLayout panelRound1Layout = new javax.swing.GroupLayout(panelRound1);
         panelRound1.setLayout(panelRound1Layout);
@@ -178,32 +186,32 @@ public class UI_Categorias extends javax.swing.JPanel {
                                     .addComponent(txtName))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cbPrioridad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel3))
+                                    .addComponent(jLabel3)
+                                    .addComponent(cbPrioridad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(panelRound1Layout.createSequentialGroup()
                                         .addComponent(jLabel4)
                                         .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(datePick, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(cbCategoria, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelRound1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(30, 30, 30)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(30, 30, 30)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(30, 30, 30)
-                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
                             .addComponent(jLabel5)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cbOrderBy, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAsc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnDesc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())))
         );
         panelRound1Layout.setVerticalGroup(
@@ -225,24 +233,26 @@ public class UI_Categorias extends javax.swing.JPanel {
                         .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cbPrioridad, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(datePick, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelRound1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbOrderBy, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAsc, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE))
                 .addGap(22, 22, 22))
@@ -269,14 +279,15 @@ public class UI_Categorias extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTextArea atxtDescripcion;
+    public javax.swing.JButton btnActualizar;
+    public javax.swing.JButton btnAsc;
+    public javax.swing.JButton btnConsultar;
+    public javax.swing.JButton btnDesc;
+    public javax.swing.JButton btnEliminar;
+    public javax.swing.JButton btnRegistrar;
+    public javax.swing.JComboBox<String> cbCategoria;
+    public javax.swing.JComboBox<String> cbOrderBy;
     public javax.swing.JComboBox<String> cbPrioridad;
-    public Styles.DatePickerCustom datePick;
-    public javax.swing.JButton jButton1;
-    public javax.swing.JButton jButton2;
-    public javax.swing.JButton jButton3;
-    public javax.swing.JButton jButton4;
-    public javax.swing.JButton jButton5;
-    public javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -287,7 +298,7 @@ public class UI_Categorias extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    public javax.swing.JTable jTable1;
+    public javax.swing.JTable jtTipos;
     private Styles.PanelRound panelRound1;
     private Styles.PanelRound panelRound2;
     public javax.swing.JTextField txtName;

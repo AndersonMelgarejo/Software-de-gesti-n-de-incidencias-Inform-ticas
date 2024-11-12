@@ -75,7 +75,7 @@ public class DashboardController implements ActionListener {
     private void handleCategoriaAction() {
         UI_Categorias cat = new UI_Categorias();
         cat.txtName.putClientProperty("JTextField.placeholderText", "Ingrese el nombre de la categoria");
-        cat.datePick.putClientProperty("JTextField.placeholderText", "Ingrese el nombre de la categoria");
+        cat.cbCategoria.putClientProperty("JTextField.placeholderText", "Ingrese el nombre de la categoria");
         CategoriaController ctrlCat = new CategoriaController(cat, vista);
         resetButtons();
         vista.btnCaategoria.setSelected(true);
