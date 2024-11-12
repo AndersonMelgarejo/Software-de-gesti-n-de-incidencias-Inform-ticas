@@ -66,4 +66,13 @@ public class ProcessPersonal {
         }
         return false; // Usuario no encontrado
     }
+    public static boolean eliminarUsuario(String user, ListaPersonal lista) {
+        for (int i = 0; i < lista.Cantidad(); i++) {
+            if (lista.Recuperar(i).getUser().equals(user)) {
+                lista.Eliminar(i); // Elimina el usuario de la lista
+                return true; // Usuario encontrado y eliminado
+            }
+        }
+        return false; // Usuario no encontrado
+    }
 }
