@@ -96,28 +96,37 @@ public class PersonalController extends PanelController implements ActionListene
             ProcessPersonal.Limpiar(perso);
             ProcessPersonal.MostrarEst(perso, lista);
         }
-        if (e.getSource() == perso.btnEliminar) {
-    // Solicita el nombre de usuario a eliminar
-    String usuario = JOptionPane.showInputDialog(null, "Ingrese el nombre de usuario que desea eliminar:");
-    if (usuario != null && !usuario.isEmpty()) {
-        // Confirma la eliminación
-        int confirmacion = JOptionPane.showConfirmDialog(null, "¿Desea eliminar el registro?", "Confirmar", JOptionPane.YES_NO_OPTION);
-        if (confirmacion == JOptionPane.YES_OPTION) {
-            boolean eliminado = ProcessPersonal.eliminarUsuario(usuario, lista);
-            if (eliminado) {
-                SavePersonal.GuardarPersonal(lista); // Guarda los cambios en el archivo
-                ProcessPersonal.Limpiar(perso); // Limpia los campos de entrada
-                ProcessPersonal.MostrarEst(perso, lista); // Actualiza la tabla
-                JOptionPane.showMessageDialog(null, "Usuario eliminado correctamente.");
+        if (e.getSource() == perso.btnEliminar) {    
+            String id = JOptionPane.showInputDialog("➤ Ingrese el ID para eliminar");
+            if (id == null) {
+                return;
+            } 
+            int pos = Integer.parseInt(id) - 1;
+            if (pos >= 0 && pos < lista.Cantidad()) {
+            // Obtener el objeto a eliminar
+            Personal pe = lista.Recuperar(pos);
+
+            // Mostrar la información del objeto y solicitar confirmación
+            int confirm = JOptionPane.showConfirmDialog(
+                    perso,
+                    "¿Está seguro de que desea eliminar al personal?\n" +
+                            "ID: " + (pos + 1) + "\n" +
+                            "Nombre: " + pe.getNombre() + "\n" +
+                            "Apellido: " + pe.getApellido()+ "\n" +
+                            "Usuario: " + pe.getUser()+ "\n"+
+                            "Cargo: " + pe.getCargo()+ "\n",                            
+                    "Confirmar Eliminación",
+                    JOptionPane.YES_NO_OPTION);
+
+            // Eliminar el objeto si se confirma
+            if (confirm == JOptionPane.YES_OPTION) {
+                lista.Eliminar(pos);
+                ProcessPersonal.MostrarEst(perso, lista);
+                SavePersonal.GuardarPersonal(lista);
+            }
             } else {
-                JOptionPane.showMessageDialog(null, "Usuario no encontrado.");
+            JOptionPane.showMessageDialog(perso, "ID no encontrado");
             }
         }
-    } else {
-        JOptionPane.showMessageDialog(null, "Debe ingresar un nombre de usuario válido.");
-    }
-}
-
-    }
-    
+    }    
 }
