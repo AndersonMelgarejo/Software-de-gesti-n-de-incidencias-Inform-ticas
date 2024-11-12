@@ -10,7 +10,7 @@ Este proyecto tiene como objetivo desarrollar un aplicativo para la gestión efi
 | RF1 | El aplicativo permite el acceso a los recursos mediante un login                                         | ✔️      | N/A                                |
 | RF2 | El aplicativo debe permitir la navegabilidad de los formularios mediante un menú                         | ✔️      | N/A                                |
 | RF3 | El aplicativo permite el registro de tipos de incidencias informáticas y realizar el mantenimiento correspondiente | ✔️      | Arreglo de Objetos                 |
-| RF4 | El aplicativo permite el registro de los empleados de la empresa y realizar el mantenimiento correspondiente | 🔄     | ArrayList                          |
+| RF4 | El aplicativo permite el registro de los empleados de la empresa y realizar el mantenimiento correspondiente | ✔️     | ArrayList                          |
 | RF5 | El aplicativo permite el registro de áreas y realizar el mantenimiento correspondiente                   | ⏳         | No definido                         |
 | RF6 | El aplicativo permite el registro de una incidencia informática y realizar el mantenimiento correspondiente | ⏳         | No definido                         |
 | RF7 | El aplicativo permite asignar a un personal para la solución de la incidencia informática                 | ⏳         | No definido                         |
