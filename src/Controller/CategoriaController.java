@@ -20,6 +20,7 @@ public class CategoriaController extends PanelController implements ActionListen
     public CategoriaController(UI_Categorias cat, UI_Dashboard dash) {
         super(cat, dash);
         this.categoriaui = cat;
+        super.showWindow(categoriaui);
         
     }
     

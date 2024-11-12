@@ -13,12 +13,13 @@ import java.awt.event.ActionListener;
  *
  * @author Renzo
  */
-public class DepartamentoController extends PanelController implements ActionListener{
-    UI_Departamentos categoria; 
-    
-    public DepartamentoController(UI_Departamentos cate, UI_Dashboard api){
-        super(cate,api);
-        this.categoria= cate;
+public class DepartamentoController extends PanelController implements ActionListener {
+    UI_Departamentos categoria;
+
+    public DepartamentoController(UI_Departamentos cate, UI_Dashboard api) {
+        super(cate, api);
+        this.categoria = cate;
+        super.showWindow(cate);
     }
 
     @Override
@@ -31,7 +32,8 @@ public class DepartamentoController extends PanelController implements ActionLis
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
 }

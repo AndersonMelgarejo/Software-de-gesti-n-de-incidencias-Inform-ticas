@@ -27,6 +27,7 @@ public class PersonalController extends PanelController implements ActionListene
     public PersonalController(UI_Personal perso, UI_Dashboard apo) {
         super(perso, apo);
         this.perso=perso;
+        super.showWindow(panel);
         lista =  new ListaPersonal();
         lista= SavePersonal.RecuperarEstudiantes();
         ProcessPersonal.MostrarEst(perso, lista);

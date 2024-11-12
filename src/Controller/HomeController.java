@@ -20,6 +20,7 @@ public class HomeController extends PanelController{
     public HomeController(UI_Home panel, UI_Dashboard app) {
         super(panel, app);
         this.home = panel;
+        super.showWindow(panel);
     }
 
     @Override

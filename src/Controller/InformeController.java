@@ -8,29 +8,30 @@ import View.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class InformeController extends PanelController implements ActionListener{
+public class InformeController extends PanelController implements ActionListener {
 
     UI_Informe info;
 
     public InformeController(UI_Informe info, UI_Dashboard dash) {
         super(info, dash);
         this.info = info;
+        super.showWindow(info);
         info.btnRegistrar.addActionListener(this);
     }
-    
 
     @Override
     protected void addListeners() {
-       
+
     }
 
     @Override
     protected void reloadWindow() {
-    
+
     }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        
+
     }
-    
+
 }
