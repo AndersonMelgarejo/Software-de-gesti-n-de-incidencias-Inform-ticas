@@ -45,10 +45,11 @@ public class UI_Categorias extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         panelRound2 = new Styles.PanelRound();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jButton4 = new javax.swing.JButton();
+        cbOrderBy = new javax.swing.JComboBox<>();
+        btnAsc = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         cbCategoria = new javax.swing.JComboBox<>();
+        btnDesc = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(245, 246, 250));
 
@@ -144,12 +145,12 @@ public class UI_Categorias extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbOrderBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "!Ordenar", "Nombre", "Prioridad", "Fecha" }));
 
-        jButton4.setBackground(new java.awt.Color(128, 228, 255));
-        jButton4.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jButton4.setText("Ordenar");
-        jButton4.setBorderPainted(false);
+        btnAsc.setBackground(new java.awt.Color(51, 204, 255));
+        btnAsc.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        btnAsc.setText("Ascendente");
+        btnAsc.setBorderPainted(false);
 
         btnEliminar.setBackground(new java.awt.Color(255, 153, 0));
         btnEliminar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
@@ -158,6 +159,11 @@ public class UI_Categorias extends javax.swing.JPanel {
         btnEliminar.setBorderPainted(false);
 
         cbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[Seleccionar]", "Hardware", "Software" }));
+
+        btnDesc.setBackground(new java.awt.Color(128, 228, 255));
+        btnDesc.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        btnDesc.setText("Descendente");
+        btnDesc.setBorderPainted(false);
 
         javax.swing.GroupLayout panelRound1Layout = new javax.swing.GroupLayout(panelRound1);
         panelRound1.setLayout(panelRound1Layout);
@@ -203,8 +209,9 @@ public class UI_Categorias extends javax.swing.JPanel {
                             .addComponent(jLabel6)
                             .addComponent(jLabel5)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cbOrderBy, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAsc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnDesc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())))
         );
         panelRound1Layout.setVerticalGroup(
@@ -241,9 +248,11 @@ public class UI_Categorias extends javax.swing.JPanel {
                     .addGroup(panelRound1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbOrderBy, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAsc, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE))
                 .addGap(22, 22, 22))
@@ -271,13 +280,14 @@ public class UI_Categorias extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTextArea atxtDescripcion;
     public javax.swing.JButton btnActualizar;
+    public javax.swing.JButton btnAsc;
     public javax.swing.JButton btnConsultar;
+    public javax.swing.JButton btnDesc;
     public javax.swing.JButton btnEliminar;
     public javax.swing.JButton btnRegistrar;
     public javax.swing.JComboBox<String> cbCategoria;
+    public javax.swing.JComboBox<String> cbOrderBy;
     public javax.swing.JComboBox<String> cbPrioridad;
-    public javax.swing.JButton jButton4;
-    public javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
