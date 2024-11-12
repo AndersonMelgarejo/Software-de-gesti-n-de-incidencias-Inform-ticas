@@ -24,6 +24,7 @@ public class PersonalController extends PanelController implements ActionListene
     UI_Personal perso;
     ListaPersonal lista;
     Personal pe;
+    int pos;
     public PersonalController(UI_Personal perso, UI_Dashboard apo) {
         super(perso, apo);
         this.perso=perso;
@@ -50,6 +51,9 @@ public class PersonalController extends PanelController implements ActionListene
     @Override
     public void actionPerformed(ActionEvent e) {
     
+        if (e.getSource() == perso.btnAutoGenerarUser) {                        
+            ProcessPersonal.generarUser(perso);
+        }
         if(e.getSource()==perso.btnRegistrar){
            pe = ProcessPersonal.LeerPersonal(perso);
            lista.Agregar(pe);
@@ -58,9 +62,22 @@ public class PersonalController extends PanelController implements ActionListene
            ProcessPersonal.MostrarEst(perso, lista);
            JOptionPane.showMessageDialog(null,"EL PERSONAL FUE REGISTRADO"); 
         }
-        if (e.getSource() == perso.btnAutoGenerarUser) {                        
-            ProcessPersonal.generarUser(perso);
-        } 
+        if(e.getSource()==perso.btnConsultar){
+            String user= JOptionPane.showInputDialog("➤ Ingrese el USUARIO para buscar");
+            if(user!=null && !user.trim().isEmpty()){                
+                if (ProcessPersonal.consultarUsuario(user, lista, perso)) {
+                } else {
+                    JOptionPane.showMessageDialog(null, "🚨 El usuario "+user+" no existe 🚨", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }            
+        }
+        if(e.getSource()==perso.btnActualizar){            
+            pe = ProcessPersonal.LeerPersonal(perso);
+            lista.Actualizar(pos, pe);
+            SavePersonal.GuardarPersonal(lista);
+            ProcessPersonal.Limpiar(perso);
+            ProcessPersonal.MostrarEst(perso, lista);
+        }
     }
     
 }
