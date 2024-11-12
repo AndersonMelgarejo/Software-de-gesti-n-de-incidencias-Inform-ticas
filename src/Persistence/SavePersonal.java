@@ -20,7 +20,7 @@ public class SavePersonal {
            oos.writeObject(Lista);
            oos.close();
        }catch(Exception ex){
-           JOptionPane.showInputDialog("ERROR no se puede guardar "+ex);
+           JOptionPane.showMessageDialog(null,"ERROR no se puede guardar "+ex);
        }       
     }
     
