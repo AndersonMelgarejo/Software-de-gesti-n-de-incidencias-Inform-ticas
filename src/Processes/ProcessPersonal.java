@@ -23,6 +23,15 @@ public class ProcessPersonal {
         pe.cbxCargo.setSelectedIndex(0);
         pe.cbxOrdenar.setSelectedIndex(0);
     }
+    public static void Llenar(UI_Personal pe,Personal p){
+        pe.txtNombre.setText(p.getNombre());
+        pe.txtApellido.setText(p.getApellido());
+        pe.txtCorreo.setText(p.getCorreo());
+        pe.txtMovil.setText(p.getTelefono());
+        pe.txtUser.setText(p.getUser());
+        pe.txtPass.setText(p.getPassword());
+        pe.cbxCargo.setSelectedItem(p.getCargo());
+    }
     public static void MostrarEst(UI_Personal pe,ListaPersonal lista){
        String campos[]={"ID","Nombre","Apellido","Correo","Telefono","Usuario","Contraseña","Cargo"}; 
        DefaultTableModel mt = new DefaultTableModel(null,campos);
@@ -49,14 +58,5 @@ public class ProcessPersonal {
         String apellidos = pe.txtApellido.getText().replace(" ", "");
         String user=(nombres + '.' + apellidos + '.' + uuid).toLowerCase();
         pe.txtUser.setText(user);
-    }
-    public static boolean eliminarUsuario(String user, ListaPersonal lista) {
-        for (int i = 0; i < lista.Cantidad(); i++) {
-            if (lista.Recuperar(i).getUser().equals(user)) {
-                lista.Eliminar(i); // Elimina el usuario de la lista
-                return true; // Usuario encontrado y eliminado
-            }
-        }
-        return false; // Usuario no encontrado
     }
 }

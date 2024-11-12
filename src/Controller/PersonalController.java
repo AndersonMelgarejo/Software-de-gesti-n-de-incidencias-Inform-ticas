@@ -25,6 +25,7 @@ public class PersonalController extends PanelController implements ActionListene
     ListaPersonal lista;
     Personal pe;
     int pos;
+    boolean editing = true;
     public PersonalController(UI_Personal perso, UI_Dashboard apo) {
         super(perso, apo);
         this.perso=perso;
@@ -74,13 +75,7 @@ public class PersonalController extends PanelController implements ActionListene
                 if (pos >= 0 && pos < lista.Cantidad()) {
                     Personal p = lista.Recuperar(pos);
                         
-                    perso.txtNombre.setText(p.getNombre());
-                    perso.txtApellido.setText(p.getApellido());
-                    perso.txtCorreo.setText(p.getCorreo());
-                    perso.txtMovil.setText(p.getTelefono());
-                    perso.txtUser.setText(p.getUser());
-                    perso.txtPass.setText(p.getPassword());
-                    perso.cbxCargo.setSelectedItem(p.getCargo());
+                    ProcessPersonal.Llenar(perso, p);
                 } else {
                     JOptionPane.showMessageDialog(null, "ID no encontrado en la lista.");
                 }
@@ -89,13 +84,39 @@ public class PersonalController extends PanelController implements ActionListene
             }
         }
 
-        if(e.getSource()==perso.btnActualizar){            
-            pe = ProcessPersonal.LeerPersonal(perso);
-            lista.Actualizar(pos, pe);
-            SavePersonal.GuardarPersonal(lista);
-            ProcessPersonal.Limpiar(perso);
-            ProcessPersonal.MostrarEst(perso, lista);
+        if(e.getSource()==perso.btnActualizar){
+            if (editing) {
+                String id = JOptionPane.showInputDialog("Ingrese el ID del personal a actualizar");
+                if (id == null) {
+                    return;
+                }
+                pos = Integer.parseInt(id) - 1;
+                if (pos >= 0 && pos < lista.Cantidad()) {
+                    Personal actuper = lista.Recuperar(pos);
+                    ProcessPersonal.Llenar(perso, actuper);
+                    perso.btnRegistrar.setEnabled(false);
+                    perso.btnEliminar.setEnabled(false);
+                    perso.btnConsultar.setEnabled(false);
+                    editing = false;
+                } else {
+                    JOptionPane.showMessageDialog(perso, "ID no encontrado");
+                }
+            } else {
+                Personal pe = ProcessPersonal.LeerPersonal(perso);
+                if (pe == null) {
+                    return;
+                }
+                lista.Actualizar(pos, pe);
+                SavePersonal.GuardarPersonal(lista);
+                ProcessPersonal.Limpiar(perso);
+                ProcessPersonal.MostrarEst(perso, lista);
+                perso.btnRegistrar.setEnabled(true);
+                perso.btnEliminar.setEnabled(true);
+                perso.btnConsultar.setEnabled(true);
+                editing = true;
+            }            
         }
+        
         if (e.getSource() == perso.btnEliminar) {    
             String id = JOptionPane.showInputDialog("➤ Ingrese el ID para eliminar");
             if (id == null) {
