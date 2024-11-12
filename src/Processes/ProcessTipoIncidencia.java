@@ -5,10 +5,28 @@ import javax.swing.table.DefaultTableModel;
 import Model.TipoIncidencia;
 import Structures.Arreglo_TipoIncidencias;
 import View.UI_Categorias;
+import javax.swing.JOptionPane;
 
 public class ProcessTipoIncidencia {
 
   public static TipoIncidencia LeerTipoIncidencia(UI_Categorias vista) {
+    if (vista.txtName.getText().isEmpty()) {
+      JOptionPane.showMessageDialog(vista, "El nombre no puede estar vacío", "Error", JOptionPane.ERROR_MESSAGE);
+      return null;
+    }
+    if (vista.cbPrioridad.getSelectedIndex() == 0) {
+      JOptionPane.showMessageDialog(vista, "Debe seleccionar una prioridad", "Error", JOptionPane.ERROR_MESSAGE);
+      return null;
+    }
+    if (vista.cbCategoria.getSelectedIndex() == 0) {
+      JOptionPane.showMessageDialog(vista, "Debe seleccionar una categoría", "Error", JOptionPane.ERROR_MESSAGE);
+      return null;
+    }
+    if (vista.atxtDescripcion.getText().isEmpty()) {
+      JOptionPane.showMessageDialog(vista, "La descripción no puede estar vacía", "Error", JOptionPane.ERROR_MESSAGE);
+      return null;
+    }
+
     TipoIncidencia tipoIncidencia = new TipoIncidencia();
     tipoIncidencia.setNombre(vista.txtName.getText());
     tipoIncidencia.setNivel(vista.cbPrioridad.getSelectedItem().toString());
@@ -39,6 +57,5 @@ public class ProcessTipoIncidencia {
     for (int i = 0; i < Arreglo_TipoIncidencias.contador; i++) {
       modelo.addRow(arreglo[i].Registro(i + 1));
     }
-
   }
 }

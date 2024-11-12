@@ -75,6 +75,9 @@ public class CategoriaController extends PanelController implements ActionListen
 
     private void handleRegistrarAction() {
         TipoIncidencia tipoIncidencia = ProcessTipoIncidencia.LeerTipoIncidencia(categoriaui);
+        if (tipoIncidencia == null) {
+            return;
+        }
         arreglo.agregar(tipoIncidencia);
         SaveTipoIncidencia.saveTipoIncidencia(arreglo);
         ProcessTipoIncidencia.LimpiaCampos(categoriaui);
@@ -144,6 +147,9 @@ public class CategoriaController extends PanelController implements ActionListen
 
         } else {
             TipoIncidencia tipoIncidencia = ProcessTipoIncidencia.LeerTipoIncidencia(categoriaui);
+            if (tipoIncidencia == null) {
+                return;
+            }
             arreglo.modificar(pos, tipoIncidencia);
             SaveTipoIncidencia.saveTipoIncidencia(arreglo);
             ProcessTipoIncidencia.LimpiaCampos(categoriaui);
