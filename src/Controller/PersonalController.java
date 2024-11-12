@@ -57,6 +57,9 @@ public class PersonalController extends PanelController implements ActionListene
         }
         if(e.getSource()==perso.btnRegistrar){
            pe = ProcessPersonal.LeerPersonal(perso);
+           if(pe==null){
+               return;
+           }
            lista.Agregar(pe);
            SavePersonal.GuardarPersonal(lista);
            ProcessPersonal.Limpiar(perso);
