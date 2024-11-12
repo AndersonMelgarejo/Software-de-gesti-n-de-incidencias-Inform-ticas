@@ -40,7 +40,7 @@ public class UI_Personal extends javax.swing.JPanel {
         panelRound2 = new Styles.PanelRound();
         jLabel7 = new javax.swing.JLabel();
         cbxOrdenar = new javax.swing.JComboBox<>();
-        jButton4 = new javax.swing.JButton();
+        btnOrdenar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -135,12 +135,12 @@ public class UI_Personal extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        cbxOrdenar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxOrdenar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Nombre", "Apellido", "Cargo", "Usuario" }));
 
-        jButton4.setBackground(new java.awt.Color(128, 228, 255));
-        jButton4.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jButton4.setText("Ordenar");
-        jButton4.setBorderPainted(false);
+        btnOrdenar.setBackground(new java.awt.Color(128, 228, 255));
+        btnOrdenar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        btnOrdenar.setText("Ordenar");
+        btnOrdenar.setBorderPainted(false);
 
         btnEliminar.setBackground(new java.awt.Color(255, 153, 0));
         btnEliminar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
@@ -242,7 +242,7 @@ public class UI_Personal extends javax.swing.JPanel {
                                 .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(cbxOrdenar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(btnOrdenar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jSeparator1))
                         .addGap(16, 16, 16))))
         );
@@ -290,7 +290,7 @@ public class UI_Personal extends javax.swing.JPanel {
                     .addGroup(panelRound1Layout.createSequentialGroup()
                         .addComponent(cbxOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 138, Short.MAX_VALUE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE))
                 .addGap(15, 15, 15))
@@ -320,10 +320,10 @@ public class UI_Personal extends javax.swing.JPanel {
     public javax.swing.JButton btnAutoGenerarUser;
     public javax.swing.JButton btnConsultar;
     public javax.swing.JButton btnEliminar;
+    public javax.swing.JButton btnOrdenar;
     public javax.swing.JButton btnRegistrar;
     public javax.swing.JComboBox<String> cbxCargo;
     public javax.swing.JComboBox<String> cbxOrdenar;
-    public javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

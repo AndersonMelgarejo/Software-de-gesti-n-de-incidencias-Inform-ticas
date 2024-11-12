@@ -6,6 +6,7 @@ package Processes;
 import View.UI_Personal;
 import ArrayList.ListaPersonal;
 import Model.Personal;
+import java.util.ArrayList;
 import java.util.UUID;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -87,6 +88,7 @@ public class ProcessPersonal {
         p.segunCargo();
         return p;
     }
+    
     public static void generarUser(UI_Personal pe){
         String uuid = UUID.randomUUID().toString().substring(0, 4);
         String nombres = pe.txtNombre.getText().replace(" ", "");
@@ -94,4 +96,125 @@ public class ProcessPersonal {
         String user=(nombres + '.' + apellidos + '.' + uuid).toLowerCase();
         pe.txtUser.setText(user);
     }
+    
+    public static void ordenarPorNombre(ListaPersonal lista) {
+        int n = lista.getLista().size();
+        boolean swapped;
+        
+        // Usando Bubble Sort para ordenar la lista de nombres
+        for (int i = 0; i < n - 1; i++) {
+            swapped = false;
+
+            for (int j = 0; j < n - i - 1; j++) {
+                Personal p1 = lista.getLista().get(j);
+                Personal p2 = lista.getLista().get(j + 1);
+                
+                // Verifica si ambos objetos no son null antes de intentar comparar
+                if (p1 != null && p2 != null) {
+                    if (p1.getNombre().compareTo(p2.getNombre()) > 0) {
+                        // Intercambia los elementos si están en el orden incorrecto
+                        lista.getLista().set(j, p2);
+                        lista.getLista().set(j + 1, p1);
+                        swapped = true;
+                    }
+                }
+            }
+
+            // Si no hubo intercambios, la lista ya está ordenada
+            if (!swapped) {
+                break;
+            }
+        }
+    }
+    
+    public static void ordenarPorApellido(ListaPersonal lista) {
+        int n = lista.getLista().size();
+        boolean swapped;
+
+        // Usando Bubble Sort para ordenar la lista por Apellido
+        for (int i = 0; i < n - 1; i++) {
+            swapped = false;
+
+            for (int j = 0; j < n - i - 1; j++) {
+                Personal p1 = lista.getLista().get(j);
+                Personal p2 = lista.getLista().get(j + 1);
+                
+                // Verifica si ambos objetos no son null antes de intentar comparar
+                if (p1 != null && p2 != null) {
+                    if (p1.getApellido().compareTo(p2.getApellido()) > 0) {
+                        // Intercambia los elementos si están en el orden incorrecto
+                        lista.getLista().set(j, p2);
+                        lista.getLista().set(j + 1, p1);
+                        swapped = true;
+                    }
+                }
+            }
+
+            // Si no hubo intercambios, la lista ya está ordenada
+            if (!swapped) {
+                break;
+            }
+        }
+    }
+    
+    public static void ordenarPorUsuario(ListaPersonal lista) {
+        int n = lista.getLista().size();
+        boolean swapped;
+
+        // Usando Bubble Sort para ordenar la lista por Usuario
+        for (int i = 0; i < n - 1; i++) {
+            swapped = false;
+
+            for (int j = 0; j < n - i - 1; j++) {
+                Personal p1 = lista.getLista().get(j);
+                Personal p2 = lista.getLista().get(j + 1);
+
+                // Verifica si ambos objetos no son null antes de intentar comparar
+                if (p1 != null && p2 != null) {
+                    if (p1.getUser().compareTo(p2.getUser()) > 0) {
+                        // Intercambia los elementos si están en el orden incorrecto
+                        lista.getLista().set(j, p2);
+                        lista.getLista().set(j + 1, p1);
+                        swapped = true;
+                    }
+                }
+            }
+
+            // Si no hubo intercambios, la lista ya está ordenada
+            if (!swapped) {
+                break;
+            }
+        }
+    }
+    
+    public static void ordenarPorCargo(ListaPersonal lista) {
+        int n = lista.getLista().size();
+        boolean swapped;
+
+        // Usando Bubble Sort para ordenar la lista por Cargo
+        for (int i = 0; i < n - 1; i++) {
+            swapped = false;
+            
+            for (int j = 0; j < n - i - 1; j++) {
+                Personal p1 = lista.getLista().get(j);
+                Personal p2 = lista.getLista().get(j + 1);
+                
+                // Verifica si ambos objetos no son null antes de intentar comparar
+                if (p1 != null && p2 != null) {
+                    if (p1.getCargo().compareTo(p2.getCargo()) > 0) {
+                        // Intercambia los elementos si están en el orden incorrecto
+                        lista.getLista().set(j, p2);
+                        lista.getLista().set(j + 1, p1);
+                        swapped = true;
+                    }
+                }
+            }
+
+            // Si no hubo intercambios, la lista ya está ordenada
+            if (!swapped) {
+                break;
+            }
+        }
+    }
+
 }

@@ -12,6 +12,7 @@ import View.UI_Dashboard;
 import View.UI_Personal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Comparator;
 import java.util.UUID;
 import javax.swing.JOptionPane;
 
@@ -43,6 +44,7 @@ public class PersonalController extends PanelController implements ActionListene
         this.perso.btnConsultar.addActionListener(this);
         this.perso.btnActualizar.addActionListener(this);
         this.perso.btnEliminar.addActionListener(this);
+        this.perso.btnOrdenar.addActionListener(this);
     }
 
     @Override
@@ -150,6 +152,40 @@ public class PersonalController extends PanelController implements ActionListene
             }
             } else {
             JOptionPane.showMessageDialog(perso, "ID no encontrado");
+            }
+        }
+        if(e.getSource()==perso.btnOrdenar){
+            switch (perso.cbxOrdenar.getSelectedIndex()) {
+                case 0:
+                    ProcessPersonal.MostrarEst(perso, lista);
+                    break;
+                case 1:
+                    ListaPersonal auxiliar= new ListaPersonal();
+                    auxiliar=lista;
+                    ProcessPersonal.ordenarPorNombre(auxiliar);
+                    ProcessPersonal.MostrarEst(perso, auxiliar);
+                break;
+                case 2:
+                    ListaPersonal auxiliar2 = new ListaPersonal();
+            auxiliar2 = lista;
+            ProcessPersonal.ordenarPorApellido(auxiliar2);
+            ProcessPersonal.MostrarEst(perso, auxiliar2);            
+                    break;
+                case 3:
+                    ListaPersonal auxiliar3 = new ListaPersonal();
+            auxiliar3 = lista;
+            ProcessPersonal.ordenarPorCargo(auxiliar3);
+            ProcessPersonal.MostrarEst(perso, auxiliar3);
+                    break;
+                case 4:
+                    ListaPersonal auxiliar4 = new ListaPersonal();
+            auxiliar4 = lista;
+            ProcessPersonal.ordenarPorUsuario(auxiliar4);
+            ProcessPersonal.MostrarEst(perso, auxiliar4);
+            
+                    break;
+                default:
+                    break;
             }
         }
     }    
