@@ -28,7 +28,7 @@ public class UI_Informe extends javax.swing.JPanel {
 
         panelRound1 = new Styles.PanelRound();
         jLabel1 = new javax.swing.JLabel();
-        cbxAcciones = new javax.swing.JComboBox<>();
+        cbxIDIncidencia = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         datePick = new Styles.DatePickerCustom();
         jLabel4 = new javax.swing.JLabel();
@@ -47,7 +47,9 @@ public class UI_Informe extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         cbxEstado = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
-        cbxAcciones1 = new javax.swing.JComboBox<>();
+        cbxAccionesTomadas = new javax.swing.JComboBox<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txaDatos = new javax.swing.JTextArea();
 
         setBackground(new java.awt.Color(245, 246, 250));
 
@@ -61,10 +63,10 @@ public class UI_Informe extends javax.swing.JPanel {
         jLabel1.setText("Informe de Incidencias Informáticas");
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
 
-        cbxAcciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[Seleccionar]" }));
-        cbxAcciones.addActionListener(new java.awt.event.ActionListener() {
+        cbxIDIncidencia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
+        cbxIDIncidencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxAccionesActionPerformed(evt);
+                cbxIDIncidenciaActionPerformed(evt);
             }
         });
 
@@ -122,7 +124,7 @@ public class UI_Informe extends javax.swing.JPanel {
         panelRound2.setRoundTopRight(20);
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("#CAT-0000");
+        jLabel7.setText("#CAT-0001");
         jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
 
@@ -152,7 +154,7 @@ public class UI_Informe extends javax.swing.JPanel {
         jLabel6.setText("Estado");
         jLabel6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
-        cbxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "EN PROCESO", "ATENDIDO", "DERIVADO" }));
+        cbxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[Seleccionar]", "EN PROCESO", "ATENDIDO", "DERIVADO" }));
         cbxEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxEstadoActionPerformed(evt);
@@ -162,12 +164,16 @@ public class UI_Informe extends javax.swing.JPanel {
         jLabel8.setText("ID de incidencia ");
         jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
-        cbxAcciones1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[Seleccionar]", "Baja", "Media", "Alta" }));
-        cbxAcciones1.addActionListener(new java.awt.event.ActionListener() {
+        cbxAccionesTomadas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[Seleccionar]", "Actualización de Hardware", "Actualización de Software", "Reinicio de Sistema", "Corrección de Configuración", "Restablecimiento de Red", "Optimización de Rendimiento" }));
+        cbxAccionesTomadas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxAcciones1ActionPerformed(evt);
+                cbxAccionesTomadasActionPerformed(evt);
             }
         });
+
+        txaDatos.setColumns(20);
+        txaDatos.setRows(5);
+        jScrollPane3.setViewportView(txaDatos);
 
         javax.swing.GroupLayout panelRound1Layout = new javax.swing.GroupLayout(panelRound1);
         panelRound1.setLayout(panelRound1Layout);
@@ -193,7 +199,8 @@ public class UI_Informe extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane3)))
                     .addGroup(panelRound1Layout.createSequentialGroup()
                         .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelRound1Layout.createSequentialGroup()
@@ -204,12 +211,12 @@ public class UI_Informe extends javax.swing.JPanel {
                             .addGroup(panelRound1Layout.createSequentialGroup()
                                 .addGap(30, 30, 30)
                                 .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cbxAcciones, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cbxIDIncidencia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel8))
                                 .addGap(15, 15, 15)
                                 .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
-                                    .addComponent(cbxAcciones1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(cbxAccionesTomadas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
@@ -236,8 +243,8 @@ public class UI_Informe extends javax.swing.JPanel {
                             .addComponent(jLabel8)
                             .addComponent(jLabel3))
                         .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbxAcciones, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbxAcciones1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(cbxIDIncidencia, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbxAccionesTomadas, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelRound1Layout.createSequentialGroup()
                         .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
@@ -259,9 +266,14 @@ public class UI_Informe extends javax.swing.JPanel {
                         .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9))
+                    .addGroup(panelRound1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                        .addGap(9, 9, 9))
+                    .addGroup(panelRound1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -286,13 +298,13 @@ public class UI_Informe extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxEstadoActionPerformed
 
-    private void cbxAccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxAccionesActionPerformed
+    private void cbxIDIncidenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxIDIncidenciaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbxAccionesActionPerformed
+    }//GEN-LAST:event_cbxIDIncidenciaActionPerformed
 
-    private void cbxAcciones1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxAcciones1ActionPerformed
+    private void cbxAccionesTomadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxAccionesTomadasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbxAcciones1ActionPerformed
+    }//GEN-LAST:event_cbxAccionesTomadasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -301,9 +313,9 @@ public class UI_Informe extends javax.swing.JPanel {
     public javax.swing.JButton btnConsultar;
     public javax.swing.JButton btnEliminar;
     public javax.swing.JButton btnRegistrar;
-    public javax.swing.JComboBox<String> cbxAcciones;
-    public javax.swing.JComboBox<String> cbxAcciones1;
+    public javax.swing.JComboBox<String> cbxAccionesTomadas;
     public javax.swing.JComboBox<String> cbxEstado;
+    public javax.swing.JComboBox<String> cbxIDIncidencia;
     public Styles.DatePickerCustom datePick;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
@@ -314,9 +326,11 @@ public class UI_Informe extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private Styles.PanelRound panelRound1;
     private Styles.PanelRound panelRound2;
     public javax.swing.JTable tblInformes;
+    public javax.swing.JTextArea txaDatos;
     // End of variables declaration//GEN-END:variables
 }
