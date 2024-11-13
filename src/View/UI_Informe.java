@@ -162,7 +162,7 @@ public class UI_Informe extends javax.swing.JPanel {
         jLabel8.setText("ID de incidencia ");
         jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
-        cbxAcciones1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[Seleccionar]", "Baja", "Media", "Alta" }));
+        cbxAcciones1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Actualización de Hardware", "Actualización de Software", "Reinicio de Sistema", "Corrección de Configuración", "Restablecimiento de Red", "Optimización de Rendimiento" }));
         cbxAcciones1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxAcciones1ActionPerformed(evt);
