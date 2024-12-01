@@ -5,6 +5,7 @@
 package Controller;
 
 import ArrayList.ListaPersonal;
+import Model.Personal;
 import Processes.ProcessLogin;
 import View.UI_Dashboard;
 import View.UI_Login;
@@ -23,6 +24,7 @@ public class LoginController implements ActionListener {
     UI_Login login;
     UI_Dashboard dashboard = new UI_Dashboard();
     ListaPersonal listaPersonal;
+    Personal personal;
     public LoginController(UI_Login login,ListaPersonal listaPersonal) {
         this.login = login;
         this.listaPersonal=listaPersonal;
@@ -46,7 +48,9 @@ public class LoginController implements ActionListener {
             // Validar usuario y contraseña usando ProcessLogin
             if (ProcessLogin.validarUsuario(user, password, listaPersonal)) {
                 // Credenciales correctas, abrir dashboard
-                DashboardController controllerDash = new DashboardController(dashboard);
+                personal= new Personal();
+                personal.setUser(user);
+                DashboardController controllerDash = new DashboardController(dashboard,personal);
                 login.dispose();
             } else {
                 // Credenciales incorrectas, mostrar mensaje de error
