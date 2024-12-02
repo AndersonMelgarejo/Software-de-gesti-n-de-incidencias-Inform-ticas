@@ -5,12 +5,10 @@
 package Controller;
 
 import ArrayList.ListaPersonal;
-import Model.Personal;
 import Processes.ProcessLogin;
 import View.UI_Dashboard;
 import View.UI_Login;
 import com.formdev.flatlaf.FlatClientProperties;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -20,11 +18,12 @@ import javax.swing.JOptionPane;
  * @author franc
  */
 public class LoginController implements ActionListener {
-
+    
+    public static String usuario;
     UI_Login login;
     UI_Dashboard dashboard = new UI_Dashboard();
     ListaPersonal listaPersonal;
-    Personal personal;
+    
     public LoginController(UI_Login login,ListaPersonal listaPersonal) {
         this.login = login;
         this.listaPersonal=listaPersonal;
@@ -48,9 +47,8 @@ public class LoginController implements ActionListener {
             // Validar usuario y contraseña usando ProcessLogin
             if (ProcessLogin.validarUsuario(user, password, listaPersonal)) {
                 // Credenciales correctas, abrir dashboard
-                personal= new Personal();
-                personal.setUser(user);
-                DashboardController controllerDash = new DashboardController(dashboard,personal);
+                usuario=user;
+                DashboardController controllerDash = new DashboardController(dashboard);
                 login.dispose();
             } else {
                 // Credenciales incorrectas, mostrar mensaje de error

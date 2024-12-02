@@ -14,11 +14,9 @@ import javax.swing.JFrame;
 public class DashboardController implements ActionListener {
 
     public UI_Dashboard vista;
-    Personal personal;
 
-    public DashboardController(UI_Dashboard dash,Personal personal) {
+    public DashboardController(UI_Dashboard dash) {
         this.vista = dash;
-        this.personal=personal;
         initializeListeners();
         launchApp();
     }
@@ -91,7 +89,7 @@ public class DashboardController implements ActionListener {
         UI_Departamentos depa = new UI_Departamentos();
         depa.txtNombre.putClientProperty("JTextField.placeholderText", "Ingrese el nombre del departamento");
         depa.txtSalon.putClientProperty("JTextField.placeholderText", "Ingrese el salon del departamento");
-        DepartamentoController ctrlDepa = new DepartamentoController(depa, vista,personal);
+        DepartamentoController ctrlDepa = new DepartamentoController(depa, vista);
         resetButtons();
         vista.btnDepartamento.setSelected(true);
     }
