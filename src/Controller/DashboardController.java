@@ -4,6 +4,7 @@ import View.*;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JFrame;
 
 /**
  *
@@ -33,6 +34,8 @@ public class DashboardController implements ActionListener {
     void launchApp() {
         vista.getRootPane().putClientProperty("JRootPane.titleBarForeground", Color.WHITE);
         vista.getRootPane().putClientProperty("JRootPane.titleBarBackground", new Color(153, 0, 51));
+        vista.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);                
+        vista.setExtendedState(JFrame.MAXIMIZED_BOTH);
         vista.setLocationRelativeTo(null);
         vista.setVisible(true);
         showHome();
