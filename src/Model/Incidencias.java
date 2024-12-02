@@ -17,28 +17,28 @@ public class Incidencias {
     private String descripcion;
     private Departamento departamento;
     private TipoIncidencia tipoincidencia;
+    private String user;
 
-    public Incidencias(String area, Date fecha, Departamento departamento, TipoIncidencia tipoincidencia) {
+    public Incidencias() {
+    }
+    
+    public Incidencias(String area, Date fecha,String descripcion, Departamento departamento, TipoIncidencia tipoincidencia,String user) {
         this.area = area;
         this.fecha = fecha;
+        this.descripcion=descripcion;
         this.departamento = departamento;
         this.tipoincidencia = tipoincidencia;
+        this.user=user;
     }
 
     public Object[] Registro(int id){
-        Object[] fila={id,departamento.getNombre(),area,getFechaFormat(),tipoincidencia.getNombre(),descripcion,tipoincidencia.getNivel()};
+        Object[] fila={id,user,departamento.getNombre(),area,getFechaFormat(),descripcion,tipoincidencia.getNombre(),tipoincidencia.getNivel()};
         return fila;       
     }
     
     public String getFechaFormat() {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         return formato.format(fecha);
-    }
-    public int segunNivel(){
-        if(tipoincidencia.getNivel()=="Baja")return 1;
-        if(tipoincidencia.getNivel()=="Media")return 2;
-        if(tipoincidencia.getNivel()=="Alta")return 3;
-        return 0;
     }
     
     public TipoIncidencia getTipoincidencia() {
@@ -65,6 +65,14 @@ public class Incidencias {
         this.fecha = fecha;
     }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+    
     public Departamento getDepartamento() {
         return departamento;
     }
@@ -72,5 +80,13 @@ public class Incidencias {
     public void setDepartamento(Departamento departamento) {
         this.departamento = departamento;
     }
-    
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+        
 }

@@ -1,36 +1,29 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Structure.Colas;
 
 import Model.Incidencias;
 import java.util.PriorityQueue;
 
-/**
- *
- * @author Renzo
- */
 public class ColasIncidencias {
     private PriorityQueue<Incidencias> cola;
-    
-    
-    public ColasIncidencias(){
-        cola = new PriorityQueue(20,new ComparadorIncidencia());
+
+    public ColasIncidencias() {
+        // Inicializamos la cola con un comparador personalizado
+        this.cola = new PriorityQueue<>(new ComparadorIncidencia());
     }
-    public void Encolar(Incidencias sol){ 
-        cola.add(sol);
+
+    public void Encolar(Incidencias incidencia) {
+        cola.add(incidencia);
     }
-    public void Desencolar(){ 
-        cola.poll(); 
+
+    public Incidencias Desencolar() {
+        return cola.poll();
     }
-    public Incidencias VerPrimero(){ 
-        return cola.peek(); 
+
+    public boolean estaVacia() {
+        return cola.isEmpty();
     }
+
     public PriorityQueue<Incidencias> getCola() {
         return cola;
-    }
-    public void setCola(PriorityQueue<Incidencias> cola) {
-        this.cola = cola;
     }
 }

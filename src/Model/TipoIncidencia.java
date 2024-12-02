@@ -28,6 +28,19 @@ public class TipoIncidencia implements Serializable {
     this.fechaMod = fechaMod;
   }
 
+  public int getNivelPrioridad() {
+    switch (this.nivel.toLowerCase()) { // Asegura que no sea sensible a mayúsculas
+        case "baja":
+            return 1;
+        case "media":
+            return 2;
+        case "alta":
+            return 3;
+        default:
+            return 0; // Retorna 0 si no se reconoce el nivel
+    }
+}
+
   public TipoIncidencia() {
   }
 

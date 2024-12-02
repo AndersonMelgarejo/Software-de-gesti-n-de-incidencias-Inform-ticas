@@ -4,6 +4,14 @@
  */
 package Controller;
 
+import Model.Incidencias;
+import Persistence.SaveDepartamento;
+import Persistence.SaveIncidencias;
+import Persistence.SaveTipoIncidencia;
+import Processes.ProcessIncidencias;
+import Structure.Colas.ColasIncidencias;
+import Structure.ListasDobles.ListaDoble;
+import Structures.Arreglo_TipoIncidencias;
 import View.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,17 +19,27 @@ import java.awt.event.ActionListener;
 public class IncidenciaController extends PanelController implements ActionListener {
 
     UI_Incidencias inci;
-
+    ListaDoble  lista;
+    Arreglo_TipoIncidencias arreglo;
+    ColasIncidencias cola;
+    Incidencias incidencia;
     public IncidenciaController(UI_Incidencias inci, UI_Dashboard dash) {
         super(inci, dash);
         this.inci = inci;
         super.showWindow(inci);
-
+        addListeners();
+        arreglo = SaveTipoIncidencia.loadTipoIncidencia();
+        arreglo = new Arreglo_TipoIncidencias(100);
+        arreglo = SaveTipoIncidencia.loadTipoIncidencia();
+        arreglo.ActualizarContador();
+        lista = SaveDepartamento.RecuperarLista();
+        ProcessIncidencias.cargarComboBox(inci, lista);
+        ProcessIncidencias.cargarComboBox(inci, arreglo);
     }
 
     @Override
     protected void addListeners() {
-
+        inci.btnRegistrar.addActionListener(this);
     }
 
     @Override
@@ -31,8 +49,15 @@ public class IncidenciaController extends PanelController implements ActionListe
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from
-                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (e.getSource() == inci.btnRegistrar) {
+            try {
+                Incidencias incidencia = ProcessIncidencias.leer(inci);
+                cola.Encolar(incidencia);
+                ProcessIncidencias.mostrarInci(inci, cola);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
     }
 
 }
