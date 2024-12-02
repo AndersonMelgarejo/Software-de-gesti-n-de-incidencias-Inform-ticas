@@ -8,12 +8,14 @@ import Model.Departamento;
 import Model.Personal;
 import Persistence.SaveDepartamento;
 import Processes.ProcessDepartamento;
+import Processes.ProcessPersonal;
 import Structure.ListasDobles.ListaDoble;
 import Structure.ListasDobles.Nodo;
 import View.UI_Dashboard;
 import View.UI_Departamentos;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,12 +25,11 @@ public class DepartamentoController extends PanelController implements ActionLis
     UI_Departamentos cate;
     ListaDoble  lista;
     Nodo actual;
-    Personal personal;
-
-    public DepartamentoController(UI_Departamentos cate, UI_Dashboard api,Personal personal) {
+    int pos;
+    boolean editing = true;
+    public DepartamentoController(UI_Departamentos cate, UI_Dashboard api) {
         super(cate, api);
         this.cate = cate;
-        this.personal=personal;
         super.showWindow(cate);
         addListeners();
         
@@ -40,6 +41,9 @@ public class DepartamentoController extends PanelController implements ActionLis
     @Override
     protected void addListeners() {
         cate.btnRegistrar.addActionListener(this);
+        cate.btnConsultar.addActionListener(this);
+        cate.btnActualizar.addActionListener(this);
+        cate.btnEliminar.addActionListener(this);
     }
 
     @Override
@@ -54,10 +58,118 @@ public class DepartamentoController extends PanelController implements ActionLis
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==cate.btnRegistrar){
-            Departamento depa=ProcessDepartamento.leerDepa(cate,personal);
+            Departamento depa=ProcessDepartamento.leerDepa(cate);
             lista.InsertarAlFinal(depa);
             actualizar();
         }
-    }
+        if(e.getSource()==cate.btnConsultar){
+            String amb = JOptionPane.showInputDialog("Ingrese el ambiente para buscar:");
+            actual = lista.BuscarAmbiente(amb);
+            if(actual==null){
+                JOptionPane.showMessageDialog(cate,"El ambiente no existe");
+            }else{
+                JOptionPane.showMessageDialog(cate,
+                        "Usuario:"+actual.depa.getUser()+
+                        "\nNombre:"+actual.depa.getNombre()+
+                        "\nPabellon:"+actual.depa.getPabellon()+
+                        "\nPiso:"+actual.depa.getPiso()+
+                        "\nSalon:"+actual.depa.getSalon()+
+                        "\nFecha:"+actual.depa.getFechaResFormateada());
+            }
+        }
+        if (e.getSource() == cate.btnActualizar) {
+            if (editing) {
+                String id = JOptionPane.showInputDialog("Ingrese el ID del departamento a actualizar");
+        
+                // Validar que el ID no sea nulo o vacío
+                if (id == null || id.trim().isEmpty()) {
+                    JOptionPane.showMessageDialog(cate, "Debe ingresar un ID válido.");
+                    return;
+                }
+        
+                try {
+                    pos = Integer.parseInt(id.trim()) - 1; // Convertir a número
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(cate, "El ID ingresado no es un número válido.");
+                    return;
+                }
 
+                // Validar que el ID esté dentro del rango
+                if (pos >= 0 && pos < lista.contarNodos()) {
+                    Departamento actuper = lista.obtenerNodo(pos);
+                        ProcessDepartamento.llenar(cate, actuper);
+                        cate.btnRegistrar.setEnabled(false);
+                        cate.btnEliminar.setEnabled(false);
+                        cate.btnConsultar.setEnabled(false);
+                        editing = false;
+
+                } else {
+                    JOptionPane.showMessageDialog(cate, "ID fuera de rango.");
+                }
+            } else {
+                Departamento pe = ProcessDepartamento.leerDepa(cate);
+                if (pe == null) {
+                    return;
+                }
+
+                // Actualizar nodo en la lista
+                lista.actualizarNodo(pos, pe);
+
+                // Guardar cambios en persistencia
+                SaveDepartamento.GuardarLista(lista);
+        
+                // Limpiar y actualizar formulario
+                ProcessDepartamento.limpiar(cate);
+                ProcessDepartamento.MostrarDepas(cate, lista);
+                cate.btnRegistrar.setEnabled(true);
+                cate.btnEliminar.setEnabled(true);
+                cate.btnConsultar.setEnabled(true);
+                editing = true;
+            }
+        }
+        if(e.getSource()==cate.btnEliminar){
+            String id = JOptionPane.showInputDialog("➤ Ingrese el ID del departamento para eliminar");
+            if (id == null) {
+                return;
+            }
+
+            int pos = Integer.parseInt(id) - 1;
+
+            // Validar si la posición está en el rango válido
+            if (pos >= 0 && pos < lista.contarNodos()) {
+            // Obtener el nodo correspondiente al departamento
+        Departamento dep = lista.obtenerNodo(pos);
+
+        if (dep != null) {
+            // Mostrar la información del departamento y solicitar confirmación
+            int confirm = JOptionPane.showConfirmDialog(
+                cate,
+                "¿Está seguro de que desea eliminar el departamento?\n" +
+                        "ID: " + (pos + 1) + "\n" +
+                        "Nombre: " + dep.getNombre() + "\n" +
+                        "Ambiente: " + dep.getAmbiente() + "\n",
+                "Confirmar Eliminación",
+                JOptionPane.YES_NO_OPTION);
+
+        // Eliminar el nodo si se confirma
+        if (confirm == JOptionPane.YES_OPTION) {
+            Nodo nodoEliminar = lista.ini;
+            for (int i = 0; i < pos; i++) {
+                nodoEliminar = nodoEliminar.sig;
+            }
+            lista.EliminarNodo(nodoEliminar);
+
+            // Refrescar la lista y guardar los cambios
+            ProcessDepartamento.MostrarDepas(cate, lista);
+            SaveDepartamento.GuardarLista(lista);
+        }
+    } else {
+        JOptionPane.showMessageDialog(cate, "Nodo no encontrado");
+    }
+} else {
+    JOptionPane.showMessageDialog(cate, "ID fuera de rango");
+}
+
+        }
+    }
 }

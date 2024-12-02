@@ -36,8 +36,8 @@ public class UI_Departamentos extends javax.swing.JPanel {
         datePick = new Styles.DatePickerCustom();
         jLabel4 = new javax.swing.JLabel();
         btnRegistrar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnConsultar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblDepas = new javax.swing.JTable();
         jSeparator1 = new javax.swing.JSeparator();
@@ -46,7 +46,7 @@ public class UI_Departamentos extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         spPiso = new javax.swing.JSpinner();
         jLabel9 = new javax.swing.JLabel();
@@ -82,17 +82,17 @@ public class UI_Departamentos extends javax.swing.JPanel {
         btnRegistrar.setText("Registrar");
         btnRegistrar.setBorderPainted(false);
 
-        jButton2.setBackground(new java.awt.Color(0, 121, 153));
-        jButton2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Consultar");
-        jButton2.setBorderPainted(false);
+        btnConsultar.setBackground(new java.awt.Color(0, 121, 153));
+        btnConsultar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        btnConsultar.setForeground(new java.awt.Color(255, 255, 255));
+        btnConsultar.setText("Consultar");
+        btnConsultar.setBorderPainted(false);
 
-        jButton3.setBackground(new java.awt.Color(68, 23, 38));
-        jButton3.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Actualizar");
-        jButton3.setBorderPainted(false);
+        btnActualizar.setBackground(new java.awt.Color(68, 23, 38));
+        btnActualizar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
+        btnActualizar.setText("Actualizar");
+        btnActualizar.setBorderPainted(false);
 
         tblDepas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -147,11 +147,11 @@ public class UI_Departamentos extends javax.swing.JPanel {
         jButton4.setText("Ordenar");
         jButton4.setBorderPainted(false);
 
-        jButton5.setBackground(new java.awt.Color(255, 153, 0));
-        jButton5.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Eliminar");
-        jButton5.setBorderPainted(false);
+        btnEliminar.setBackground(new java.awt.Color(255, 153, 0));
+        btnEliminar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setText("Eliminar");
+        btnEliminar.setBorderPainted(false);
 
         jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel8.setText("Piso");
@@ -200,11 +200,11 @@ public class UI_Departamentos extends javax.swing.JPanel {
                                 .addGap(0, 15, Short.MAX_VALUE)
                                 .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)))
                         .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelRound1Layout.createSequentialGroup()
@@ -259,9 +259,9 @@ public class UI_Departamentos extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelRound1Layout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -297,13 +297,13 @@ public class UI_Departamentos extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnActualizar;
+    public javax.swing.JButton btnConsultar;
+    public javax.swing.JButton btnEliminar;
     public javax.swing.JButton btnRegistrar;
     public javax.swing.JComboBox<String> cbPabellon;
     public Styles.DatePickerCustom datePick;
-    public javax.swing.JButton jButton2;
-    public javax.swing.JButton jButton3;
     public javax.swing.JButton jButton4;
-    public javax.swing.JButton jButton5;
     public javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

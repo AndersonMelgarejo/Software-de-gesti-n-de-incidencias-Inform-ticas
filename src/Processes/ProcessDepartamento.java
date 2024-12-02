@@ -1,5 +1,6 @@
 package Processes;
 
+import Controller.LoginController;
 import Model.Departamento;
 import Model.Personal;
 import Structure.ListasDobles.ListaDoble;
@@ -12,9 +13,9 @@ import javax.swing.table.DefaultTableModel;
  * @author YUFFRY
  */
 public class ProcessDepartamento {
-    public static Departamento leerDepa(UI_Departamentos vista,Personal personal){
+    public static Departamento leerDepa(UI_Departamentos vista){
         Departamento depa=new Departamento();
-        depa.setUser(personal.getUser());
+        depa.setUser(LoginController.usuario);
         depa.setNombre(vista.txtNombre.getText());
         depa.setPabellon(vista.cbPabellon.getSelectedItem().toString());
         depa.setPiso(vista.spPiso.getValue().toString());
@@ -43,5 +44,12 @@ public class ProcessDepartamento {
             dm.addRow(aux.depa.Registro(num));
             aux=aux.sig;
         }//fin while
+    }
+    public static void llenar(UI_Departamentos vista,Departamento depa){
+        vista.txtNombre.setText(depa.getNombre());
+        vista.cbPabellon.setSelectedItem(depa.getPabellon());
+        vista.spPiso.setValue(Integer.parseInt(depa.getPiso()));
+        vista.txtSalon.setText(depa.getSalon());
+        vista.datePick.setText(depa.getFechaResFormateada());
     }
 }
