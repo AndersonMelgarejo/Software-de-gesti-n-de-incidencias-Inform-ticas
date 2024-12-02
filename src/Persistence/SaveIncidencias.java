@@ -9,13 +9,14 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Renzo
  */
-public class SaveIncidencias {
+public class SaveIncidencias implements Serializable{
     public static String ARCHIVO="Incidencias.bin";    
     public static void Guardar(ColasIncidencias Lista){
        try{
@@ -23,6 +24,7 @@ public class SaveIncidencias {
            ObjectOutputStream oos =  new ObjectOutputStream(fos);
            oos.writeObject(Lista);
            oos.close();
+           System.out.println("guardooooooooo");
        }catch(Exception ex){
            JOptionPane.showMessageDialog(null,"ERROR no se puede guardar "+ex);
        }       
@@ -35,6 +37,7 @@ public class SaveIncidencias {
            ObjectInputStream ois = new ObjectInputStream(fis);
            Lista = (ColasIncidencias)ois.readObject();
            ois.close();
+           System.out.println("reucpramoss");
        }catch(Exception ex){
            JOptionPane.showMessageDialog(null,"ERROR no se puede recuperar..."+ex);
        }

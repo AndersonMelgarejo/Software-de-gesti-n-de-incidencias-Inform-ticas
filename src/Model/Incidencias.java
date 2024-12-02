@@ -4,6 +4,7 @@
  */
 package Model;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -11,7 +12,7 @@ import java.util.Date;
  *
  * @author Renzo
  */
-public class Incidencias {
+public class Incidencias implements Serializable{
     private String area;
     private Date fecha;
     private String descripcion;

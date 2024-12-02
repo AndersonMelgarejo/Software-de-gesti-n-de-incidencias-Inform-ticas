@@ -1,9 +1,10 @@
 package Structure.Colas;
 
 import Model.Incidencias;
+import java.io.Serializable;
 import java.util.PriorityQueue;
 
-public class ColasIncidencias {
+public class ColasIncidencias implements Serializable{
     private PriorityQueue<Incidencias> cola;
 
     public ColasIncidencias() {

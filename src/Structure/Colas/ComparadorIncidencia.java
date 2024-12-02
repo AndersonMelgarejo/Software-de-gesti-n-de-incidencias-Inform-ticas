@@ -1,9 +1,10 @@
 package Structure.Colas;
 
 import Model.Incidencias;
+import java.io.Serializable;
 import java.util.Comparator;
 
-public class ComparadorIncidencia implements Comparator<Incidencias> {
+public class ComparadorIncidencia implements Serializable, Comparator<Incidencias> {
     @Override
     public int compare(Incidencias o1, Incidencias o2) {
         return Integer.compare(o2.getTipoincidencia().getNivelPrioridad(),

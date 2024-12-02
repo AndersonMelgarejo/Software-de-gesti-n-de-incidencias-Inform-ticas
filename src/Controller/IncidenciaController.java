@@ -38,6 +38,9 @@ public class IncidenciaController extends PanelController implements ActionListe
         lista = SaveDepartamento.RecuperarLista();
         ProcessIncidencias.cargarComboBoxDepas(inci, lista);
         ProcessIncidencias.cargarComboBox(inci, arreglo);
+        SaveIncidencias.Recuperar();
+        ProcessIncidencias.mostrarInci(inci, cola);
+        
     }
 
     @Override
@@ -52,14 +55,12 @@ public class IncidenciaController extends PanelController implements ActionListe
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == inci.btnRegistrar) {
-            try {
+        if (e.getSource() == inci.btnRegistrar) {            
                 Incidencias incidencia = ProcessIncidencias.leer(inci);
                 cola.Encolar(incidencia);
+                SaveIncidencias.Guardar(cola);
                 ProcessIncidencias.mostrarInci(inci, cola);
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
+                
         }
     }
 
