@@ -4,6 +4,7 @@
  */
 package Model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -25,8 +26,19 @@ public class Incidencias {
     }
 
     public Object[] Registro(int id){
-        Object[] fila={id,departamento,area,fecha,tipoincidencia,descripcion};
+        Object[] fila={id,departamento.getNombre(),area,getFechaFormat(),tipoincidencia.getNombre(),descripcion,tipoincidencia.getNivel()};
         return fila;       
+    }
+    
+    public String getFechaFormat() {
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        return formato.format(fecha);
+    }
+    public int segunNivel(){
+        if(tipoincidencia.getNivel()=="Baja")return 1;
+        if(tipoincidencia.getNivel()=="Media")return 2;
+        if(tipoincidencia.getNivel()=="Alta")return 3;
+        return 0;
     }
     
     public TipoIncidencia getTipoincidencia() {
