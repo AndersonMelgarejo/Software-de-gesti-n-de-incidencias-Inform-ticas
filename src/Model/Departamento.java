@@ -8,8 +8,8 @@ import java.util.Date;
  *
  * @author @YUFFRY
  */
-public class Departamento implements Serializable{
-    
+public class Departamento implements Serializable {
+
     private String nombre;
     private String pabellon;
     private String piso;
@@ -20,19 +20,20 @@ public class Departamento implements Serializable{
 
     public Departamento() {
     }
-    
-    public Departamento(String nombre, String pabellon, String piso, String salon, Date fecha, String direccion,String user) {
+
+    public Departamento(String nombre, String pabellon, String piso, String salon, Date fecha, String direccion,
+            String user) {
         this.nombre = nombre;
         this.pabellon = pabellon;
         this.piso = piso;
         this.salon = salon;
         this.fecha = fecha;
         this.ambiente = direccion;
-        this.user=user;
+        this.user = user;
     }
-    
-    public void generarAmbiente(){
-        ambiente=pabellon+piso+salon;
+
+    public void generarAmbiente() {
+        ambiente = pabellon + piso + salon;
     }
 
     public String getNombre() {
@@ -90,14 +91,19 @@ public class Departamento implements Serializable{
     public void setUser(String user) {
         this.user = user;
     }
-    
+
     public String getFechaResFormateada() {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         return formato.format(fecha);
     }
-    
-    public Object[] Registro(int id){
-        Object[] fila = {id,user,nombre,pabellon,piso,salon,getFechaResFormateada(),ambiente};
+
+    public Object[] Registro(int id) {
+        Object[] fila = { id, user, nombre, pabellon, piso, salon, getFechaResFormateada(), ambiente };
         return fila;
+    }
+
+    @Override
+    public String toString() {
+        return nombre;
     }
 }

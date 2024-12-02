@@ -4,6 +4,8 @@
  */
 package View;
 
+import Model.Departamento;
+
 /**
  *
  * @author LENOVO
@@ -44,8 +46,8 @@ public class UI_Incidencias extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         txtArea = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cbxDepar = new javax.swing.JComboBox<>();
+        cbxTipoInci = new javax.swing.JComboBox<>();
         jLabel13 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(245, 246, 250));
@@ -118,8 +120,6 @@ public class UI_Incidencias extends javax.swing.JPanel {
         jLabel12.setText("Area de la incidencia");
         jLabel12.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Laboratorio", "Aula teorica", "SAE" }));
-
         jLabel13.setText("Tipo de incidencia");
         jLabel13.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
@@ -153,7 +153,7 @@ public class UI_Incidencias extends javax.swing.JPanel {
                                         .addGap(1, 1, 1)
                                         .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel11)
-                                            .addComponent(jComboBox1, 0, 200, Short.MAX_VALUE))))
+                                            .addComponent(cbxDepar, 0, 200, Short.MAX_VALUE))))
                                 .addGap(18, 18, 18)
                                 .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(panelRound1Layout.createSequentialGroup()
@@ -161,7 +161,7 @@ public class UI_Incidencias extends javax.swing.JPanel {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabel5))
                                     .addComponent(datePickerCustom1, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
-                                    .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cbxTipoInci, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(panelRound1Layout.createSequentialGroup()
                                         .addComponent(jLabel7)
                                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -190,7 +190,7 @@ public class UI_Incidencias extends javax.swing.JPanel {
                                 .addComponent(jLabel5))
                             .addGroup(panelRound1Layout.createSequentialGroup()
                                 .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbxDepar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(datePickerCustom1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -198,7 +198,7 @@ public class UI_Incidencias extends javax.swing.JPanel {
                                     .addComponent(jLabel12))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbxTipoInci, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtArea, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -237,9 +237,9 @@ public class UI_Incidencias extends javax.swing.JPanel {
     public javax.swing.JButton btnConsultar;
     public javax.swing.JButton btnEliminar;
     public javax.swing.JButton btnRegistrar;
+    public javax.swing.JComboBox<Model.Departamento> cbxDepar;
+    public javax.swing.JComboBox<Model.TipoIncidencia> cbxTipoInci;
     public Styles.DatePickerCustom datePickerCustom1;
-    public javax.swing.JComboBox<String> jComboBox1;
-    public javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
