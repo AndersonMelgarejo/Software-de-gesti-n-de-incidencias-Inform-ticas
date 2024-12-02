@@ -28,7 +28,7 @@ public class UI_Asignacion extends javax.swing.JPanel {
 
         panelRound1 = new Styles.PanelRound();
         jLabel1 = new javax.swing.JLabel();
-        cbxAcciones = new javax.swing.JComboBox<>();
+        cbxIncidencias = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         datePick = new Styles.DatePickerCustom();
         jLabel4 = new javax.swing.JLabel();
@@ -47,7 +47,7 @@ public class UI_Asignacion extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         cbxEstado = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
-        cbxAcciones1 = new javax.swing.JComboBox<>();
+        cbxPersonal = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(245, 246, 250));
 
@@ -61,10 +61,10 @@ public class UI_Asignacion extends javax.swing.JPanel {
         jLabel1.setText("Asignación de personal para solucionar la incidencia");
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
 
-        cbxAcciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[Seleccionar]" }));
-        cbxAcciones.addActionListener(new java.awt.event.ActionListener() {
+        cbxIncidencias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[Seleccionar]" }));
+        cbxIncidencias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxAccionesActionPerformed(evt);
+                cbxIncidenciasActionPerformed(evt);
             }
         });
 
@@ -162,10 +162,10 @@ public class UI_Asignacion extends javax.swing.JPanel {
         jLabel8.setText("ID de incidencia ");
         jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
-        cbxAcciones1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[Seleccionar]", "Baja", "Media", "Alta" }));
-        cbxAcciones1.addActionListener(new java.awt.event.ActionListener() {
+        cbxPersonal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[Seleccionar]", "Baja", "Media", "Alta" }));
+        cbxPersonal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxAcciones1ActionPerformed(evt);
+                cbxPersonalActionPerformed(evt);
             }
         });
 
@@ -204,12 +204,12 @@ public class UI_Asignacion extends javax.swing.JPanel {
                             .addGroup(panelRound1Layout.createSequentialGroup()
                                 .addGap(30, 30, 30)
                                 .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cbxAcciones, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cbxIncidencias, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel8))
                                 .addGap(15, 15, 15)
                                 .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
-                                    .addComponent(cbxAcciones1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(cbxPersonal, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
@@ -236,8 +236,8 @@ public class UI_Asignacion extends javax.swing.JPanel {
                             .addComponent(jLabel8)
                             .addComponent(jLabel3))
                         .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbxAcciones, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbxAcciones1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(cbxIncidencias, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbxPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelRound1Layout.createSequentialGroup()
                         .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
@@ -286,13 +286,13 @@ public class UI_Asignacion extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxEstadoActionPerformed
 
-    private void cbxAccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxAccionesActionPerformed
+    private void cbxIncidenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxIncidenciasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbxAccionesActionPerformed
+    }//GEN-LAST:event_cbxIncidenciasActionPerformed
 
-    private void cbxAcciones1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxAcciones1ActionPerformed
+    private void cbxPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxPersonalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbxAcciones1ActionPerformed
+    }//GEN-LAST:event_cbxPersonalActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -301,9 +301,9 @@ public class UI_Asignacion extends javax.swing.JPanel {
     public javax.swing.JButton btnConsultar;
     public javax.swing.JButton btnEliminar;
     public javax.swing.JButton btnRegistrar;
-    public javax.swing.JComboBox<String> cbxAcciones;
-    public javax.swing.JComboBox<String> cbxAcciones1;
     public javax.swing.JComboBox<String> cbxEstado;
+    public javax.swing.JComboBox<String> cbxIncidencias;
+    public javax.swing.JComboBox<String> cbxPersonal;
     public Styles.DatePickerCustom datePick;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
