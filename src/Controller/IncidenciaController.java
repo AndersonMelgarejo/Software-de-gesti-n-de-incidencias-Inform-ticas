@@ -29,7 +29,7 @@ public class IncidenciaController extends PanelController implements ActionListe
         this.inci = inci;
         super.showWindow(inci);
         addListeners();
-        cola = new ColasIncidencias();
+        cola = SaveIncidencias.Recuperar();
         arreglo = new Arreglo_TipoIncidencias(100);
         lista = new ListaDoble();
         arreglo = SaveTipoIncidencia.loadTipoIncidencia();
@@ -38,9 +38,8 @@ public class IncidenciaController extends PanelController implements ActionListe
         lista = SaveDepartamento.RecuperarLista();
         ProcessIncidencias.cargarComboBoxDepas(inci, lista);
         ProcessIncidencias.cargarComboBox(inci, arreglo);
-        SaveIncidencias.Recuperar();
         ProcessIncidencias.mostrarInci(inci, cola);
-        
+
     }
 
     @Override
@@ -55,12 +54,12 @@ public class IncidenciaController extends PanelController implements ActionListe
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == inci.btnRegistrar) {            
-                Incidencias incidencia = ProcessIncidencias.leer(inci);
-                cola.Encolar(incidencia);
-                SaveIncidencias.Guardar(cola);
-                ProcessIncidencias.mostrarInci(inci, cola);
-                
+        if (e.getSource() == inci.btnRegistrar) {
+            Incidencias incidencia = ProcessIncidencias.leer(inci);
+            cola.Encolar(incidencia);
+            SaveIncidencias.Guardar(cola);
+            ProcessIncidencias.mostrarInci(inci, cola);
+
         }
     }
 
