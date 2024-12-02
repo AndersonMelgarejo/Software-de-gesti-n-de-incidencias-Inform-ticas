@@ -19,21 +19,24 @@ import java.awt.event.ActionListener;
 public class IncidenciaController extends PanelController implements ActionListener {
 
     UI_Incidencias inci;
-    ListaDoble  lista;
+    ListaDoble lista;
     Arreglo_TipoIncidencias arreglo;
     ColasIncidencias cola;
     Incidencias incidencia;
+
     public IncidenciaController(UI_Incidencias inci, UI_Dashboard dash) {
         super(inci, dash);
         this.inci = inci;
         super.showWindow(inci);
         addListeners();
-        arreglo = SaveTipoIncidencia.loadTipoIncidencia();
+        cola = new ColasIncidencias();
         arreglo = new Arreglo_TipoIncidencias(100);
+        lista = new ListaDoble();
+        arreglo = SaveTipoIncidencia.loadTipoIncidencia();
         arreglo = SaveTipoIncidencia.loadTipoIncidencia();
         arreglo.ActualizarContador();
         lista = SaveDepartamento.RecuperarLista();
-        ProcessIncidencias.cargarComboBox(inci, lista);
+        ProcessIncidencias.cargarComboBoxDepas(inci, lista);
         ProcessIncidencias.cargarComboBox(inci, arreglo);
     }
 

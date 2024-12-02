@@ -4,6 +4,8 @@
  */
 package View;
 
+import Model.Departamento;
+
 /**
  *
  * @author LENOVO
@@ -117,8 +119,6 @@ public class UI_Incidencias extends javax.swing.JPanel {
 
         jLabel12.setText("Area de la incidencia");
         jLabel12.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-
-        cbxDepar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Laboratorio", "Aula teorica", "SAE" }));
 
         jLabel13.setText("Tipo de incidencia");
         jLabel13.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -237,8 +237,8 @@ public class UI_Incidencias extends javax.swing.JPanel {
     public javax.swing.JButton btnConsultar;
     public javax.swing.JButton btnEliminar;
     public javax.swing.JButton btnRegistrar;
-    public javax.swing.JComboBox<String> cbxDepar;
-    public javax.swing.JComboBox<String> cbxTipoInci;
+    public javax.swing.JComboBox<Model.Departamento> cbxDepar;
+    public javax.swing.JComboBox<Model.TipoIncidencia> cbxTipoInci;
     public Styles.DatePickerCustom datePickerCustom1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;

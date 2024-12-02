@@ -263,17 +263,6 @@ public class UI_Home extends javax.swing.JPanel {
         jLabel10.setText("Seguimiento de estado de las incidencias");
         jLabel10.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
         jScrollPane2.setViewportView(jTable1);
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);

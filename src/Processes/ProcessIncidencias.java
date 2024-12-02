@@ -20,36 +20,39 @@ import javax.swing.table.DefaultTableModel;
  * @author Renzo
  */
 public class ProcessIncidencias {
-    public static Incidencias leer(UI_Incidencias vista){
-        Incidencias inci=new Incidencias();
+    public static Incidencias leer(UI_Incidencias vista) {
+        Incidencias inci = new Incidencias();
         inci.setUser(LoginController.usuario);
         Object selectedItem = vista.cbxDepar.getSelectedItem();
-    if (selectedItem instanceof Departamento) {
-        inci.setDepartamento((Departamento) selectedItem);
-    } else {
-        System.out.println("Selected item is not a Departamento.");
-        // Handle the error appropriately
-    }
+        if (selectedItem instanceof Departamento) {
+            inci.setDepartamento((Departamento) selectedItem);
+        } else {
+            System.out.println("Selected item is not a Departamento.");
+            // Handle the error appropriately
+        }
         inci.setArea(vista.txtArea.getText());
         inci.setDescripcion(vista.txtAinci.getText());
         inci.setFecha(new java.util.Date());
-        
-        Object sel = vista.cbxTipoInci.getSelectedItem();
-    if (selectedItem instanceof TipoIncidencia) {
-        inci.setTipoincidencia((TipoIncidencia) sel);
-    } else {
-        System.out.println("Selected item is not a Departamento.");
-        // Handle the error appropriately
-    }
-                
+
+        TipoIncidencia sel = (TipoIncidencia) vista.cbxTipoInci.getSelectedItem();
+        if (sel instanceof TipoIncidencia) {
+            inci.setTipoincidencia((TipoIncidencia) sel);
+        } else {
+            System.out.println(sel.getNombre());
+            System.out.println("Selected item is not a incidencia.");
+            // Handle the error appropriately
+        }
+
         return inci;
     }
-    public static void limpiar(UI_Incidencias vista){
+
+    public static void limpiar(UI_Incidencias vista) {
         vista.txtArea.setText("");
         vista.txtAinci.setText("");
-        
+
     }
-    public static void cargarComboBox(UI_Incidencias vista, ListaDoble lista) {
+
+    public static void cargarComboBoxDepas(UI_Incidencias vista, ListaDoble lista) {
         // Limpiar el comboBox por si ya tiene elementos
         vista.cbxDepar.removeAllItems();
 
@@ -57,45 +60,48 @@ public class ProcessIncidencias {
         Nodo actual = lista.ini; // Nodo inicial de la lista
         while (actual != null) {
             // Agregar el nombre del departamento al comboBox
-            vista.cbxDepar.addItem(actual.depa.getNombre());
+            vista.cbxDepar.addItem(actual.depa);
             actual = actual.sig; // Avanzar al siguiente nodo
         }
     }
+
     public static void cargarComboBox(UI_Incidencias vista, Arreglo_TipoIncidencias arreglo) {
         // Limpiar el comboBox por si ya tiene elementos
         vista.cbxTipoInci.removeAllItems();
-        
+
         // Recorrer el arreglo de TipoIncidencia y agregar los nombres al comboBox
         for (int i = 0; i < arreglo.cantidad(); i++) {
             TipoIncidencia tipoIncidencia = arreglo.obtener(i);
-            vista.cbxTipoInci.addItem(tipoIncidencia.getNombre());
+            vista.cbxTipoInci.addItem(tipoIncidencia);
         }
     }
-    public static void mostrarInci(UI_Incidencias vista,ColasIncidencias cola){
-         String[] titulos={"ID","Usuario","Departamento","Area incidencia","Fecha","Tipo incidencia",
-                           "Prioridad"};
-        DefaultTableModel dm =new DefaultTableModel(null,titulos);
+
+    public static void mostrarInci(UI_Incidencias vista, ColasIncidencias cola) {
+        String[] titulos = { "ID", "Usuario", "Departamento", "Area incidencia", "Fecha", "Tipo incidencia",
+                "Prioridad" };
+        DefaultTableModel dm = new DefaultTableModel(null, titulos);
         vista.tblIncidencia.setModel(dm);
-        int num=0;
-        for(Incidencias inc: cola.getCola()){
+        int num = 0;
+        for (Incidencias inc : cola.getCola()) {
             num++;
             dm.addRow(inc.Registro(num));
         }
     }
+
     public static int obtenerNivelPrioridad(TipoIncidencia tipoIncidencia) {
-    if (tipoIncidencia == null || tipoIncidencia.getNivel() == null) {
-        return 0; // Nivel por defecto si no hay información
+        if (tipoIncidencia == null || tipoIncidencia.getNivel() == null) {
+            return 0; // Nivel por defecto si no hay información
+        }
+        switch (tipoIncidencia.getNivel().toLowerCase()) {
+            case "baja":
+                return 1;
+            case "media":
+                return 2;
+            case "alta":
+                return 3;
+            default:
+                return 0; // Nivel por defecto si no se reconoce
+        }
     }
-    switch (tipoIncidencia.getNivel().toLowerCase()) {
-        case "baja":
-            return 1;
-        case "media":
-            return 2;
-        case "alta":
-            return 3;
-        default:
-            return 0; // Nivel por defecto si no se reconoce
-    }
-}
 
 }
