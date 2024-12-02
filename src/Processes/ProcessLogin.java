@@ -8,6 +8,7 @@ import ArrayList.ListaPersonal;
 import Model.Personal;
 import View.UI_Login;
 import java.awt.Color;
+import java.util.Objects;
 
 /**
  *
@@ -26,11 +27,14 @@ public class ProcessLogin {
         login.btnAccess.setSelected(false);
     }
     public static boolean validarUsuario(String user, String password, ListaPersonal lista) {
-    for (Personal p : lista.getLista()) {            
+        // Elimina elementos nulos antes de la iteración
+        lista.getLista().removeIf(Objects::isNull);
+        // Itera por la lista sin modificarla dentro del bucle
+        for (Personal p : lista.getLista()) {
             if (p.getUser().equals(user) && p.getPassword().equals(password)) {
                 return true; // Usuario y contraseña correctos
             }
-        }
+        }        
         return false; // Usuario o contraseña incorrectos
     }
 
