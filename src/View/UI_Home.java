@@ -46,7 +46,7 @@ public class UI_Home extends javax.swing.JPanel {
         panelRound7 = new Styles.PanelRound();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtHome = new javax.swing.JTable();
         pickDate1 = new Styles.DatePickerCustom();
         pickDate2 = new Styles.DatePickerCustom();
         jSeparator1 = new javax.swing.JSeparator();
@@ -263,7 +263,7 @@ public class UI_Home extends javax.swing.JPanel {
         jLabel10.setText("Seguimiento de estado de las incidencias");
         jLabel10.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
 
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(jtHome);
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -370,7 +370,7 @@ public class UI_Home extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable jtHome;
     private Styles.PanelRound panelRound1;
     private Styles.PanelRound panelRound2;
     private Styles.PanelRound panelRound3;
