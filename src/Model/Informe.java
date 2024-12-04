@@ -1,52 +1,69 @@
 package Model;
 
-import java.util.Date;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class Informe implements Serializable {
 
-    private int ID;
+    private Incidencias incidencia;
     private String accionesTomadas;
     private Date fechaRes;
     private String estado;
+    private Personal personal;
     private String descripcion;
 
     public Informe() {
     }
 
-    public Object[] RegistroInforme(int i) {
-        Object[] registro = {i, accionesTomadas, estado, descripcion, getFechaResFormateada()};
-        return registro;
-    }
-
-    public Informe(String accionesTomadas, Date fechaRes, String estado, String descripcion) {
-        
+    public Informe(Incidencias incidencia, String accionesTomadas, String estado, Personal personal, String descripcion, Date fechaRes) {
+        this.incidencia = incidencia;
         this.accionesTomadas = accionesTomadas;
         this.estado = estado;
+        this.personal = personal;
         this.descripcion = descripcion;
         this.fechaRes = fechaRes;
     }
 
-    public int getID() {
-        return ID;
+    public Object[] getRegistro() {
+        Object[] fila = {
+            incidencia.getId(),
+            accionesTomadas,
+            estado,
+            personal, 
+            descripcion,
+            getFechaResFormateada()
+        };
+        return fila;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    @Override
+    public String toString() {
+        return "------------------------------------" +
+            "\n ID de la incidencia......... " + incidencia.getId() +
+            "\n Acciones tomadas............ " + accionesTomadas +
+            "\n Estado...................... " + estado +
+            "\n Personal asignado........... " + personal.getNombre() +
+            "\n Fecha de resolución......... " + getFechaResFormateada() +
+            "\n Descripción................. " + descripcion +
+            "\n------------------------------------";
     }
 
-    
-    
-    public String getDescripcion() {
-        return descripcion;
+    public String getFechaResFormateada() {
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        return formato.format(fechaRes);
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    // Getters y Setters
+    public Incidencias getIncidencia() {
+        return incidencia;
     }
-    
-    
+
+    public void setIncidencia(Incidencias incidencia) {
+        this.incidencia = incidencia;
+    }
 
     public String getAccionesTomadas() {
         return accionesTomadas;
@@ -56,14 +73,6 @@ public class Informe implements Serializable {
         this.accionesTomadas = accionesTomadas;
     }
 
-    public Date getFechaRes() {
-        return fechaRes;
-    }
-
-    public void setFechaRes(Date fechaRes) {
-        this.fechaRes = fechaRes;
-    }
-
     public String getEstado() {
         return estado;
     }
@@ -71,11 +80,28 @@ public class Informe implements Serializable {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    
-    
 
-    public String getFechaResFormateada() {
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        return formato.format(fechaRes);
+    public Personal getPersonal() {
+        return personal;
+    }
+
+    public void setPersonal(Personal personal) {
+        this.personal = personal;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public Date getFechaRes() {
+        return fechaRes;
+    }
+
+    public void setFechaRes(Date fechaRes) {
+        this.fechaRes = fechaRes;
     }
 }
