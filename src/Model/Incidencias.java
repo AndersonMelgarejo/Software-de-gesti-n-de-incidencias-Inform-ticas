@@ -13,6 +13,7 @@ import java.util.Date;
  * @author Renzo
  */
 public class Incidencias implements Serializable{
+    private int id;
     private String area;
     private Date fecha;
     private String descripcion;
@@ -35,6 +36,18 @@ public class Incidencias implements Serializable{
     public Object[] Registro(int id){
         Object[] fila={id,user,departamento.getNombre(),area,getFechaFormat(),descripcion,tipoincidencia.getNombre(),tipoincidencia.getNivel()};
         return fila;       
+    }
+    @Override
+    public String toString(){
+        return tipoincidencia.getNombre();
+    }
+    
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return this.id;
     }
     
     public String getFechaFormat() {

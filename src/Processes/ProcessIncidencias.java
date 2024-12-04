@@ -77,8 +77,8 @@ public class ProcessIncidencias {
     }
 
     public static void mostrarInci(UI_Incidencias vista, ColasIncidencias cola) {
-        String[] titulos = { "ID", "Usuario", "Departamento", "Area incidencia", "Fecha", "Tipo incidencia",
-                "Prioridad" };
+        String[] titulos = { "ID", "Usuario", "Departamento", "Area incidencia", "Fecha", "Descripción",
+                "Tipo incidencia","Prioridad" };
         DefaultTableModel dm = new DefaultTableModel(null, titulos);
         vista.tblIncidencia.setModel(dm);
         int num = 0;

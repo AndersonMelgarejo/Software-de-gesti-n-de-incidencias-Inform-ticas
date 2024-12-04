@@ -23,6 +23,7 @@ public class Personal implements Serializable{
         return fila;
     }
     public void segunCargo(){
+        if(cargo.equals("Usuario"))cargo="Usuario";
         if(cargo.equals("Soporte tecnico"))cargo="Soporte tecnico";
         if(cargo.equals("Administrador de sistemas"))cargo="Administrador de sistemas";
         if(cargo.equals("Especialista de redes"))cargo="Especialista de redes";
@@ -37,6 +38,11 @@ public class Personal implements Serializable{
         this.user = user;
         this.password = password;
         this.cargo = cargo;
+    }
+    
+    @Override
+    public String toString(){
+        return user;
     }
     
     public Personal() {    }
