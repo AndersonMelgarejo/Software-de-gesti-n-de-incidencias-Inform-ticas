@@ -61,7 +61,6 @@ public class UI_Asignacion extends javax.swing.JPanel {
         jLabel1.setText("Asignación de personal para solucionar la incidencia");
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
 
-        cbxIncidencias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[Seleccionar]" }));
         cbxIncidencias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxIncidenciasActionPerformed(evt);
@@ -71,7 +70,7 @@ public class UI_Asignacion extends javax.swing.JPanel {
         jLabel3.setText("Empleado asignado ");
         jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
-        jLabel4.setText("Fecha de asignación ");
+        jLabel4.setText("Día de solucción");
         jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
         atxtDescripcion.setColumns(20);
@@ -162,7 +161,6 @@ public class UI_Asignacion extends javax.swing.JPanel {
         jLabel8.setText("ID de incidencia ");
         jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
-        cbxPersonal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[Seleccionar]", "Baja", "Media", "Alta" }));
         cbxPersonal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxPersonalActionPerformed(evt);
@@ -302,8 +300,8 @@ public class UI_Asignacion extends javax.swing.JPanel {
     public javax.swing.JButton btnEliminar;
     public javax.swing.JButton btnRegistrar;
     public javax.swing.JComboBox<String> cbxEstado;
-    public javax.swing.JComboBox<String> cbxIncidencias;
-    public javax.swing.JComboBox<String> cbxPersonal;
+    public javax.swing.JComboBox<Model.Incidencias> cbxIncidencias;
+    public javax.swing.JComboBox<Model.Personal> cbxPersonal;
     public Styles.DatePickerCustom datePick;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;

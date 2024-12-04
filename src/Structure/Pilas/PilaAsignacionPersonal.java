@@ -2,6 +2,7 @@ package Structure.Pilas;
 
 import Model.AsignarPersonal;
 import Persistence.SaveAsignarPersonal;
+import java.io.Serializable;
 import java.util.Stack;
 import javax.swing.JOptionPane;
 
@@ -9,7 +10,7 @@ import javax.swing.JOptionPane;
  *
  * @author Jim
  */
-public class PilaAsignacionPersonal {
+public class PilaAsignacionPersonal implements Serializable{
     private Stack<AsignarPersonal> pila;
     public PilaAsignacionPersonal(){
         pila = new Stack();
@@ -44,20 +45,27 @@ public class PilaAsignacionPersonal {
         return pila.firstElement();
     }
     //metodo que busca un operario en la pila
-    public AsignarPersonal BuscarOperario(String codbus){
-        
-       /*for(Operario ope: pila){
-            if(codbus.equalsIgnoreCase(ope.getCod()))
-                return ope;
-        }   */
-        
-        for(int i=0;i<pila.size();i++){
-            if(codbus.equalsIgnoreCase(pila.get(i).Registro(i).toString()))
-                return pila.get(i);
+    public AsignarPersonal BuscarOperario(String codbus) {
+        if (codbus == null || codbus.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor ingrese un código válido.");
+            return null; // Si el código de búsqueda es nulo o vacío, no hacemos nada
         }
+    
+        for (int i = 0; i < pila.size(); i++) {
+            // Convertimos el ID de la incidencia a String para hacer la comparación
+            String incidenciaId = String.valueOf(pila.get(i).getIncidencia().getId());
+        
+            // Compara el ID de la incidencia con el valor de 'codbus'
+            if (codbus.equalsIgnoreCase(incidenciaId)) {
+                return pila.get(i); // Devuelve el objeto AsignarPersonal que contiene la incidencia con ese ID
+            }
+        }
+    
+        // Si no se encuentra, muestra un mensaje de advertencia y retorna null
+        JOptionPane.showMessageDialog(null, "Operario no encontrado con el código: " + codbus);
         return null;
     }
-    
+
     //metodo que verifica si la pila esta vacia
     public boolean VerificarVacio(){
         return pila.empty();

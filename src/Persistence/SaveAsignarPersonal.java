@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  * @author Jim
  */
 public class SaveAsignarPersonal {
-    public static String FILE="DatosPilaOperarios.bin";
+    public static String FILE="PilasAsignarPersonal.bin";
     public static void Guardar(PilaAsignacionPersonal pila){
        try{
            FileOutputStream fos=new FileOutputStream(FILE);
