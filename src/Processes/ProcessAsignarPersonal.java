@@ -11,8 +11,6 @@ import Model.Incidencias;
 import Model.Personal;
 import Structure.Colas.ColasIncidencias;
 import Structure.Pilas.PilaAsignacionPersonal;
-import Structures.ListasEnlazadas.ListaEnlazada;
-import Structures.ListasEnlazadas.Nodo;
 import Styles.DatePickerCustom;
 import View.UI_Asignacion;
 import View.UI_Informe;
@@ -36,6 +34,8 @@ public class ProcessAsignarPersonal {
         DatePickerCustom datePickerCustom = new DatePickerCustom();
         LocalDate fechaSeleccionada = vista.datePick.getDate(); 
         asignar.setAsignador(Controller.LoginController.usuario);
+        
+        
         
         Object selectedItem = vista.cbxIncidencias.getSelectedItem();
         if (selectedItem instanceof Incidencias) {

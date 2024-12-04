@@ -1,34 +1,30 @@
 package Persistence;
-
-import Structures.ListasEnlazadas.ListaEnlazada;
 import java.io.*;
 import javax.swing.JOptionPane;
-
+import Structures.Arboles.*;
 public class saveInforme {
-
-    public static String ARCHIVO2 = "DatosInforme.bin";
-
-    public static void GuardarLista(ListaEnlazada Lista) {
-        try {
-            FileOutputStream fos = new FileOutputStream(ARCHIVO2);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(Lista);
-            oos.close();
-        } catch (Exception ex) {
-            JOptionPane.showInputDialog( "ERROR no se puede guardar " + ex);
+    public static void GuardarEnArchivo(ArbolInforme arbol){
+        try{
+           FileOutputStream fos = new FileOutputStream("ArchivoArbol.bin");
+           ObjectOutputStream oos = new ObjectOutputStream(fos);
+           oos.writeObject(arbol);
+           oos.close();
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null,
+               "ERROR no se puede guardar en archivo "+ex);
         }
-    }// fin guardar
-
-    public static ListaEnlazada RecuperarLista() {
-        ListaEnlazada Lista = new ListaEnlazada();
-        try {
-            FileInputStream fis = new FileInputStream(ARCHIVO2);
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            Lista = (ListaEnlazada) ois.readObject();
-            ois.close();
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null,  "ERROR no se puede recuperar " + ex);
+    }//fin guardar
+    public static ArbolInforme RecuperarDeArchivo(){
+      ArbolInforme arbol = new ArbolInforme();  
+        try{
+           FileInputStream fis = new FileInputStream("ArchivoArbol.bin");
+           ObjectInputStream ois = new ObjectInputStream(fis);
+           arbol = (ArbolInforme)ois.readObject();
+           ois.close();
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null,
+               "ERROR no se puede recuperar de archivo"+ex);
         }
-        return Lista;
-    }
-}
+        return arbol;
+    }//fin recuperar
+}//fin class

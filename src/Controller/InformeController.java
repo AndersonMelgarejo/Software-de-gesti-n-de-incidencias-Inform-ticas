@@ -1,166 +1,167 @@
 package Controller;
 
+import ArrayList.ListaPersonal;
 import Model.Informe;
+import Persistence.SaveIncidencias;
+import Persistence.SavePersonal;
 import Persistence.saveInforme;
 import Processes.ProcessInforme;
-import Structures.ListasEnlazadas.*;
-import View.*;
+import Structure.Colas.ColasIncidencias;
+import Structures.Arboles.ArbolInforme;
+import Structures.Arboles.NodoInforme;
+import View.UI_Informe;
+import View.UI_Dashboard;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JOptionPane;
 
 public class InformeController extends PanelController implements ActionListener {
 
-    UI_Informe info;
-    Informe est;
-    Nodo actual;
-    ListaEnlazada Lista;
+    private final UI_Informe info;
+    private final DefaultTableModel modTabla;
+    private ArbolInforme arbol; // Árbol de informes
+    private NodoInforme actual;
+    private final ColasIncidencias cola;
+    ListaPersonal lista;
 
     public InformeController(UI_Informe info, UI_Dashboard dash) {
-
         super(info, dash);
         this.info = info;
         super.showWindow(info);
-
-        Lista = saveInforme.RecuperarLista();
-
-        ProcessInforme.MostrarInf(info, Lista);
-        Lista.MostrarResumen(info.txaDatos);
         addListeners();
-    }
+        
+        // Inicializar el árbol de informes desde archivo
+        this.cola = SaveIncidencias.Recuperar();
+        lista= SavePersonal.RecuperarEstudiantes(); 
+        arbol = saveInforme.RecuperarDeArchivo();
+        if (arbol == null) {
+            arbol = new ArbolInforme();
+        }
 
-    private void ActualizarFrame() {
-        ProcessInforme.LimpiaCampos(info);
-        saveInforme.GuardarLista(Lista);
-        Lista = saveInforme.RecuperarLista();
-        ProcessInforme.MostrarInf(info, Lista);
-        Lista.MostrarResumen(info.txaDatos);
-    }
-
-    @Override
-    protected void addListeners() {
-        this.info.btnRegistrar.addActionListener(this);
-        this.info.btnActualizar.addActionListener(this);
-        this.info.btnConsultar.addActionListener(this);
-        this.info.btnEliminar.addActionListener(this);
+        ProcessInforme.cargarComboBoxConIncidencias(info.cbxIncidencias, cola.getCola());
+        ProcessInforme.cargarComboPersonal(info.cbxPersonal, lista);
+        
+        modTabla = (DefaultTableModel) info.tblInformes.getModel();
+        actualizarTabla();
     }
 
     @Override
     protected void reloadWindow() {
+        // Implementar si es necesario
+    }
 
+    private void actualizarTabla() {
+        ProcessInforme.LimpiarTabla(modTabla);
+        arbol.MostrarEnOrden(arbol.getRaiz(), modTabla);
+    }
+
+    private void actualizarVista() {
+        ProcessInforme.LimpiaCampos(info);
+        saveInforme.GuardarEnArchivo(arbol);
+        actualizarTabla();
+    }
+
+    @Override
+    protected void addListeners() {
+        info.btnRegistrar.addActionListener(this);
+        info.btnActualizar.addActionListener(this);
+        info.btnConsultar.addActionListener(this);
+        info.btnEliminar.addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == info.btnRegistrar) {
-            // Validar que los campos no estén vacíos
-            if (info.cbxAccionesTomadas.getSelectedIndex() == 0
-                    || info.cbxEstado.getSelectedIndex() == 0
-                    || info.atxtDescripcion.getText().trim().isEmpty()) {
-
-                JOptionPane.showMessageDialog(null, "Por favor complete todos los campos",
-                        "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            // Crear el nuevo informe
-            est = ProcessInforme.LeerInforme(info);
-
-            if (est != null) {  // Verificar que el informe se creó correctamente
-                // Crear el nodo y agregarlo a la lista
-                Nodo nuevo = new Nodo(est);
-                Lista.AgregarAlFinal(nuevo);
-
-                // Actualizar la interfaz
-                ActualizarFrame();
-
-                JOptionPane.showMessageDialog(null, "Informe registrado exitosamente");
-            }
-        }
-        if (e.getSource() == info.btnConsultar) {
-            // Pedir al usuario el ID del informe que desea buscar
-            String idBuscado = JOptionPane.showInputDialog("Ingrese el ID del informe a buscar:");
-
-            // Buscar el nodo que contiene el informe con el ID especificado
-            actual = Lista.BuscarPorID(idBuscado);
-
-            if (actual == null) {
-                // Mostrar mensaje si el ID no existe en la lista
-                JOptionPane.showMessageDialog(null, "El ID del informe no existe en la lista", "ID no encontrado", JOptionPane.ERROR_MESSAGE);
-            } else {
-                // Mostrar la información del informe en la interfaz
-                info.atxtDescripcion.setText(actual.inf.getDescripcion());
-
-                // Configurar el campo de acciones tomadas según el valor del informe
-                switch (actual.inf.getAccionesTomadas()) {
-                    case "Actualización de Hardware":
-                        info.cbxAccionesTomadas.setSelectedIndex(1);
-                        break;
-                    case "Actualización de Software":
-                        info.cbxAccionesTomadas.setSelectedIndex(2);
-                        break;
-                    case "Reinicio de Sistema":
-                        info.cbxAccionesTomadas.setSelectedIndex(3);
-                        break;
-                    case "Corrección de Configuración":
-                        info.cbxAccionesTomadas.setSelectedIndex(4);
-                        break;
-                    case "Establecimiento de Red":
-                        info.cbxAccionesTomadas.setSelectedIndex(5);
-                        break;
-                    case "Optimización de Rendimiento":
-                        info.cbxAccionesTomadas.setSelectedIndex(6);
-                        break;
-                    default:
-                        info.cbxAccionesTomadas.setSelectedIndex(0);  // Selección por defecto
+        try {
+            if (e.getSource() == info.btnRegistrar) {
+                if (camposIncompletos()) {
+                    JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
                 }
 
-                // Configurar el campo de estado según el valor del informe
-                switch (actual.inf.getEstado()) {
-                    case "EN PROCESO":
-                        info.cbxEstado.setSelectedIndex(1);
-                        break;
-                    case "ATENDIDO":
-                        info.cbxEstado.setSelectedIndex(2);
-                        break;
-                    case "DERIVADO":
-                        info.cbxEstado.setSelectedIndex(3);
-                        break;
-                    default:
-                        info.cbxEstado.setSelectedIndex(0);  // Selección por defecto
+                Informe nuevoInforme = ProcessInforme.LeerInforme(info);
+                if (nuevoInforme != null) {
+                    arbol.setRaiz(arbol.Agregar(arbol.getRaiz(), nuevoInforme));
+                    actualizarVista();
+                    JOptionPane.showMessageDialog(null, "Informe registrado exitosamente.");
                 }
-            }
-        }
-
-        if (e.getSource() == info.btnActualizar) {
-            if (actual != null) {
-                est = ProcessInforme.LeerInforme(info);
-                if (est != null) {
-                    actual.inf = est;  // Actualiza la información del nodo actual
-                    ActualizarFrame();
-                    JOptionPane.showMessageDialog(null, "Informe actualizado exitosamente");
+            } else if (e.getSource() == info.btnConsultar) {
+                String idText = JOptionPane.showInputDialog("Ingrese el ID del informe a buscar:");
+                if (idText == null || idText.trim().isEmpty()) {
+                    return;
                 }
-            } else {
-                JOptionPane.showMessageDialog(null, "Primero debe consultar un informe para actualizarlo",
-                        "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
 
-        if (e.getSource() == info.btnEliminar) {
-            if (actual != null) {
-                int confirm = JOptionPane.showConfirmDialog(null, "¿Está seguro de que desea eliminar el informe?",
+                try {
+                    int idBuscado = Integer.parseInt(idText);
+                    actual = arbol.BuscarPorID(idBuscado);
+
+                    if (actual == null) {
+                        JOptionPane.showMessageDialog(null, "El ID del informe no existe.",
+                                "ID no encontrado", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        ProcessInforme.MostrarDatosNodo(actual, info);
+                    }
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "El ID debe ser un número válido.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else if (e.getSource() == info.btnActualizar) {
+                if (actual == null) {
+                    JOptionPane.showMessageDialog(null, "Debe consultar un informe antes de actualizarlo.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                if (camposIncompletos()) {
+                    JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                Informe informeActualizado = ProcessInforme.LeerInforme(info);
+                if (informeActualizado != null) {
+                    actual.setElemento(informeActualizado);
+                    actualizarVista();
+                    JOptionPane.showMessageDialog(null, "Informe actualizado exitosamente.");
+                }
+            } else if (e.getSource() == info.btnEliminar) {
+                if (actual == null) {
+                    JOptionPane.showMessageDialog(null, "Debe consultar un informe antes de eliminarlo.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                int confirm = JOptionPane.showConfirmDialog(null,
+                        "¿Está seguro de que desea eliminar el informe?",
                         "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+
                 if (confirm == JOptionPane.YES_OPTION) {
-                    Lista.EliminarNodo(actual);
-                    ActualizarFrame();
-                    JOptionPane.showMessageDialog(null, "Informe eliminado exitosamente");
-                    actual = null;  // Reinicia la referencia al nodo actual
+                    // Corrected to use the incidence ID
+                    arbol.setRaiz(arbol.Eliminar(arbol.getRaiz(), actual.getElemento().getIncidencia().getId()));
+                    actual = null;
+                    actualizarVista();
+                    JOptionPane.showMessageDialog(null, "Informe eliminado exitosamente.");
                 }
-            } else {
-                JOptionPane.showMessageDialog(null, "Primero debe consultar un informe para eliminarlo",
-                        "Error", JOptionPane.ERROR_MESSAGE);
             }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
+    private boolean camposIncompletos() {
+        return info.cbxAccionesTomadas.getSelectedIndex() == 0
+                || info.cbxEstado.getSelectedIndex() == 0
+                || info.atxtDescripcion.getText().trim().isEmpty()
+                || info.cbxPersonal.getSelectedIndex() == 0;  // Changed from txtPersonal to cbxPersonal
+    }
+
+    private void cargarDesdeArchivo() {
+        arbol = saveInforme.RecuperarDeArchivo();
+        if (arbol == null) {
+            arbol = new ArbolInforme();
+        }
+        actualizarTabla();
+    }
 }
