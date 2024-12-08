@@ -8,11 +8,10 @@ import View.UI_Dashboard;
 import View.UI_Home;
 
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.util.Date;
 import java.text.SimpleDateFormat;
-
-import javax.swing.Action;
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 import Model.Incidencias;
 import Persistence.SaveIncidencias;
@@ -55,13 +54,35 @@ public class HomeController extends PanelController implements ActionListener {
         if (e.getSource() == home.btnFiltrar) {
             // formato de fecha dd/MM/yyyy
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-            String fechaInicio = formato.format(home.pickDate1.getDate());
-            String fechaFin = formato.format(home.pickDate2.getDate());
 
-            System.out.println(fechaInicio);
-            System.out.println(fechaFin);
-            ProcessHome.mostrarInciFechas(home, cola, home.pickDate1.getDate().toString(),
-                    home.pickDate2.getDate().toString());
+            // Validar si las fechas están vacías
+            if (home.pickDate1.getDate() == null || home.pickDate2.getDate() == null) {
+                // Mostrar alerta al usuario
+                int response = javax.swing.JOptionPane.showConfirmDialog(null,
+                        "Falta un campo de fecha. ¿Desea mostrar todas las incidencias?",
+                        "Campos vacíos",
+                        javax.swing.JOptionPane.YES_NO_OPTION);
+
+                // Si el usuario elige mostrar todas las incidencias
+                if (response == javax.swing.JOptionPane.YES_OPTION) {
+                    ProcessHome.mostrarInci(home, cola);
+                }
+                return;
+            }
+
+            // Obtener y convertir la fecha de inicio
+            LocalDate localDateInicio = home.pickDate1.getDate();
+            Date fechaInicio = Date.from(localDateInicio.atStartOfDay(ZoneId.systemDefault()).toInstant());
+            String fechaInicioStr = formato.format(fechaInicio);
+            System.out.println(fechaInicioStr);
+
+            // Obtener y convertir la fecha de fin
+            LocalDate localDateFin = home.pickDate2.getDate();
+            Date fechaFin = Date.from(localDateFin.atStartOfDay(ZoneId.systemDefault()).toInstant());
+            String fechaFinStr = formato.format(fechaFin);
+            System.out.println(fechaFinStr);
+
+            ProcessHome.mostrarInciFechas(home, cola, fechaInicio, fechaFin);
         }
     }
 

@@ -9,6 +9,10 @@ import javax.swing.table.DefaultTableModel;
 import Model.Incidencias;
 import Structure.Colas.ColasIncidencias;
 import View.UI_Home;
+import java.text.ParseException;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -28,16 +32,22 @@ public class ProcessHome {
   }
 
   // mostrar por intervalo de fechas
-  public static void mostrarInciFechas(UI_Home vista, ColasIncidencias cola, String fechaInicio, String fechaFin) {
+  public static void mostrarInciFechas(UI_Home vista, ColasIncidencias cola, Date fechaInicio, Date fechaFin) {
     String[] titulos = { "ID", "Usuario", "Departamento", "Area incidencia", "Fecha", "Descripcion", "Tipo incidencia",
         "Prioridad" };
     DefaultTableModel dm = new DefaultTableModel(null, titulos);
     vista.jtHome.setModel(dm);
     int num = 0;
+    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
     for (Incidencias inc : cola.getCola()) {
-      if (inc.getFechaFormat().compareTo(fechaInicio) >= 0 && inc.getFechaFormat().compareTo(fechaFin) <= 0) {
-        num++;
-        dm.addRow(inc.Registro(num));
+      try {
+        Date fechaIncidencia = formato.parse(inc.getFechaFormat());
+        if (!fechaIncidencia.before(fechaInicio) && !fechaIncidencia.after(fechaFin)) {
+          num++;
+          dm.addRow(inc.Registro(num));
+        }
+      } catch (ParseException e) {
+        e.printStackTrace();
       }
     }
   }
