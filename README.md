@@ -16,7 +16,7 @@ Este proyecto tiene como objetivo desarrollar un aplicativo para la gestión efi
 | RF7 | El aplicativo permite asignar a un personal para la solución de la incidencia informática                 | 🔄         | Pilas                         |
 | RF8 | El aplicativo permite al empleado registrar los detalles de la solución y observaciones de la incidencia solucionada | 🔄         | Arboles Binarios       |
 | RF9 | El aplicativo permite realizar el seguimiento de la incidencia visualizando su estado: En proceso, Atendido, Derivado | ⏳         | No definido                         |
-| RF10| El aplicativo permite visualizar la lista de incidencias por rango de fechas                             | ⏳         | N/A                         |
+| RF10| El aplicativo permite visualizar la lista de incidencias por rango de fechas                             | ✔️         | No definido                         |
 
 **Leyenda:**
 - ✔️ Completado
