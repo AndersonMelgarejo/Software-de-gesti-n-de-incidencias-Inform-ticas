@@ -8,10 +8,7 @@ import javax.swing.table.DefaultTableModel;
 
 import Model.Incidencias;
 import Structure.Colas.ColasIncidencias;
-import Structures.ListasEnlazadas.ListaEnlazada;
 import View.UI_Home;
-import View.UI_Incidencias;
-import View.UI_Informe;
 
 /**
  *
