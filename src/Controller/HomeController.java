@@ -36,6 +36,7 @@ public class HomeController extends PanelController implements ActionListener {
         cola = SaveIncidencias.Recuperar();
         ProcessHome.mostrarInci(panel, cola);
         addListeners();
+        ProcessHome.mostrarTotalInci(home, cola);
     }
 
     @Override
