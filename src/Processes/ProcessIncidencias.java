@@ -78,7 +78,10 @@ public class ProcessIncidencias {
     public static void llenar(UI_Incidencias vista, Incidencias incidencia){
         vista.txtAinci.setText(incidencia.getDescripcion());
         vista.cbxDepar.setSelectedItem(incidencia.getDepartamento());
-              
+        vista.cbxAmbientes.setSelectedItem(incidencia.getArea());
+        vista.datePickerCustom1.setText(incidencia.getFechaFormat());
+        vista.cbxTipoInci.setSelectedItem(incidencia.getTipoincidencia());
+        vista.cbxClientes.setSelectedItem(incidencia.getPersonal());
     }
 
     public static void cargarComboBoxDepas(UI_Incidencias vista, ListaDoble lista) {
