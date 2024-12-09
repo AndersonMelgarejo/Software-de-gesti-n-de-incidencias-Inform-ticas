@@ -172,7 +172,7 @@ public class UI_Personal extends javax.swing.JPanel {
         btnAutoGenerarUser.setText("Autogenerar");
         btnAutoGenerarUser.setBorderPainted(false);
 
-        cbxCargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[Seleccionar]", "Soporte tecnico", "Administrador de sistemas", "Especialista de redes", "Seguridad informatica", "Usuario" }));
+        cbxCargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[Seleccionar]", "Soporte tecnico", "Administrador de sistemas", "Especialista de redes", "Seguridad informatica", "Cliente" }));
 
         javax.swing.GroupLayout panelRound1Layout = new javax.swing.GroupLayout(panelRound1);
         panelRound1.setLayout(panelRound1Layout);

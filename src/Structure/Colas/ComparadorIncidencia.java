@@ -12,12 +12,4 @@ public class ComparadorIncidencia implements Serializable, Comparator<Incidencia
         // Ordena en orden descendente para que las prioridades más altas sean procesadas primero
     }
 
-    private int obtenerNivelNumerico(String nivel) {
-        return switch (nivel.toLowerCase()) {
-            case "alta" -> 3;
-            case "media" -> 2;
-            case "baja" -> 1;
-            default -> 0; // Nivel desconocido
-        };
-    }
 }
