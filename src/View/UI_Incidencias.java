@@ -44,7 +44,6 @@ public class UI_Incidencias extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         datePickerCustom1 = new Styles.DatePickerCustom();
         jLabel11 = new javax.swing.JLabel();
-        txtArea = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         cbxDepar = new javax.swing.JComboBox<>();
         cbxTipoInci = new javax.swing.JComboBox<>();
@@ -55,6 +54,7 @@ public class UI_Incidencias extends javax.swing.JPanel {
         btnMirarUltimo = new javax.swing.JButton();
         cbxFiltrar = new javax.swing.JComboBox<>();
         btnOrdenar = new javax.swing.JButton();
+        cbxAmbientes = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(245, 246, 250));
 
@@ -65,28 +65,28 @@ public class UI_Incidencias extends javax.swing.JPanel {
         panelRound1.setRoundTopLeft(20);
         panelRound1.setRoundTopRight(20);
 
-        jLabel1.setText("Registrar Incidencias Informáticas");
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+        jLabel1.setText("Registrar Incidencias Informáticas");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
-        btnRegistrar.setText("Encolar");
         btnRegistrar.setBackground(new java.awt.Color(153, 0, 51));
-        btnRegistrar.setBorderPainted(false);
         btnRegistrar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         btnRegistrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegistrar.setText("Encolar");
+        btnRegistrar.setBorderPainted(false);
 
-        btnConsultar.setText("Consultar");
         btnConsultar.setBackground(new java.awt.Color(0, 121, 153));
-        btnConsultar.setBorderPainted(false);
         btnConsultar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         btnConsultar.setForeground(new java.awt.Color(255, 255, 255));
+        btnConsultar.setText("Consultar");
+        btnConsultar.setBorderPainted(false);
 
-        btnActualizar.setText("Actualizar");
         btnActualizar.setBackground(new java.awt.Color(68, 23, 38));
-        btnActualizar.setBorderPainted(false);
         btnActualizar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
+        btnActualizar.setText("Actualizar");
+        btnActualizar.setBorderPainted(false);
 
         tblIncidencia.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -104,45 +104,45 @@ public class UI_Incidencias extends javax.swing.JPanel {
 
         jSeparator1.setForeground(new java.awt.Color(153, 0, 51));
 
-        btnDesencolar.setText("Desencolar");
         btnDesencolar.setBackground(new java.awt.Color(255, 153, 0));
-        btnDesencolar.setBorderPainted(false);
         btnDesencolar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         btnDesencolar.setForeground(new java.awt.Color(255, 255, 255));
+        btnDesencolar.setText("Desencolar");
+        btnDesencolar.setBorderPainted(false);
 
-        jLabel7.setText("Fecha de la incidencia");
         jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel7.setText("Fecha de la incidencia");
 
         txtAinci.setColumns(20);
         txtAinci.setRows(5);
         jScrollPane1.setViewportView(txtAinci);
 
-        jLabel9.setText("Descripción de la incidencia");
         jLabel9.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel9.setText("Descripción de la incidencia");
 
-        jLabel11.setText("Departamento ");
         jLabel11.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel11.setText("Departamento ");
 
-        jLabel12.setText("Area de la incidencia");
         jLabel12.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel12.setText("Area de la incidencia");
 
-        jLabel13.setText("Tipo de incidencia");
         jLabel13.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel13.setText("Tipo de incidencia");
 
-        jLabel8.setText("Clientes");
         jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel8.setText("Clientes");
 
-        btnMirarPrimero.setText("Mirar primero");
         btnMirarPrimero.setBackground(new java.awt.Color(0, 0, 102));
-        btnMirarPrimero.setBorderPainted(false);
         btnMirarPrimero.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         btnMirarPrimero.setForeground(new java.awt.Color(255, 255, 255));
+        btnMirarPrimero.setText("Mirar primero");
+        btnMirarPrimero.setBorderPainted(false);
 
-        btnMirarUltimo.setText("Mirar ultimo");
         btnMirarUltimo.setBackground(new java.awt.Color(51, 51, 255));
-        btnMirarUltimo.setBorderPainted(false);
         btnMirarUltimo.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         btnMirarUltimo.setForeground(new java.awt.Color(255, 255, 255));
+        btnMirarUltimo.setText("Mirar ultimo");
+        btnMirarUltimo.setBorderPainted(false);
 
         cbxFiltrar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Nivel de prioridad", "Tipo de incidencia" }));
         cbxFiltrar.addActionListener(new java.awt.event.ActionListener() {
@@ -151,10 +151,10 @@ public class UI_Incidencias extends javax.swing.JPanel {
             }
         });
 
-        btnOrdenar.setText("Ordenar");
         btnOrdenar.setBackground(new java.awt.Color(128, 228, 255));
-        btnOrdenar.setBorderPainted(false);
         btnOrdenar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        btnOrdenar.setText("Ordenar");
+        btnOrdenar.setBorderPainted(false);
 
         javax.swing.GroupLayout panelRound1Layout = new javax.swing.GroupLayout(panelRound1);
         panelRound1.setLayout(panelRound1Layout);
@@ -175,8 +175,8 @@ public class UI_Incidencias extends javax.swing.JPanel {
                                 .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel11)
                                     .addComponent(cbxDepar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(txtArea))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(cbxAmbientes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelRound1Layout.createSequentialGroup()
                                 .addComponent(jLabel13)
@@ -265,7 +265,7 @@ public class UI_Incidencias extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cbxTipoInci, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtArea, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cbxAmbientes, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
@@ -300,6 +300,7 @@ public class UI_Incidencias extends javax.swing.JPanel {
     public javax.swing.JButton btnMirarUltimo;
     public javax.swing.JButton btnOrdenar;
     public javax.swing.JButton btnRegistrar;
+    public javax.swing.JComboBox<String> cbxAmbientes;
     public javax.swing.JComboBox<Model.Personal> cbxClientes;
     public javax.swing.JComboBox<Model.Departamento> cbxDepar;
     public javax.swing.JComboBox<String> cbxFiltrar;
@@ -319,6 +320,5 @@ public class UI_Incidencias extends javax.swing.JPanel {
     private Styles.PanelRound panelRound1;
     public javax.swing.JTable tblIncidencia;
     public javax.swing.JTextArea txtAinci;
-    public javax.swing.JTextField txtArea;
     // End of variables declaration//GEN-END:variables
 }

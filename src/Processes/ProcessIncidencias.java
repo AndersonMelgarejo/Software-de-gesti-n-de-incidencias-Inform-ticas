@@ -10,6 +10,7 @@ import Model.Departamento;
 import Model.Incidencias;
 import Model.Personal;
 import Model.TipoIncidencia;
+import Persistence.SaveDepartamento;
 import Persistence.SaveIncidencias;
 import Structure.Colas.ColasIncidencias;
 import Structure.ListasDobles.ListaDoble;
@@ -19,7 +20,9 @@ import View.UI_Incidencias;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -43,7 +46,7 @@ public class ProcessIncidencias {
             // Handle the error appropriately
         }
         
-        inci.setArea(vista.txtArea.getText());
+        inci.setArea(vista.cbxAmbientes.getSelectedItem().toString());
         inci.setDescripcion(vista.txtAinci.getText());
         
         LocalDate fechaSeleccionada = vista.datePickerCustom1.getDate();
@@ -67,8 +70,7 @@ public class ProcessIncidencias {
         return inci;
     }
 
-    public static void limpiar(UI_Incidencias vista) {
-        vista.txtArea.setText("");
+    public static void limpiar(UI_Incidencias vista) {        
         vista.txtAinci.setText("");
 
     }
@@ -76,21 +78,57 @@ public class ProcessIncidencias {
     public static void llenar(UI_Incidencias vista, Incidencias incidencia){
         vista.txtAinci.setText(incidencia.getDescripcion());
         vista.cbxDepar.setSelectedItem(incidencia.getDepartamento());
-        vista.txtArea.setText(incidencia.getArea());        
+              
     }
 
     public static void cargarComboBoxDepas(UI_Incidencias vista, ListaDoble lista) {
-        // Limpiar el comboBox por si ya tiene elementos
-        vista.cbxDepar.removeAllItems();
+    vista.cbxDepar.removeAllItems();  
 
-        // Recorrer la lista doblemente enlazada
-        Nodo actual = lista.ini; // Nodo inicial de la lista
-        while (actual != null) {
-            // Agregar el nombre del departamento al comboBox
-            vista.cbxDepar.addItem(actual.depa);
-            actual = actual.sig; // Avanzar al siguiente nodo
+    Set<String> nombresDepartamentos = new HashSet<>();
+
+    Nodo actual = lista.ini;
+    while (actual != null) {
+        Departamento departamento = actual.depa;
+
+        if (nombresDepartamentos.add(departamento.getNombre())) {
+            vista.cbxDepar.addItem(departamento);
+        }
+        actual = actual.sig;
+    }
+
+    // Agregar el Listener para que se actualicen ambientes dinámicamente
+    vista.cbxDepar.addActionListener(e -> actualizarAmbientes(vista));
+}
+
+private static void actualizarAmbientes(UI_Incidencias vista) {
+    vista.cbxAmbientes.removeAllItems();  // Limpiar el combo de ambientes
+
+    Departamento seleccionado = (Departamento) vista.cbxDepar.getSelectedItem();
+
+    if (seleccionado != null) {
+        // Obtener los ambientes específicos del departamento seleccionado
+        ArrayList<String> ambientes = getAmbientesPorDepartamento(seleccionado);
+
+        for (String ambiente : ambientes) {
+            vista.cbxAmbientes.addItem(ambiente);
         }
     }
+}
+private static ArrayList<String> getAmbientesPorDepartamento(Departamento departamento) {
+    ArrayList<String> ambientes = new ArrayList<>();
+    ListaDoble lista = SaveDepartamento.RecuperarLista();
+
+    Nodo actual = lista.ini;
+    while (actual != null) {
+        if (actual.depa.getNombre().equals(departamento.getNombre())) {
+            ambientes.add(actual.depa.getAmbiente());
+        }
+        actual = actual.sig;
+    }
+
+    return ambientes;
+}
+
 
     public static void cargarComboBox(UI_Incidencias vista, Arreglo_TipoIncidencias arreglo) {
         // Limpiar el comboBox por si ya tiene elementos
