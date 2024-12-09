@@ -2,11 +2,14 @@ package Controller;
 
 import ArrayList.ListaPersonal;
 import Model.Informe;
+import Persistence.SaveAsignarPersonal;
+
 import Persistence.SaveIncidencias;
 import Persistence.SavePersonal;
 import Persistence.saveInforme;
 import Processes.ProcessInforme;
 import Structure.Colas.ColasIncidencias;
+import Structure.Pilas.PilaAsignacionPersonal;
 import Structures.Arboles.ArbolInforme;
 import Structures.Arboles.NodoInforme;
 import View.UI_Informe;
@@ -17,31 +20,32 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class InformeController extends PanelController implements ActionListener {
-
+    
     private final UI_Informe info;
     private final DefaultTableModel modTabla;
     private ArbolInforme arbol; // Árbol de informes
     private NodoInforme actual;
     private final ColasIncidencias cola;
+    private final PilaAsignacionPersonal pila;
     ListaPersonal lista;
 
     public InformeController(UI_Informe info, UI_Dashboard dash) {
+        
         super(info, dash);
         this.info = info;
         super.showWindow(info);
         addListeners();
-        
+
         // Inicializar el árbol de informes desde archivo
         this.cola = SaveIncidencias.Recuperar();
-        lista= SavePersonal.RecuperarEstudiantes(); 
+        this.pila = SaveAsignarPersonal.Recuperar();
+        lista = SavePersonal.RecuperarEstudiantes();
         arbol = saveInforme.RecuperarDeArchivo();
         if (arbol == null) {
             arbol = new ArbolInforme();
         }
 
         ProcessInforme.cargarComboBoxConIncidencias(info.cbxIncidencias, cola.getCola());
-        ProcessInforme.cargarComboPersonal(info.cbxPersonal, lista);
-        
         modTabla = (DefaultTableModel) info.tblInformes.getModel();
         actualizarTabla();
     }
@@ -65,9 +69,10 @@ public class InformeController extends PanelController implements ActionListener
     @Override
     protected void addListeners() {
         info.btnRegistrar.addActionListener(this);
-        info.btnActualizar.addActionListener(this);
         info.btnConsultar.addActionListener(this);
+        info.btnActualizar.addActionListener(this);
         info.btnEliminar.addActionListener(this);
+        info.btnOrdenar.addActionListener(this); // Agregado listener para el botón de ordenar
     }
 
     @Override
@@ -80,8 +85,18 @@ public class InformeController extends PanelController implements ActionListener
                     return;
                 }
 
-                Informe nuevoInforme = ProcessInforme.LeerInforme(info);
+                
+                Informe nuevoInforme = ProcessInforme.LeerInforme(info,pila);
                 if (nuevoInforme != null) {
+                    // Verificar si ya existe un informe con el mismo ID de incidencia
+                    NodoInforme nodoExistente = arbol.BuscarPorID(nuevoInforme.getIncidencia().getId());
+                    if (nodoExistente != null) {
+                        JOptionPane.showMessageDialog(null, "Ya existe un informe registrado para esta incidencia.",
+                                "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+
+                    // Si no existe, agregar el nuevo informe
                     arbol.setRaiz(arbol.Agregar(arbol.getRaiz(), nuevoInforme));
                     actualizarVista();
                     JOptionPane.showMessageDialog(null, "Informe registrado exitosamente.");
@@ -119,7 +134,7 @@ public class InformeController extends PanelController implements ActionListener
                     return;
                 }
 
-                Informe informeActualizado = ProcessInforme.LeerInforme(info);
+                Informe informeActualizado = ProcessInforme.LeerInforme(info,pila);
                 if (informeActualizado != null) {
                     actual.setElemento(informeActualizado);
                     actualizarVista();
@@ -143,6 +158,16 @@ public class InformeController extends PanelController implements ActionListener
                     actualizarVista();
                     JOptionPane.showMessageDialog(null, "Informe eliminado exitosamente.");
                 }
+            } else if (e.getSource() == info.btnOrdenar) { 
+                String criterio = (String) info.cbxOrdenar.getSelectedItem();
+
+                if ("ID".equals(criterio)) {
+                    ProcessInforme.ordenarPorID(arbol, info);
+                } else if ("Estado".equals(criterio)) {
+                    ProcessInforme.ordenarPorEstado(arbol, info);
+                } else if ("Fecha".equals(criterio)) {
+                    ProcessInforme.ordenarPorFecha(arbol, info);
+                }
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage(),
@@ -153,8 +178,7 @@ public class InformeController extends PanelController implements ActionListener
     private boolean camposIncompletos() {
         return info.cbxAccionesTomadas.getSelectedIndex() == 0
                 || info.cbxEstado.getSelectedIndex() == 0
-                || info.atxtDescripcion.getText().trim().isEmpty()
-                || info.cbxPersonal.getSelectedIndex() == 0;  // Changed from txtPersonal to cbxPersonal
+                || info.atxtDescripcion.getText().trim().isEmpty();
     }
 
     private void cargarDesdeArchivo() {
@@ -165,3 +189,4 @@ public class InformeController extends PanelController implements ActionListener
         actualizarTabla();
     }
 }
+

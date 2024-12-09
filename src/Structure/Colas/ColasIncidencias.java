@@ -13,7 +13,10 @@ public class ColasIncidencias implements Serializable{
     }
 
     public void Encolar(Incidencias incidencia) {
-        cola.add(incidencia);
+        try {
+            cola.add(incidencia);
+        } catch (Exception e) {
+        }        
     }
 
     public Incidencias Desencolar() {

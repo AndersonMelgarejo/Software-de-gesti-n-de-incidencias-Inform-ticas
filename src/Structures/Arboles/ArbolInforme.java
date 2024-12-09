@@ -20,10 +20,16 @@ public class ArbolInforme implements Serializable {
         Raiz = null;
     }
 
-    // Método que agrega un nodo al árbol
+// Método que agrega un nodo al árbol, asegurando que no se registre más de una vez
     public NodoInforme Agregar(NodoInforme nodo, Informe elem) {
         if (nodo == null) {
             return new NodoInforme(elem);
+        }
+
+        // Comprobar si el informe ya existe (comparando el ID de la incidencia)
+        if (nodo.getElemento().getIncidencia().getId() == elem.getIncidencia().getId()) {
+            // Si ya existe, no agregar y devolver el nodo original (sin modificaciones)
+            return nodo;
         }
 
         // Comparar usando el ID de la incidencia (elem.getIncidencia().getId())
