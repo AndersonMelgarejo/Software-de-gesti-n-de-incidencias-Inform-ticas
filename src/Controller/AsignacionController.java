@@ -29,6 +29,7 @@ public class AsignacionController extends PanelController implements ActionListe
     ListaPersonal lista;
     int pos;
     boolean editing = true;
+    
     public AsignacionController(UI_Asignacion asignacion, UI_Dashboard app) {
         super(asignacion, app);
         this.asignacion = asignacion;

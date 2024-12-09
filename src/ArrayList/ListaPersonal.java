@@ -13,6 +13,8 @@ import Model.Personal;
 public class ListaPersonal implements Serializable{
     private ArrayList<Personal> lista;
     
+    
+    
     public ListaPersonal(){
         lista= new ArrayList();
     }

@@ -2,8 +2,6 @@ package Model;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class Informe implements Serializable {
@@ -12,48 +10,56 @@ public class Informe implements Serializable {
     private String accionesTomadas;
     private Date fechaRes;
     private String estado;
-    private Personal personal;
+    private AsignarPersonal personal;
     private String descripcion;
 
-    public Informe() {
-    }
-
-    public Informe(Incidencias incidencia, String accionesTomadas, String estado, Personal personal, String descripcion, Date fechaRes) {
-        this.incidencia = incidencia;
+    public Informe(Incidencias incidencia, AsignarPersonal personal, String accionesTomadas, String estado, String descripcion, Date fechaRes) {
+        this.incidencia = incidencia;  
+        this.personal = personal;  
         this.accionesTomadas = accionesTomadas;
         this.estado = estado;
-        this.personal = personal;
         this.descripcion = descripcion;
         this.fechaRes = fechaRes;
     }
 
+    // Método que devuelve el registro del informe en un formato de fila de tabla
     public Object[] getRegistro() {
-        Object[] fila = {
+        return new Object[]{
             incidencia.getId(),
             accionesTomadas,
             estado,
-            personal, 
+            personal.getPersonal(),
             descripcion,
             getFechaResFormateada()
         };
-        return fila;
     }
 
     @Override
     public String toString() {
-        return "------------------------------------" +
-            "\n ID de la incidencia......... " + incidencia.getId() +
-            "\n Acciones tomadas............ " + accionesTomadas +
-            "\n Estado...................... " + estado +
-            "\n Personal asignado........... " + personal.getNombre() +
-            "\n Fecha de resolución......... " + getFechaResFormateada() +
-            "\n Descripción................. " + descripcion +
-            "\n------------------------------------";
+        return String.format(
+                "------------------------------------\n"
+                + "ID de la incidencia......... %s\n"
+                + "Asignado.................... %s\n"
+                + "Acciones tomadas............ %s\n"
+                + "Estado...................... %s\n"
+                + "Fecha de resolución......... %s\n"
+                + "Descripción................. %s\n"
+                + "------------------------------------",
+                incidencia.getId(),
+                personal.getPersonal(), // Muestra el personal asignado
+                accionesTomadas,
+                estado,
+                getFechaResFormateada(),
+                descripcion
+        );
     }
 
     public String getFechaResFormateada() {
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        return formato.format(fechaRes);
+        if (fechaRes != null) {
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            return formato.format(fechaRes);
+        }
+        return "Fecha no disponible"; // Si fechaRes es null, devuelve un valor por defecto
     }
 
     // Getters y Setters
@@ -81,13 +87,15 @@ public class Informe implements Serializable {
         this.estado = estado;
     }
 
-    public Personal getPersonal() {
+    public AsignarPersonal getPersonal() {
         return personal;
     }
 
-    public void setPersonal(Personal personal) {
+    public void setPersonal(AsignarPersonal personal) {
         this.personal = personal;
     }
+
+
 
     public String getDescripcion() {
         return descripcion;
