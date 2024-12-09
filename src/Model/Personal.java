@@ -23,7 +23,7 @@ public class Personal implements Serializable{
         return fila;
     }
     public void segunCargo(){
-        if(cargo.equals("Usuario"))cargo="Usuario";
+        if(cargo.equals("Cliente"))cargo="Cliente";
         if(cargo.equals("Soporte tecnico"))cargo="Soporte tecnico";
         if(cargo.equals("Administrador de sistemas"))cargo="Administrador de sistemas";
         if(cargo.equals("Especialista de redes"))cargo="Especialista de redes";

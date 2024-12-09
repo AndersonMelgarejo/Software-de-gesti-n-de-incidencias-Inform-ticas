@@ -524,7 +524,7 @@
                 <StringItem index="2" value="Administrador de sistemas"/>
                 <StringItem index="3" value="Especialista de redes"/>
                 <StringItem index="4" value="Seguridad informatica"/>
-                <StringItem index="5" value="Usuario"/>
+                <StringItem index="5" value="Cliente"/>
               </StringArray>
             </Property>
           </Properties>

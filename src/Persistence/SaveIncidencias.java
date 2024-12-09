@@ -19,28 +19,26 @@ import javax.swing.JOptionPane;
 public class SaveIncidencias implements Serializable{
     public static String ARCHIVO="Incidencias.bin";    
     public static void Guardar(ColasIncidencias Lista){
-       try{
-           FileOutputStream fos=new FileOutputStream(ARCHIVO);
-           ObjectOutputStream oos =  new ObjectOutputStream(fos);
-           oos.writeObject(Lista);
-           oos.close();
-           System.out.println("guardooooooooo");
-       }catch(Exception ex){
-           JOptionPane.showMessageDialog(null,"ERROR no se puede guardar "+ex);
-       }       
+        try{
+            FileOutputStream fos=new FileOutputStream(ARCHIVO);
+            ObjectOutputStream oos =  new ObjectOutputStream(fos);
+            oos.writeObject(Lista);
+            oos.close();           
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null,"ERROR no se puede guardar "+ex);
+        }       
     }// fin guardar
     
     public static ColasIncidencias Recuperar(){
         ColasIncidencias Lista=new ColasIncidencias();
-       try{
-           FileInputStream fis =  new FileInputStream(ARCHIVO);
-           ObjectInputStream ois = new ObjectInputStream(fis);
-           Lista = (ColasIncidencias)ois.readObject();
-           ois.close();
-           System.out.println("reucpramoss");
-       }catch(Exception ex){
-           JOptionPane.showMessageDialog(null,"ERROR no se puede recuperar..."+ex);
-       }
-       return Lista;
+        try{
+            FileInputStream fis =  new FileInputStream(ARCHIVO);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            Lista = (ColasIncidencias)ois.readObject();
+            ois.close();           
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null,"ERROR no se puede recuperar..."+ex);
+        }
+        return Lista;
     }
 }
