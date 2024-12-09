@@ -116,7 +116,7 @@ public class DashboardController implements ActionListener {
 
     private void handleIncidenciasAction() {
         UI_Incidencias inci = new UI_Incidencias();
-        inci.txtArea.putClientProperty("JTextField.placeholderText", "Ejem: A0101");
+        
         IncidenciaController ctrlInci = new IncidenciaController(inci, vista);
         resetButtons();
         vista.btnIncidencias.setSelected(true);

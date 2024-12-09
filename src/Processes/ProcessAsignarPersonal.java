@@ -97,7 +97,7 @@ public class ProcessAsignarPersonal {
 
         // Recorrer la lista de personal y agregar los usuarios al combo box, excepto los de cargo "Usuario"
         for (Personal personal : listaPersonal.getLista()) {
-            if (!"Usuario".equalsIgnoreCase(personal.getCargo())) { // Comparación insensible a mayúsculas
+            if (!"Cliente".equalsIgnoreCase(personal.getCargo())) { // Comparación insensible a mayúsculas
                 comboBox.addItem(personal); // Agregar solo el usuario
             }
         } 

@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 
 public class ProcessInforme {
 
-    // Método para cargar los JComboBox de Incidencias 
+    // Método para cargar los JComboBox de Incidencias
     public static void cargarCombos(UI_Informe inf, PriorityQueue<Incidencias> colaIncidencias) {
         cargarComboBoxConIncidencias(inf.cbxIncidencias, colaIncidencias);
     }
@@ -31,15 +31,17 @@ public class ProcessInforme {
         // Asignar el id a cada incidencia de la cola
         int id = 1;
         for (Incidencias incidencia : cola) {
-            incidencia.setId(id);  // Asignar el id dinámicamente
-            comboBox.addItem(incidencia);  // Agregar el objeto completo a la lista
+            incidencia.setId(id); // Asignar el id dinámicamente
+            comboBox.addItem(incidencia); // Agregar el objeto completo a la lista
             id++;
         }
 
-        // Crear un renderizador para mostrar correctamente el ID y la descripción en el JComboBox
+        // Crear un renderizador para mostrar correctamente el ID y la descripción en el
+        // JComboBox
         DefaultListCellRenderer renderer = new DefaultListCellRenderer() {
             @Override
-            public java.awt.Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+            public java.awt.Component getListCellRendererComponent(JList<?> list, Object value, int index,
+                    boolean isSelected, boolean cellHasFocus) {
                 if (value instanceof Incidencias) {
                     Incidencias incidencia = (Incidencias) value;
                     String displayText = "" + incidencia.getId();
@@ -49,7 +51,7 @@ public class ProcessInforme {
             }
         };
 
-        comboBox.setRenderer(renderer);  // Establecer el renderizador para el comboBox
+        comboBox.setRenderer(renderer); // Establecer el renderizador para el comboBox
     }
 
     // Método para mostrar los datos de un informe en los campos del formulario

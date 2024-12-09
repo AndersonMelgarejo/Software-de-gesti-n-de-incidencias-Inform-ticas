@@ -6,7 +6,6 @@ package Controller;
 
 import ArrayList.ListaPersonal;
 import Model.AsignarPersonal;
-import Model.Incidencias;
 import Persistence.SaveAsignarPersonal;
 import Persistence.SaveIncidencias;
 import Persistence.SavePersonal;
