@@ -23,6 +23,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -31,7 +32,15 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ProcessIncidencias {
     public static Incidencias leer(UI_Incidencias vista) {
-
+        
+        if(vista.txtAinci.getText().isEmpty()){
+            JOptionPane.showMessageDialog(vista, "La descripción no puede estar vacia", "Error", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+        if(vista.datePickerCustom1.getText().isEmpty()){
+            JOptionPane.showMessageDialog(vista, "Selecione la fecha de la incidencia", "Error", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
     
         Incidencias inci = new Incidencias();
         inci.setId(getIdActual());
