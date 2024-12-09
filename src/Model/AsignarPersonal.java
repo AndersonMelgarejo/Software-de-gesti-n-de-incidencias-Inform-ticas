@@ -10,7 +10,7 @@ import java.util.Date;
  *
  * @author Jim
  */
-public class AsignarPersonal implements Serializable{
+public class AsignarPersonal implements Serializable {
     private String asignador;
     private Incidencias incidencia;
     private Personal personal;
@@ -20,46 +20,54 @@ public class AsignarPersonal implements Serializable{
     private String descripcion;
 
     public AsignarPersonal() {
-    }    
+    }
 
-    public AsignarPersonal(String asignador, Incidencias incidencia, Personal personal, Date fecha,LocalTime hora, String estado, String descripcion) {
+    public AsignarPersonal(String asignador, Incidencias incidencia, Personal personal, Date fecha, LocalTime hora,
+            String estado, String descripcion) {
         this.asignador = asignador;
         this.incidencia = incidencia;
         this.personal = personal;
         this.fecha = fecha;
-        this.hora=hora;
+        this.hora = hora;
         this.estado = estado;
         this.descripcion = descripcion;
     }
 
-    public Object[] Registro(int id){
-        Object[] fila={incidencia.getId(),getHoraFormat(),asignador,personal,getFechaFormat(),estado,descripcion};
-        return fila;       
+    public Object[] Registro(int id) {
+        Object[] fila = { incidencia.getId(), getHoraFormat(), asignador, personal, getFechaFormat(), estado,
+                descripcion };
+        return fila;
     }
+
     @Override
     public String toString() {
-        return "------------------------------------"+
-             "\n ID de la incidencia......... "+incidencia.getId()+
-             "\n Hora registrada............. "+getHoraFormat()+
-             "\n Asignador de la solución.... "+asignador+ 
-             "\n Personal asignado........... "+personal+
-             "\n Fecha de la solución........ "+getFechaFormat()+
-             "\n Estado...................... "+estado+
-             "\n Descripcion................. "+descripcion+
-             "\n------------------------------------";             
+        return "------------------------------------" +
+                "\n ID de la incidencia......... " + incidencia.getId() +
+                "\n Hora registrada............. " + getHoraFormat() +
+                "\n Asignador de la solución.... " + asignador +
+                "\n Personal asignado........... " + personal +
+                "\n Fecha de la solución........ " + getFechaFormat() +
+                "\n Estado...................... " + estado +
+                "\n Descripcion................. " + descripcion +
+                "\n------------------------------------";
     }
-    public void segunEstado(){
-        if(estado.equals("EN PROCESO"))estado="EN PROCESOS";
-        if(estado.equals("ATENDIDO"))estado="ATENDIDO";
-        if(estado.equals("DERIVADO"))estado="DERIVADO";
+
+    public void segunEstado() {
+        if (estado.equals("EN PROCESO"))
+            estado = "EN PROCESO";
+        if (estado.equals("ATENDIDO"))
+            estado = "ATENDIDO";
+        if (estado.equals("DERIVADO"))
+            estado = "DERIVADO";
     }
+
     public String getFechaFormat() {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         return formato.format(fecha);
     }
-    
-    public String getHoraFormat(){        
-        DateTimeFormatter formato=DateTimeFormatter.ofPattern("HH:mm:ss");
+
+    public String getHoraFormat() {
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm:ss");
         return hora.format(formato);
     }
 
@@ -102,14 +110,14 @@ public class AsignarPersonal implements Serializable{
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-    
+
     public LocalTime getHora() {
         return hora;
     }
 
     public void setHora(LocalTime hora) {
         this.hora = hora;
-    }    
+    }
 
     public String getEstado() {
         return estado;
@@ -118,6 +126,5 @@ public class AsignarPersonal implements Serializable{
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    
-    
+
 }

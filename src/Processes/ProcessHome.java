@@ -10,8 +10,9 @@ import Model.Incidencias;
 import Structure.Colas.ColasIncidencias;
 import View.UI_Home;
 import java.text.ParseException;
-
+import java.time.ZoneId;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -50,6 +51,37 @@ public class ProcessHome {
         e.printStackTrace();
       }
     }
+  }
+
+  // mostrar total de incidencias y el porcentaje de incidencias en relación al
+  // mes anterior
+  public static void mostrarTotalInci(UI_Home vista, ColasIncidencias cola) {
+    // vista.lblInciPercent.setText("+0%");
+    LocalDate fechaActual = LocalDate.now();
+    LocalDate primerDiaActual = fechaActual.withDayOfMonth(1);
+    LocalDate primerDiaMesAnterior = primerDiaActual.minusMonths(1);
+
+    int mesActualIncidencias = 0;
+    int mesAnteriorIncidencias = 0;
+
+    for (Incidencias inc : cola.getCola()) {
+      LocalDate fechaIncidencia = inc.getFecha().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+      if (!fechaIncidencia.isBefore(primerDiaActual)) {
+        mesActualIncidencias++;
+      } else if (!fechaIncidencia.isBefore(primerDiaMesAnterior)) {
+        mesAnteriorIncidencias++;
+      }
+    }
+    // mostrar total historico de incidencias
+    vista.lblInci.setText("" + cola.getCola().size());
+    // mostrar relacion de incidencias con el mes anterior porcentaje
+    if (mesAnteriorIncidencias > 0) {
+      int porcentaje = (mesActualIncidencias - mesAnteriorIncidencias) * 100 / mesAnteriorIncidencias;
+      vista.lblInciPercent.setText("+" + porcentaje + "%");
+    } else {
+      vista.lblInciPercent.setText("+0%");
+    }
+
   }
 
 }

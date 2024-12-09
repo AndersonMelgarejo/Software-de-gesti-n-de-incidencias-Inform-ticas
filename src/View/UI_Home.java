@@ -30,9 +30,9 @@ public class UI_Home extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         panelRound1 = new Styles.PanelRound();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblInci = new javax.swing.JLabel();
         panelRound2 = new Styles.PanelRound();
-        jLabel3 = new javax.swing.JLabel();
+        lblInciPercent = new javax.swing.JLabel();
         panelRound3 = new Styles.PanelRound();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -78,8 +78,8 @@ public class UI_Home extends javax.swing.JPanel {
         jLabel1.setText("Total de incidencias");
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
-        jLabel2.setText("10000");
-        jLabel2.setFont(new java.awt.Font("Segoe UI Variable", 1, 36)); // NOI18N
+        lblInci.setText("10000");
+        lblInci.setFont(new java.awt.Font("Segoe UI Variable", 1, 36)); // NOI18N
 
         panelRound2.setBackground(new java.awt.Color(204, 0, 51));
         panelRound2.setRoundBottomLeft(10);
@@ -87,9 +87,9 @@ public class UI_Home extends javax.swing.JPanel {
         panelRound2.setRoundTopLeft(10);
         panelRound2.setRoundTopRight(10);
 
-        jLabel3.setText("+100.0%");
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        lblInciPercent.setText("+100.0%");
+        lblInciPercent.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblInciPercent.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout panelRound2Layout = new javax.swing.GroupLayout(panelRound2);
         panelRound2.setLayout(panelRound2Layout);
@@ -97,13 +97,13 @@ public class UI_Home extends javax.swing.JPanel {
             panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
+                .addComponent(lblInciPercent)
                 .addContainerGap())
         );
         panelRound2Layout.setVerticalGroup(
             panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound2Layout.createSequentialGroup()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                .addComponent(lblInciPercent, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
 
@@ -116,7 +116,7 @@ public class UI_Home extends javax.swing.JPanel {
                 .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addGroup(panelRound1Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblInci, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panelRound2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(17, 17, 17))
@@ -128,7 +128,7 @@ public class UI_Home extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblInci, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panelRound2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15))
         );
@@ -396,8 +396,6 @@ public class UI_Home extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -412,6 +410,8 @@ public class UI_Home extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator1;
     public javax.swing.JTable jtEstado;
     public javax.swing.JTable jtHome;
+    public javax.swing.JLabel lblInci;
+    public javax.swing.JLabel lblInciPercent;
     private Styles.PanelRound panelRound1;
     private Styles.PanelRound panelRound2;
     private Styles.PanelRound panelRound3;
