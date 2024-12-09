@@ -45,4 +45,23 @@ public class ColasIncidencias implements Serializable{
         }
         return null; // No se encontró
     }
+    
+    public void ordenarPorId() {
+        PriorityQueue<Incidencias> nuevaCola = new PriorityQueue<>(new ComparadorIdIncidencias());
+        nuevaCola.addAll(this.cola); // Copiar todas las incidencias a la nueva cola
+        this.cola = nuevaCola; // Reemplazar la cola actual con la nueva
+    }    
+    
+    public void reordenarPorNivel() {
+        PriorityQueue<Incidencias> nuevaCola = new PriorityQueue<>(new ComparadorIncidencia());
+        nuevaCola.addAll(cola); // Copiar todos los elementos de la cola existente
+        this.cola = nuevaCola; // Reemplazar la cola vieja con la nueva
+    }
+
+    public void reordenarPorTipoIncidencia() {
+        PriorityQueue<Incidencias> nuevaCola = new PriorityQueue<>(new ComparadorTipoIncidencia());
+        nuevaCola.addAll(cola); // Copiar todos los elementos de la cola existente
+        this.cola = nuevaCola; // Reemplazar la cola vieja con la nueva
+    }
+
 }

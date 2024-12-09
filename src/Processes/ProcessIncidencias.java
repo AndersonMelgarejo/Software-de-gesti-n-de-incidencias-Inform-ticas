@@ -72,6 +72,12 @@ public class ProcessIncidencias {
         vista.txtAinci.setText("");
 
     }
+    
+    public static void llenar(UI_Incidencias vista, Incidencias incidencia){
+        vista.txtAinci.setText(incidencia.getDescripcion());
+        vista.cbxDepar.setSelectedItem(incidencia.getDepartamento());
+        vista.txtArea.setText(incidencia.getArea());        
+    }
 
     public static void cargarComboBoxDepas(UI_Incidencias vista, ListaDoble lista) {
         // Limpiar el comboBox por si ya tiene elementos
@@ -166,5 +172,5 @@ public class ProcessIncidencias {
     public static int getIdActual() {
         return getMaxId() + 1;
     }
-
+    
 }

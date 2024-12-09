@@ -25,8 +25,7 @@ public class IncidenciaController extends PanelController implements ActionListe
     ListaDoble lista;
     Arreglo_TipoIncidencias arreglo;
     ColasIncidencias cola;
-    ListaPersonal clientes;
-    Incidencias incidencia;
+    ListaPersonal clientes;   
 
     public IncidenciaController(UI_Incidencias inci, UI_Dashboard dash) {
         super(inci, dash);
@@ -56,6 +55,7 @@ public class IncidenciaController extends PanelController implements ActionListe
         inci.btnDesencolar.addActionListener(this);
         inci.btnMirarPrimero.addActionListener(this);
         inci.btnMirarUltimo.addActionListener(this);
+        inci.btnOrdenar.addActionListener(this);
     }
 
     @Override
@@ -116,17 +116,36 @@ public class IncidenciaController extends PanelController implements ActionListe
                 "Deseas eliminar la incidencia: \n"+cola.VerPrimero().detalles(), 
                 "Desencolar confirmación",
                 JOptionPane.YES_NO_OPTION);
-           if(resp==0){
-               cola.Desencolar();
-               SaveIncidencias.Guardar(cola);
-               mostrarDatosEnTbl();
-           }
+            if(resp==0){
+                cola.Desencolar();
+                SaveIncidencias.Guardar(cola);
+                mostrarDatosEnTbl();
+            }
         }
+        
         if(e.getSource()==inci.btnMirarPrimero){
             JOptionPane.showMessageDialog(null,cola.VerPrimero().detalles());
         }
+        
         if(e.getSource()==inci.btnMirarUltimo){
             JOptionPane.showMessageDialog(null,cola.VerUltimo().detalles());
+        }
+        
+        if(e.getSource()==inci.btnOrdenar){
+            switch (inci.cbxFiltrar.getSelectedIndex()) {
+                case 0:
+                    cola.ordenarPorId();
+                    mostrarDatosEnTbl();
+                    break;
+                case 1:
+                    cola.reordenarPorNivel();
+                    mostrarDatosEnTbl();
+                    break;
+                case 2:
+                    cola.reordenarPorTipoIncidencia();
+                    mostrarDatosEnTbl();
+                    break;
+            }
         }
     }
 
