@@ -37,7 +37,7 @@ public class UI_Incidencias extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblIncidencia = new javax.swing.JTable();
         jSeparator1 = new javax.swing.JSeparator();
-        btnEliminar = new javax.swing.JButton();
+        btnDesencolar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtAinci = new javax.swing.JTextArea();
@@ -51,6 +51,8 @@ public class UI_Incidencias extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         cbxClientes = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
+        btnMirarPrimero = new javax.swing.JButton();
+        btnMirarUltimo = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(245, 246, 250));
 
@@ -100,11 +102,11 @@ public class UI_Incidencias extends javax.swing.JPanel {
 
         jSeparator1.setForeground(new java.awt.Color(153, 0, 51));
 
-        btnEliminar.setText("Eliminar");
-        btnEliminar.setBackground(new java.awt.Color(255, 153, 0));
-        btnEliminar.setBorderPainted(false);
-        btnEliminar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        btnDesencolar.setText("Desencolar");
+        btnDesencolar.setBackground(new java.awt.Color(255, 153, 0));
+        btnDesencolar.setBorderPainted(false);
+        btnDesencolar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        btnDesencolar.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel7.setText("Fecha de la incidencia");
         jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -125,8 +127,20 @@ public class UI_Incidencias extends javax.swing.JPanel {
         jLabel13.setText("Tipo de incidencia");
         jLabel13.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel8.setText("Clientes");
+        jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+
+        btnMirarPrimero.setText("Mirar primero");
+        btnMirarPrimero.setBackground(new java.awt.Color(0, 0, 102));
+        btnMirarPrimero.setBorderPainted(false);
+        btnMirarPrimero.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        btnMirarPrimero.setForeground(new java.awt.Color(255, 255, 255));
+
+        btnMirarUltimo.setText("Mirar ultimo");
+        btnMirarUltimo.setBackground(new java.awt.Color(51, 51, 255));
+        btnMirarUltimo.setBorderPainted(false);
+        btnMirarUltimo.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        btnMirarUltimo.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout panelRound1Layout = new javax.swing.GroupLayout(panelRound1);
         panelRound1.setLayout(panelRound1Layout);
@@ -167,15 +181,19 @@ public class UI_Incidencias extends javax.swing.JPanel {
                     .addComponent(jSeparator1)
                     .addGroup(panelRound1Layout.createSequentialGroup()
                         .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
                             .addGroup(panelRound1Layout.createSequentialGroup()
                                 .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(22, 22, 22)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnDesencolar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel1))
+                                .addComponent(btnMirarPrimero)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnMirarUltimo)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -207,7 +225,9 @@ public class UI_Incidencias extends javax.swing.JPanel {
                             .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnDesencolar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnMirarPrimero, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnMirarUltimo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(10, 10, 10)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
                         .addGap(17, 17, 17))
@@ -250,7 +270,9 @@ public class UI_Incidencias extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnActualizar;
     public javax.swing.JButton btnConsultar;
-    public javax.swing.JButton btnEliminar;
+    public javax.swing.JButton btnDesencolar;
+    public javax.swing.JButton btnMirarPrimero;
+    public javax.swing.JButton btnMirarUltimo;
     public javax.swing.JButton btnRegistrar;
     public javax.swing.JComboBox<Model.Personal> cbxClientes;
     public javax.swing.JComboBox<Model.Departamento> cbxDepar;

@@ -23,7 +23,16 @@ public class ColasIncidencias implements Serializable{
     public boolean estaVacia() {
         return cola.isEmpty();
     }
-
+    public Incidencias VerPrimero(){ 
+        return cola.peek(); 
+    }
+    public Incidencias VerUltimo() {
+        Incidencias ultimo = null;
+        for (Incidencias incidencia : cola) {
+            ultimo = incidencia;  // El último elemento en la iteración será el último de la cola
+        }
+        return ultimo;
+    }
     public PriorityQueue<Incidencias> getCola() {
         return cola;
     }

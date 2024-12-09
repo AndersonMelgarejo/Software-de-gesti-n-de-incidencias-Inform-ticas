@@ -53,6 +53,9 @@ public class IncidenciaController extends PanelController implements ActionListe
     protected void addListeners() {
         inci.btnRegistrar.addActionListener(this);
         inci.btnConsultar.addActionListener(this);
+        inci.btnDesencolar.addActionListener(this);
+        inci.btnMirarPrimero.addActionListener(this);
+        inci.btnMirarUltimo.addActionListener(this);
     }
 
     @Override
@@ -73,51 +76,58 @@ public class IncidenciaController extends PanelController implements ActionListe
             mostrarDatosEnTbl();
         }
         if(e.getSource() == inci.btnConsultar){
-        if (cola.estaVacia()) {
-            JOptionPane.showMessageDialog(inci, "No hay incidencias registradas.", "Consulta de Incidencias", JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
-
-        // Solicitar el ID de la incidencia que se desea buscar
-        String inputId = JOptionPane.showInputDialog(inci, "Ingrese el ID de la incidencia:", "Consultar Incidencia", JOptionPane.QUESTION_MESSAGE);
-
-        // Validar entrada
-        if (inputId == null || inputId.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(inci, "Debe ingresar un ID válido.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        try {
-            int id = Integer.parseInt(inputId); // Convertir el input a un número entero
-
-            // Buscar la incidencia en la cola por ID
-            Incidencias incidenciaEncontrada = cola.buscarIncidenciaPorId(id);
-
-            if (incidenciaEncontrada != null) {
-                // Mostrar detalles de la incidencia encontrada
-                String mensaje = String.format(
-                    "ID: %d\nUsuario: %s\nFecha: %s\nDepartamento: %s\nÁrea: %s\nDescripción: %s\nFecha de la incidencia: %s\nTipo: %s\nNivel de prioridad: %s\nCliente: %s",
-                    incidenciaEncontrada.getId(), // ID
-                    incidenciaEncontrada.getUser(), // Usuario
-                    incidenciaEncontrada.getFecha(), // Fecha
-                    incidenciaEncontrada.getDepartamento(), // Departamento
-                    incidenciaEncontrada.getArea(), // Área                    
-                    incidenciaEncontrada.getDescripcion(), // Descripción
-                    incidenciaEncontrada.getFechaFormat(), // Fecha de la incidencia
-                    incidenciaEncontrada.getTipoincidencia().getNombre(), // Tipo
-                    incidenciaEncontrada.getTipoincidencia().getNivel(),// Nivel
-                    incidenciaEncontrada.getPersonal().getUser() //Cliente
-                );
-                JOptionPane.showMessageDialog(inci, mensaje, "Detalles de la Incidencia", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                // No se encontró la incidencia
-                JOptionPane.showMessageDialog(inci, "No se encontró una incidencia con el ID ingresado.", "No Encontrado", JOptionPane.WARNING_MESSAGE);
+            if (cola.estaVacia()) {
+                JOptionPane.showMessageDialog(inci, "No hay incidencias registradas.", "Consulta de Incidencias", JOptionPane.INFORMATION_MESSAGE);
+                return;
             }
 
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(inci, "El ID debe ser un número entero válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            // Solicitar el ID de la incidencia que se desea buscar
+            String inputId = JOptionPane.showInputDialog(inci, "Ingrese el ID de la incidencia:", "Consultar Incidencia", JOptionPane.QUESTION_MESSAGE);
+
+            // Validar entrada
+            if (inputId == null || inputId.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(inci, "Debe ingresar un ID válido.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            try {
+                int id = Integer.parseInt(inputId); // Convertir el input a un número entero
+
+                // Buscar la incidencia en la cola por ID
+                Incidencias incidenciaEncontrada = cola.buscarIncidenciaPorId(id);
+
+                if (incidenciaEncontrada != null) {
+                    // Mostrar detalles de la incidencia encontrada
+                    String mensaje = incidenciaEncontrada.detalles();
+                    JOptionPane.showMessageDialog(inci, mensaje, "Detalles de la Incidencia", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    // No se encontró la incidencia
+                    JOptionPane.showMessageDialog(inci, "No se encontró una incidencia con el ID ingresado.", "No Encontrado", JOptionPane.WARNING_MESSAGE);
+                }
+
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(inci, "El ID debe ser un número entero válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
-    }
+        
+        if(e.getSource()==inci.btnDesencolar){
+            
+            int resp = JOptionPane.showConfirmDialog(null,
+                "Deseas eliminar la incidencia: \n"+cola.VerPrimero().detalles(), 
+                "Desencolar confirmación",
+                JOptionPane.YES_NO_OPTION);
+           if(resp==0){
+               cola.Desencolar();
+               SaveIncidencias.Guardar(cola);
+               mostrarDatosEnTbl();
+           }
+        }
+        if(e.getSource()==inci.btnMirarPrimero){
+            JOptionPane.showMessageDialog(null,cola.VerPrimero().detalles());
+        }
+        if(e.getSource()==inci.btnMirarUltimo){
+            JOptionPane.showMessageDialog(null,cola.VerUltimo().detalles());
+        }
     }
 
 }

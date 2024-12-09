@@ -50,7 +50,21 @@ public class Incidencias implements Serializable{
     public String toString(){
         return tipoincidencia.getNombre();
     }
-    
+    public String detalles(){
+        return String.format(
+        "ID: %d\nUsuario: %s\nFecha: %s\nDepartamento: %s\nÁrea: %s\nDescripción: %s\nFecha de la incidencia: %s\nTipo: %s\nNivel de prioridad: %s\nCliente: %s",
+        id,                   // ID
+        user,                 // Usuario
+        getFechaActual(),                // Fecha
+        departamento.getNombre(),         // Departamento
+        area,                 // Área                    
+        descripcion,          // Descripción
+        getFechaFormat(),          // Fecha de la incidencia
+        tipoincidencia.getNombre(), // Tipo
+        tipoincidencia.getNivel(),  // Nivel
+        personal.getUser()    // Cliente
+    );
+    }
     public void setId(int id) {
         this.id = id;
     }
