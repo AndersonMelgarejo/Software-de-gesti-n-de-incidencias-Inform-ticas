@@ -37,37 +37,6 @@ public class ProcessHome {
     }
   }
 
-  // mostrar total de incidencias y el porcentaje de incidencias en relación al
-  // mes anterior
-  public static void mostrarTotalInci(UI_Home vista, ColasIncidencias cola) {
-    // vista.lblInciPercent.setText("+0%");
-    LocalDate fechaActual = LocalDate.now();
-    LocalDate primerDiaActual = fechaActual.withDayOfMonth(1);
-    LocalDate primerDiaMesAnterior = primerDiaActual.minusMonths(1);
-
-    int mesActualIncidencias = 0;
-    int mesAnteriorIncidencias = 0;
-
-    for (Incidencias inc : cola.getCola()) {
-      LocalDate fechaIncidencia = inc.getFecha().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-      if (!fechaIncidencia.isBefore(primerDiaActual)) {
-        mesActualIncidencias++;
-      } else if (!fechaIncidencia.isBefore(primerDiaMesAnterior)) {
-        mesAnteriorIncidencias++;
-      }
-    }
-    // mostrar total historico de incidencias
-    vista.lblInci.setText("" + cola.getCola().size());
-    // mostrar relacion de incidencias con el mes anterior porcentaje
-    if (mesAnteriorIncidencias > 0) {
-      int porcentaje = (mesActualIncidencias - mesAnteriorIncidencias) * 100 / mesAnteriorIncidencias;
-      vista.lblInciPercent.setText("+" + porcentaje + "%");
-    } else {
-      vista.lblInciPercent.setText("+0%");
-    }
-
-  }
-
   // mostrar por intervalo de fechas
   public static void mostrarInciFechas(UI_Home vista, ColasIncidencias cola, Date fechaInicio, Date fechaFin) {
     String[] titulos = { "ID", "Usuario Registrador", "Fecha - hora Registrada", "Departamento",
@@ -93,4 +62,48 @@ public class ProcessHome {
       vista.jtHome.getColumnModel().getColumn(i).setPreferredWidth(anchostabla[i]);
     }
   }
+
+  // mostrar total de incidencias y el porcentaje de incidencias en relación al
+  // mes anterior
+  public static void mostrarTotalInci(UI_Home vista, ColasIncidencias cola) {
+    // vista.lblInciPercent.setText("+0%");
+    LocalDate fechaActual = LocalDate.now();
+    LocalDate primerDiaActual = fechaActual.withDayOfMonth(1);
+    LocalDate primerDiaMesAnterior = primerDiaActual.minusMonths(1);
+
+    int mesActualIncidencias = 0;
+    int mesAnteriorIncidencias = 0;
+
+    for (Incidencias inc : cola.getCola()) {
+      LocalDate fechaIncidencia = inc.getFechaincidencia().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+      if (!fechaIncidencia.isBefore(primerDiaActual)) {
+        mesActualIncidencias++;
+      } else if (!fechaIncidencia.isBefore(primerDiaMesAnterior)) {
+        mesAnteriorIncidencias++;
+      }
+    }
+
+    // Mostrar total histórico de incidencias
+    vista.lblInci.setText("" + cola.getCola().size());
+
+    // Calcular relación de incidencias con el mes anterior
+    if (mesAnteriorIncidencias > 0) {
+      int diferencia = mesActualIncidencias - mesAnteriorIncidencias;
+      int porcentaje = Math.abs(diferencia) * 100 / mesAnteriorIncidencias; // Obtener valor absoluto para el cálculo
+      String signo = diferencia >= 0 ? "+" : "-";
+      vista.lblInciPercent.setText(signo + porcentaje + "%");
+    } else {
+      // Caso donde no hay incidencias en el mes anterior
+      if (mesActualIncidencias > 0) {
+        vista.lblInciPercent.setText("+100%"); // Incremento absoluto
+      } else {
+        vista.lblInciPercent.setText("+0%"); // Sin cambios
+      }
+    }
+
+    System.out.println("Incidencias mes actual: " + mesActualIncidencias);
+    System.out.println("Incidencias mes anterior: " + mesAnteriorIncidencias);
+
+  }
+
 }

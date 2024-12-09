@@ -65,28 +65,28 @@ public class UI_Incidencias extends javax.swing.JPanel {
         panelRound1.setRoundTopLeft(20);
         panelRound1.setRoundTopRight(20);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         jLabel1.setText("Registrar Incidencias Informáticas");
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
+        btnRegistrar.setText("Encolar");
         btnRegistrar.setBackground(new java.awt.Color(153, 0, 51));
+        btnRegistrar.setBorderPainted(false);
         btnRegistrar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         btnRegistrar.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegistrar.setText("Encolar");
-        btnRegistrar.setBorderPainted(false);
 
+        btnConsultar.setText("Consultar");
         btnConsultar.setBackground(new java.awt.Color(0, 121, 153));
+        btnConsultar.setBorderPainted(false);
         btnConsultar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         btnConsultar.setForeground(new java.awt.Color(255, 255, 255));
-        btnConsultar.setText("Consultar");
-        btnConsultar.setBorderPainted(false);
 
+        btnActualizar.setText("Actualizar");
         btnActualizar.setBackground(new java.awt.Color(68, 23, 38));
+        btnActualizar.setBorderPainted(false);
         btnActualizar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
-        btnActualizar.setText("Actualizar");
-        btnActualizar.setBorderPainted(false);
 
         tblIncidencia.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -104,45 +104,45 @@ public class UI_Incidencias extends javax.swing.JPanel {
 
         jSeparator1.setForeground(new java.awt.Color(153, 0, 51));
 
+        btnDesencolar.setText("Desencolar");
         btnDesencolar.setBackground(new java.awt.Color(255, 153, 0));
+        btnDesencolar.setBorderPainted(false);
         btnDesencolar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         btnDesencolar.setForeground(new java.awt.Color(255, 255, 255));
-        btnDesencolar.setText("Desencolar");
-        btnDesencolar.setBorderPainted(false);
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel7.setText("Fecha de la incidencia");
+        jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
         txtAinci.setColumns(20);
         txtAinci.setRows(5);
         jScrollPane1.setViewportView(txtAinci);
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel9.setText("Descripción de la incidencia");
+        jLabel9.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel11.setText("Departamento ");
+        jLabel11.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel12.setText("Area de la incidencia");
+        jLabel12.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
-        jLabel13.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel13.setText("Tipo de incidencia");
+        jLabel13.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel8.setText("Clientes");
+        jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
+        btnMirarPrimero.setText("Mirar primero");
         btnMirarPrimero.setBackground(new java.awt.Color(0, 0, 102));
+        btnMirarPrimero.setBorderPainted(false);
         btnMirarPrimero.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         btnMirarPrimero.setForeground(new java.awt.Color(255, 255, 255));
-        btnMirarPrimero.setText("Mirar primero");
-        btnMirarPrimero.setBorderPainted(false);
 
+        btnMirarUltimo.setText("Mirar ultimo");
         btnMirarUltimo.setBackground(new java.awt.Color(51, 51, 255));
+        btnMirarUltimo.setBorderPainted(false);
         btnMirarUltimo.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         btnMirarUltimo.setForeground(new java.awt.Color(255, 255, 255));
-        btnMirarUltimo.setText("Mirar ultimo");
-        btnMirarUltimo.setBorderPainted(false);
 
         cbxFiltrar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Nivel de prioridad", "Tipo de incidencia" }));
         cbxFiltrar.addActionListener(new java.awt.event.ActionListener() {
@@ -151,10 +151,10 @@ public class UI_Incidencias extends javax.swing.JPanel {
             }
         });
 
-        btnOrdenar.setBackground(new java.awt.Color(128, 228, 255));
-        btnOrdenar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         btnOrdenar.setText("Ordenar");
+        btnOrdenar.setBackground(new java.awt.Color(128, 228, 255));
         btnOrdenar.setBorderPainted(false);
+        btnOrdenar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
 
         javax.swing.GroupLayout panelRound1Layout = new javax.swing.GroupLayout(panelRound1);
         panelRound1.setLayout(panelRound1Layout);
