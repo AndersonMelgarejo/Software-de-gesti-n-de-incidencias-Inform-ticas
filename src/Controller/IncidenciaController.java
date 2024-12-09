@@ -96,15 +96,17 @@ public class IncidenciaController extends PanelController implements ActionListe
             if (incidenciaEncontrada != null) {
                 // Mostrar detalles de la incidencia encontrada
                 String mensaje = String.format(
-                    "ID: %d\nUsuario: %s\nDepartamento: %s\nÁrea: %s\nFecha: %s\nDescripción: %s\nTipo: %s\nNivel de prioridad: %s",
+                    "ID: %d\nUsuario: %s\nFecha: %s\nDepartamento: %s\nÁrea: %s\nDescripción: %s\nFecha de la incidencia: %s\nTipo: %s\nNivel de prioridad: %s\nCliente: %s",
                     incidenciaEncontrada.getId(), // ID
                     incidenciaEncontrada.getUser(), // Usuario
-                    incidenciaEncontrada.getDepartamento(), // Departamento
-                    incidenciaEncontrada.getArea(), // Área
                     incidenciaEncontrada.getFecha(), // Fecha
+                    incidenciaEncontrada.getDepartamento(), // Departamento
+                    incidenciaEncontrada.getArea(), // Área                    
                     incidenciaEncontrada.getDescripcion(), // Descripción
+                    incidenciaEncontrada.getFechaFormat(), // Fecha de la incidencia
                     incidenciaEncontrada.getTipoincidencia().getNombre(), // Tipo
-                    incidenciaEncontrada.getTipoincidencia().getNivel()// Nivel
+                    incidenciaEncontrada.getTipoincidencia().getNivel(),// Nivel
+                    incidenciaEncontrada.getPersonal().getUser() //Cliente
                 );
                 JOptionPane.showMessageDialog(inci, mensaje, "Detalles de la Incidencia", JOptionPane.INFORMATION_MESSAGE);
             } else {

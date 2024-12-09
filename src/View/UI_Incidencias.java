@@ -66,7 +66,7 @@ public class UI_Incidencias extends javax.swing.JPanel {
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
 
-        btnRegistrar.setText("Registrar");
+        btnRegistrar.setText("Encolar");
         btnRegistrar.setBackground(new java.awt.Color(153, 0, 51));
         btnRegistrar.setBorderPainted(false);
         btnRegistrar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
