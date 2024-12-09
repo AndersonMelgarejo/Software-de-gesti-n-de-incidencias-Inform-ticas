@@ -12,7 +12,7 @@ Este proyecto tiene como objetivo desarrollar un aplicativo para la gestión efi
 | RF3 | El aplicativo permite el registro de tipos de incidencias informáticas y realizar el mantenimiento correspondiente | ✔️      | Arreglo de Objetos                 |
 | RF4 | El aplicativo permite el registro de los empleados de la empresa y realizar el mantenimiento correspondiente | ✔️     | ArrayList                          |
 | RF5 | El aplicativo permite el registro de áreas y realizar el mantenimiento correspondiente                   | 🔄         | Lista enlazada doble                         |
-| RF6 | El aplicativo permite el registro de una incidencia informática y realizar el mantenimiento correspondiente | 🔄         | Colas                        |
+| RF6 | El aplicativo permite el registro de una incidencia informática y realizar el mantenimiento correspondiente | ✔️         | Colas                        |
 | RF7 | El aplicativo permite asignar a un personal para la solución de la incidencia informática                 | 🔄         | Pilas                         |
 | RF8 | El aplicativo permite al empleado registrar los detalles de la solución y observaciones de la incidencia solucionada | ✔️         | Arboles Binarios       |
 | RF9 | El aplicativo permite realizar el seguimiento de la incidencia visualizando su estado: En proceso, Atendido, Derivado | ⏳         | No definido                         |
@@ -30,8 +30,8 @@ En el desarrollo del proyecto se aplicarán diferentes estructuras de datos para
 1. **Arreglo de Objetos**: Utilizado en el **RF3** para el manejo de tipos de incidencias informáticas.
 2. **ArrayList**: Utilizado en el **RF4** para el registro y mantenimiento de empleados.
 3. **Listas Enlazadas dobles**: Utilizado en el **RF5** para el registro de áreas y realizar el mantenimiento correspondiente.
-4. **Listas Enlazadas dobles**: Utilizado en el **RF6** para el registro de una incidencia informática y realizar el mantenimiento correspondiente.
-5. **Colas**: Utilizando en el **RF8** para el empleado registre detalles de la solución y observaciones.
+4. **Colas**: Utilizado en el **RF6** para el registro de una incidencia informática y realizar el mantenimiento correspondiente.
+5. **Arbol binario**: Utilizando en el **RF8** para el empleado registre detalles de la solución y observaciones.
 6. **Persistencia de Datos** (Almacenamiento)
 Las demás estructuras de datos están en espera para ser aplicadas en los siguientes módulos:
 
