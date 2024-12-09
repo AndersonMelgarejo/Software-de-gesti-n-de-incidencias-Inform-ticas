@@ -23,6 +23,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -31,7 +32,15 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ProcessIncidencias {
     public static Incidencias leer(UI_Incidencias vista) {
-
+        
+        if(vista.txtAinci.getText().isEmpty()){
+            JOptionPane.showMessageDialog(vista, "La descripción no puede estar vacia", "Error", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+        if(vista.datePickerCustom1.getText().isEmpty()){
+            JOptionPane.showMessageDialog(vista, "Selecione la fecha de la incidencia", "Error", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
     
         Incidencias inci = new Incidencias();
         inci.setId(getIdActual());
@@ -72,13 +81,17 @@ public class ProcessIncidencias {
 
     public static void limpiar(UI_Incidencias vista) {        
         vista.txtAinci.setText("");
+        vista.datePickerCustom1.setText("");
 
     }
     
     public static void llenar(UI_Incidencias vista, Incidencias incidencia){
         vista.txtAinci.setText(incidencia.getDescripcion());
         vista.cbxDepar.setSelectedItem(incidencia.getDepartamento());
-              
+        vista.cbxAmbientes.setSelectedItem(incidencia.getArea());
+        vista.datePickerCustom1.setText(incidencia.getFechaFormat());
+        vista.cbxTipoInci.setSelectedItem(incidencia.getTipoincidencia());
+        vista.cbxClientes.setSelectedItem(incidencia.getPersonal());
     }
 
     public static void cargarComboBoxDepas(UI_Incidencias vista, ListaDoble lista) {
