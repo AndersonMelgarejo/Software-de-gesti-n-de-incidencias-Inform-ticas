@@ -6,10 +6,10 @@ import java.util.PriorityQueue;
 
 public class ColasIncidencias implements Serializable{
     private PriorityQueue<Incidencias> cola;
-
+    
     public ColasIncidencias() {
         // Inicializamos la cola con un comparador personalizado
-        this.cola = new PriorityQueue<>(new ComparadorIncidencia());
+        this.cola = new PriorityQueue<>(new ComparadorIncidencia());        
     }
 
     public void Encolar(Incidencias incidencia) {
@@ -26,5 +26,14 @@ public class ColasIncidencias implements Serializable{
 
     public PriorityQueue<Incidencias> getCola() {
         return cola;
+    }
+    
+    public Incidencias buscarIncidenciaPorId(int idBuscado) {
+        for (Incidencias incidencia : cola) {
+            if (incidencia.getId() == idBuscado) {
+                return incidencia; // Si coincide el id, devuelve la incidencia
+            }
+        }
+        return null; // No se encontró
     }
 }

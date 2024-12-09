@@ -5,6 +5,7 @@
 package Model;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -14,29 +15,37 @@ import java.util.Date;
  */
 public class Incidencias implements Serializable{
     private int id;
-    private String area;
-    private Date fecha;
-    private String descripcion;
-    private Departamento departamento;
-    private TipoIncidencia tipoincidencia;
     private String user;
+    private Timestamp fecha;
+    private Departamento departamento;
+    private String area;    
+    private String descripcion;
+    private Date fechaincidencia;
+    private TipoIncidencia tipoincidencia;    
+    private Personal personal;
 
-    public Incidencias() {
+    public Incidencias() {  
+        this.id=id;
     }
-    
-    public Incidencias(String area, Date fecha,String descripcion, Departamento departamento, TipoIncidencia tipoincidencia,String user) {
-        this.area = area;
+
+    public Incidencias(String user, Timestamp fecha, Departamento departamento, String area, String descripcion, Date fechaincidencia, TipoIncidencia tipoincidencia, Personal personal) {       
+        this.user = user;
         this.fecha = fecha;
-        this.descripcion=descripcion;
         this.departamento = departamento;
+        this.area = area;
+        this.descripcion = descripcion;
+        this.fechaincidencia = fechaincidencia;
         this.tipoincidencia = tipoincidencia;
-        this.user=user;
-    }
-
-    public Object[] Registro(int id){
-        Object[] fila={id,user,departamento.getNombre(),area,getFechaFormat(),descripcion,tipoincidencia.getNombre(),tipoincidencia.getNivel()};
+        this.personal = personal;
+    }    
+    
+    public Object[] Registro(int i){
+        Object[] fila={id,user,getFechaActual(),departamento.getNombre(),
+                       area,descripcion,getFechaFormat(),tipoincidencia.getNombre(),
+                       tipoincidencia.getNivel(),personal.getUser()};
         return fila;       
     }
+    
     @Override
     public String toString(){
         return tipoincidencia.getNombre();
@@ -52,8 +61,18 @@ public class Incidencias implements Serializable{
     
     public String getFechaFormat() {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        return formato.format(fecha);
+        return formato.format(fechaincidencia);
     }
+    
+    public Timestamp getFechaActual() {
+    if (fecha == null) {
+        // Si fecha es null, asigna la fecha actual
+        fecha = new Timestamp(System.currentTimeMillis());
+    }
+    Timestamp timestamp = new Timestamp(fecha.getTime());
+    return timestamp;
+}
+
     
     public TipoIncidencia getTipoincidencia() {
         return tipoincidencia;
@@ -71,11 +90,11 @@ public class Incidencias implements Serializable{
         this.area = area;
     }
 
-    public Date getFecha() {
+    public Timestamp getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(Timestamp fecha) {
         this.fecha = fecha;
     }
 
@@ -102,5 +121,22 @@ public class Incidencias implements Serializable{
     public void setUser(String user) {
         this.user = user;
     }
-        
+
+    public Date getFechaincidencia() {
+        return fechaincidencia;
+    }
+
+    public void setFechaincidencia(Date fechaincidencia) {
+        this.fechaincidencia = fechaincidencia;
+    }
+
+    public Personal getPersonal() {
+        return personal;
+    }
+
+    public void setPersonal(Personal personal) {
+        this.personal = personal;
+    }
+    
+    
 }
