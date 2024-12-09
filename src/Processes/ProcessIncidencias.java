@@ -81,6 +81,7 @@ public class ProcessIncidencias {
 
     public static void limpiar(UI_Incidencias vista) {        
         vista.txtAinci.setText("");
+        vista.datePickerCustom1.setText("");
 
     }
     

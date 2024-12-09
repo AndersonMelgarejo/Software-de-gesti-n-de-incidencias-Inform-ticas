@@ -98,6 +98,7 @@ public class IncidenciaController extends PanelController implements ActionListe
         Incidencias incidencia = ProcessIncidencias.leer(inci);
         cola.Encolar(incidencia);
         SaveIncidencias.Guardar(cola);
+        ProcessIncidencias.limpiar(inci);
         mostrarDatosEnTbl();
     }
     
