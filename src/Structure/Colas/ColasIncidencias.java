@@ -23,6 +23,15 @@ public class ColasIncidencias implements Serializable{
         return cola.poll();
     }
 
+    public boolean eliminarPorId(int id) {
+        Incidencias incidencia = buscarIncidenciaPorId(id);
+        if (incidencia != null) {
+            cola.remove(incidencia); // Eliminar incidencia de la cola
+            return true; // Indica que la eliminación fue exitosa
+        }
+        return false; // Indica que no se encontró la incidencia
+    }
+
     public boolean estaVacia() {
         return cola.isEmpty();
     }

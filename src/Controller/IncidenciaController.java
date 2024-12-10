@@ -33,6 +33,7 @@ public class IncidenciaController extends PanelController implements ActionListe
         this.inci = inci;
         super.showWindow(inci);
         addListeners();
+        
         cola = SaveIncidencias.Recuperar();
         arreglo = new Arreglo_TipoIncidencias(100);
         lista = new ListaDoble();
@@ -56,6 +57,7 @@ public class IncidenciaController extends PanelController implements ActionListe
         inci.btnConsultar.addActionListener(this);
         inci.btnActualizar.addActionListener(this);
         inci.btnDesencolar.addActionListener(this);
+        inci.btnEliminar.addActionListener(this);
         inci.btnMirarPrimero.addActionListener(this);
         inci.btnMirarUltimo.addActionListener(this);
         inci.btnOrdenar.addActionListener(this);
@@ -69,6 +71,7 @@ public class IncidenciaController extends PanelController implements ActionListe
         ProcessIncidencias.mostrarInci(inci, cola);
         ProcessIncidencias.anchito(inci);
     }
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == inci.btnRegistrar) {
@@ -79,7 +82,10 @@ public class IncidenciaController extends PanelController implements ActionListe
         }        
         if(e.getSource()==inci.btnDesencolar){            
             handleDesencolarAction();
-        }        
+        }
+        if(e.getSource()==inci.btnEliminar){
+            handleEliminarInciAction();
+        }
         if(e.getSource()==inci.btnMirarPrimero){
             JOptionPane.showMessageDialog(null,cola.VerPrimero().detalles());
         }        
@@ -112,8 +118,7 @@ public class IncidenciaController extends PanelController implements ActionListe
         String inputId = JOptionPane.showInputDialog(inci, "Ingrese el ID de la incidencia:", "Consultar Incidencia", JOptionPane.QUESTION_MESSAGE);
 
         // Validar entrada
-        if (inputId == null || inputId.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(inci, "Debe ingresar un ID válido.", "Error", JOptionPane.ERROR_MESSAGE);
+        if (inputId == null || inputId.trim().isEmpty()) {            
             return;
         }
 
@@ -211,6 +216,32 @@ public class IncidenciaController extends PanelController implements ActionListe
             SaveIncidencias.Guardar(cola);
             mostrarDatosEnTbl();
         }
+    }
+    
+    private void handleEliminarInciAction() {    
+        String id = JOptionPane.showInputDialog("Ingrese el ID de la incidencia a eliminar");
+        if (id == null || id.isEmpty()) {
+            return;
+        }
+
+        int idBuscado;
+        try {
+            idBuscado = Integer.parseInt(id);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(inci, "ID inválido. Debe ser un número.");
+            return;
+        }
+
+        // Elinamos la incidencia
+        boolean eliminado = cola.eliminarPorId(idBuscado);
+        if (eliminado) {
+            // Guardar cambios y actualizar la vista
+            SaveIncidencias.Guardar(cola);
+            mostrarDatosEnTbl();
+            JOptionPane.showMessageDialog(inci, "La incidencia fue eliminada con éxito.");        
+        } else {
+            JOptionPane.showMessageDialog(inci, "No se encontró una incidencia con el ID proporcionado.");
+        }    
     }
     
     private void handleOrdenarAction(){
