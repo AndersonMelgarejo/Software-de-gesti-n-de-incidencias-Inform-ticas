@@ -16,6 +16,7 @@ import View.UI_Asignacion;
 import View.UI_Dashboard;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Stack;
 import javax.swing.JOptionPane;
 
 /**
@@ -26,8 +27,7 @@ public class AsignacionController extends PanelController implements ActionListe
     private final UI_Asignacion asignacion;
     private final ColasIncidencias cola;
     PilaAsignacionPersonal pila;
-    ListaPersonal lista;
-    int pos;
+    ListaPersonal lista;    
     boolean editing = true;
     
     public AsignacionController(UI_Asignacion asignacion, UI_Dashboard app) {
@@ -51,7 +51,11 @@ public class AsignacionController extends PanelController implements ActionListe
         asignacion.btnRegistrar.addActionListener(this);
         asignacion.btnConsultar.addActionListener(this);
         asignacion.btnActualizar.addActionListener(this);
+        asignacion.btnDesapilar.addActionListener(this);
         asignacion.btnEliminar.addActionListener(this);
+        asignacion.btnPrimero.addActionListener(this);
+        asignacion.btnUltimo.addActionListener(this);
+        asignacion.btnOrdenar.addActionListener(this);
     }
 
     @Override
@@ -76,46 +80,130 @@ public class AsignacionController extends PanelController implements ActionListe
             }
         }
         if (e.getSource() == asignacion.btnActualizar) {
-            // Paso 1: Solicitar el ID de la incidencia a actualizar
-            String id = JOptionPane.showInputDialog("Ingrese el ID de la incidencia a actualizar");
-            if (id == null || id.trim().isEmpty()) {
-                JOptionPane.showMessageDialog(asignacion, "ID no válido");
-                return;
-            }
-    
-            // Paso 2: Buscar la asignación correspondiente en la pila
-            AsignarPersonal asignacionExistente = pila.BuscarOperario(id);
-            if (asignacionExistente == null) {
-                JOptionPane.showMessageDialog(asignacion, "No se encontró la incidencia con ID: " + id);
-                return;
-            }
+    if (editing) {
+        // Solicitar el ID del operario a actualizar
+        String id = JOptionPane.showInputDialog("Ingrese el ID de la asignación a actualizar");
+        if (id == null || id.isEmpty()) {
+            return; // Si no se ingresa un ID, salir del método
+        }
 
-            // Paso 3: Mostrar información actual y solicitar nuevos valores
-            JOptionPane.showMessageDialog(asignacion, "Datos actuales:\n" + asignacionExistente.toString());
-            String nuevoEstado = JOptionPane.showInputDialog("Ingrese el nuevo estado (EN PROCESO / ATENDIDO / DERIVADO):", asignacionExistente.getEstado());
-            String nuevaDescripcion = JOptionPane.showInputDialog("Ingrese la nueva descripción:", asignacionExistente.getDescripcion());
-            
-            if (nuevoEstado == null || nuevaDescripcion == null) {
-                JOptionPane.showMessageDialog(asignacion, "Actualización cancelada.");
-                return;
+        // Buscar la asignación correspondiente en la pila
+        AsignarPersonal asignacionExistente = pila.BuscarOperario(id);
+        if (asignacionExistente == null) {
+            JOptionPane.showMessageDialog(asignacion, "No se encontró la asignación con ID: " + id);
+            return;
+        }
+
+        // Llenar los campos de la interfaz con los datos encontrados
+        ProcessAsignarPersonal.Llenar(asignacion, asignacionExistente);
+
+        // Deshabilitar botones y configurar modo de edición
+        asignacion.btnRegistrar.setEnabled(false);
+        asignacion.btnDesapilar.setEnabled(false);
+        asignacion.btnConsultar.setEnabled(false);
+        editing = false;
+    } else {
+        // Leer los datos actualizados desde la interfaz
+        AsignarPersonal nuevaAsignacion = ProcessAsignarPersonal.leer(asignacion);
+        if (nuevaAsignacion == null) {
+            return; // Si no se puede leer, salir del método
+        }
+
+        // Actualizar el objeto en la pila
+        Stack<AsignarPersonal> temporal = new Stack<>();
+        boolean actualizado = false;
+
+        while (!pila.VerificarVacio()) {
+            AsignarPersonal actual = pila.UltimoObjeto();
+            pila.Desapilar();
+
+            if (actual.getIncidencia().getId() == nuevaAsignacion.getIncidencia().getId()) {
+                temporal.push(nuevaAsignacion); // Agregar la versión actualizada
+                actualizado = true;
+            } else {
+                temporal.push(actual); // Mantener los demás elementos
             }
+        }
 
-            // Paso 4: Actualizar los valores en el objeto
-            asignacionExistente.setEstado(nuevoEstado);
-            asignacionExistente.setDescripcion(nuevaDescripcion);
+        // Reconstruir la pila original
+        while (!temporal.isEmpty()) {
+            pila.Apilar(temporal.pop());
+        }
 
-            // Paso 5: Guardar cambios y recargar la vista
-            SaveAsignarPersonal.Guardar(pila); // Guardar los cambios persistentes
-            ProcessAsignarPersonal.MostrarInf(asignacion, pila); // Actualizar la interfaz
+        if (!actualizado) {
+            JOptionPane.showMessageDialog(asignacion, "No se pudo actualizar la asignación.");
+        } else {
+            // Guardar cambios y actualizar la interfaz
+            SaveAsignarPersonal.Guardar(pila);
+            ProcessAsignarPersonal.MostrarInf(asignacion, pila);
             JOptionPane.showMessageDialog(asignacion, "Asignación actualizada correctamente.");
         }
+
+        // Habilitar botones y salir del modo de edición
+        asignacion.btnRegistrar.setEnabled(true);
+        asignacion.btnDesapilar.setEnabled(true);
+        asignacion.btnConsultar.setEnabled(true);
+        editing = true;
+    }
+}
+
         
-        if(e.getSource()==asignacion.btnEliminar){
+        if(e.getSource()==asignacion.btnDesapilar){
             int resp = JOptionPane.showConfirmDialog(null,"Deseas retirar a \n"+pila.UltimoObjeto().toString(),"Confirmar",JOptionPane.YES_NO_OPTION);
            if(resp==0){
                pila.Desapilar();
                ProcessAsignarPersonal.MostrarInf(asignacion, pila);
            }
+        }
+        
+        if (e.getSource() == asignacion.btnEliminar) {
+    try {
+        // Solicitar el ID como número entero
+        String inputId = JOptionPane.showInputDialog("Ingrese el ID de la asignación a eliminar");
+        if (inputId == null || inputId.isEmpty()) return;
+
+        int id = Integer.parseInt(inputId);  // Convertir el ID a entero
+
+        // Intentar eliminar la asignación por ID
+        boolean eliminado = pila.eliminarAsignacionPorId(id);
+
+        if (eliminado) {
+            SaveAsignarPersonal.Guardar(pila);
+            ProcessAsignarPersonal.MostrarInf(asignacion, pila);
+            JOptionPane.showMessageDialog(asignacion, "Asignación eliminada correctamente.");
+        } else {
+            JOptionPane.showMessageDialog(asignacion, "No se encontró una asignación con el ID: " + id);
+        }
+    } catch (NumberFormatException ex) {
+        JOptionPane.showMessageDialog(asignacion, "El ID ingresado debe ser un número válido.");
+    }
+}
+
+        if(e.getSource()==asignacion.btnPrimero){
+            JOptionPane.showMessageDialog(asignacion,pila.PrimerObjeto().toString());
+        }
+        
+        if(e.getSource()==asignacion.btnUltimo){
+            JOptionPane.showMessageDialog(asignacion,pila.UltimoObjeto().toString());
+        }
+        
+        if(e.getSource()==asignacion.btnOrdenar){
+            switch (asignacion.cbxFiltro.getSelectedIndex()) {
+                case 0:
+                    pila.ordenarPorId();
+                    ProcessAsignarPersonal.MostrarInf(asignacion, pila);
+                    break;
+                case 1:
+                    pila.ordenarPorEstado();                     
+                    ProcessAsignarPersonal.MostrarInf(asignacion, pila);
+                    break;
+                case 2:
+                    pila.ordenarPorPersonal();    
+                    ProcessAsignarPersonal.MostrarInf(asignacion, pila);
+                    break;
+                default:
+                    break;
+            }
         }
     }
     

@@ -3,6 +3,9 @@ package Structure.Pilas;
 import Model.AsignarPersonal;
 import Persistence.SaveAsignarPersonal;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Stack;
 import javax.swing.JOptionPane;
 
@@ -70,6 +73,88 @@ public class PilaAsignacionPersonal implements Serializable{
     public boolean VerificarVacio(){
         return pila.empty();
     }
+
+    public boolean eliminarAsignacionPorId(int idBuscado) {
+    Stack<AsignarPersonal> temporal = new Stack<>();
+    boolean eliminado = false;
+
+    while (!VerificarVacio()) {
+        AsignarPersonal actual = UltimoObjeto();
+        Desapilar();
+
+        if (actual.getIncidencia().getId() == idBuscado) {
+            eliminado = true;  // Elimina el elemento encontrado
+        } else {
+            temporal.push(actual);  // Guarda los elementos restantes
+        }
+    }
+
+    // Reconstruir la pila original
+    while (!temporal.isEmpty()) {
+        Apilar(temporal.pop());
+    }
+
+    return eliminado;
+}
+
+    public void ordenarPorEstado() {
+    // Crear una lista temporal para ordenar
+    List<AsignarPersonal> listaTemporal = new ArrayList<>(this.pila);
+
+    // Ordenar la lista alfabéticamente por estado
+    listaTemporal.sort(Comparator.comparing(AsignarPersonal::getEstado));
+
+    // Vaciar la pila original
+    this.pila.clear();
+
+    // Volver a apilar los elementos ordenados
+    for (AsignarPersonal asignacion : listaTemporal) {
+        this.Apilar(asignacion);
+    }
+}
+
+public void ordenarPorId() {
+    // Paso 1: Volcar los elementos de la pila en una lista
+    List<AsignarPersonal> lista = new ArrayList<>();
+    while (!VerificarVacio()) {
+        lista.add(UltimoObjeto());
+        Desapilar();
+    }
+
+    // Paso 2: Ordenar la lista utilizando el método de burbuja
+    int n = lista.size();
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (lista.get(j).getIncidencia().getId() > lista.get(j + 1).getIncidencia().getId()) {
+                // Intercambiar elementos
+                AsignarPersonal temp = lista.get(j);
+                lista.set(j, lista.get(j + 1));
+                lista.set(j + 1, temp);
+            }
+        }
+    }
+
+    // Paso 3: Reconstruir la pila con los elementos ordenados
+    for (int i = lista.size() - 1; i >= 0; i--) {
+        Apilar(lista.get(i));
+    }
+}
+public void ordenarPorPersonal() {
+    // Crear una lista temporal para ordenar
+    List<AsignarPersonal> listaTemporal = new ArrayList<>(this.pila);
+
+    // Ordenar la lista alfabéticamente por el nombre del personal
+    listaTemporal.sort(Comparator.comparing(asignacion -> asignacion.getPersonal().getNombre()));
+
+    // Vaciar la pila original
+    this.pila.clear();
+
+    // Volver a apilar los elementos ordenados
+    for (AsignarPersonal asignacion : listaTemporal) {
+        this.Apilar(asignacion);
+    }
+}
+
 
     public Stack<AsignarPersonal> getPila() {
         return pila;

@@ -6,16 +6,11 @@ package Processes;
 
 import ArrayList.ListaPersonal;
 import Model.AsignarPersonal;
-import Model.Departamento;
 import Model.Incidencias;
 import Model.Personal;
-import Structure.Colas.ColasIncidencias;
 import Structure.Pilas.PilaAsignacionPersonal;
-import Styles.DatePickerCustom;
 import View.UI_Asignacion;
-import View.UI_Informe;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.Date;
 import java.util.Objects;
 import java.util.PriorityQueue;
@@ -30,13 +25,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ProcessAsignarPersonal {
     public static AsignarPersonal leer(UI_Asignacion vista){
-        AsignarPersonal asignar =new AsignarPersonal();
-        DatePickerCustom datePickerCustom = new DatePickerCustom();
+        AsignarPersonal asignar =new AsignarPersonal();        
         LocalDate fechaSeleccionada = vista.datePick.getDate(); 
         asignar.setAsignador(Controller.LoginController.usuario);
-        
-        
-        
+                        
         Object selectedItem = vista.cbxIncidencias.getSelectedItem();
         if (selectedItem instanceof Incidencias) {
             asignar.setIncidencia((Incidencias) selectedItem);
@@ -51,7 +43,7 @@ public class ProcessAsignarPersonal {
 
             // Asignar la fecha al objeto asignar
             asignar.setFecha(fecha);        
-        asignar.setHora(LocalTime.now());
+        asignar.setHora(asignar.getFechaActual());
         
         asignar.setEstado(vista.cbxEstado.getSelectedItem().toString()); // Estado de la incidencia
         asignar.setDescripcion(vista.atxtDescripcion.getText()); // Descripción de la asignación
