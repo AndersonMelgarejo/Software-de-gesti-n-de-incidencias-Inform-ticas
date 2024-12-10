@@ -79,13 +79,13 @@ public class Incidencias implements Serializable{
     }
     
     public Timestamp getFechaActual() {
-    if (fecha == null) {
-        // Si fecha es null, asigna la fecha actual
-        fecha = new Timestamp(System.currentTimeMillis());
+        if (fecha == null) {
+            // Si fecha es null, asigna la fecha actual
+            fecha = new Timestamp(System.currentTimeMillis());
+        }
+        Timestamp timestamp = new Timestamp(fecha.getTime());
+        return timestamp;
     }
-    Timestamp timestamp = new Timestamp(fecha.getTime());
-    return timestamp;
-}
 
     
     public TipoIncidencia getTipoincidencia() {

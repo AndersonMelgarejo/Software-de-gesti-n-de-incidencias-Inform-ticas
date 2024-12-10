@@ -1,6 +1,7 @@
 package Model;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -15,15 +16,15 @@ public class AsignarPersonal implements Serializable {
     private Incidencias incidencia;
     private Personal personal;
     private Date fecha;
-    private LocalTime hora;
+    private Timestamp hora;
     private String estado;
     private String descripcion;
 
     public AsignarPersonal() {
     }
 
-    public AsignarPersonal(String asignador, Incidencias incidencia, Personal personal, Date fecha, LocalTime hora,
-            String estado, String descripcion) {
+    public AsignarPersonal(String asignador, Incidencias incidencia, Personal personal, Date fecha, 
+                           Timestamp hora, String estado, String descripcion) {
         this.asignador = asignador;
         this.incidencia = incidencia;
         this.personal = personal;
@@ -34,7 +35,7 @@ public class AsignarPersonal implements Serializable {
     }
 
     public Object[] Registro(int id) {
-        Object[] fila = { incidencia.getId(), getHoraFormat(), asignador, personal, getFechaFormat(), estado,
+        Object[] fila = { incidencia.getId(), getFechaActual(), asignador, personal, getFechaFormat(), estado,
                 descripcion };
         return fila;
     }
@@ -43,7 +44,7 @@ public class AsignarPersonal implements Serializable {
     public String toString() {
         return "------------------------------------" +
                 "\n ID de la incidencia......... " + incidencia.getId() +
-                "\n Hora registrada............. " + getHoraFormat() +
+                "\n Fecha - Hora registrada..... " + getFechaFormat() +
                 "\n Asignador de la solución.... " + asignador +
                 "\n Personal asignado........... " + personal +
                 "\n Fecha de la solución........ " + getFechaFormat() +
@@ -66,9 +67,13 @@ public class AsignarPersonal implements Serializable {
         return formato.format(fecha);
     }
 
-    public String getHoraFormat() {
-        DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm:ss");
-        return hora.format(formato);
+    public Timestamp getFechaActual() {
+        if (hora == null) {
+            // Si fecha es null, asigna la fecha actual
+            hora = new Timestamp(System.currentTimeMillis());
+        }
+        Timestamp timestamp = new Timestamp(hora.getTime());
+        return timestamp;
     }
 
     public String getDescripcion() {
@@ -111,11 +116,11 @@ public class AsignarPersonal implements Serializable {
         this.fecha = fecha;
     }
 
-    public LocalTime getHora() {
+    public Timestamp getHora() {
         return hora;
     }
 
-    public void setHora(LocalTime hora) {
+    public void setHora(Timestamp hora) {
         this.hora = hora;
     }
 
