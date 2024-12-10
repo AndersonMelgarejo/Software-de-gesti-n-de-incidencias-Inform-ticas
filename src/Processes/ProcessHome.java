@@ -4,10 +4,12 @@
  */
 package Processes;
 
+import Model.AsignarPersonal;
 import javax.swing.table.DefaultTableModel;
 
 import Model.Incidencias;
 import Structure.Colas.ColasIncidencias;
+import Structure.Pilas.PilaAsignacionPersonal;
 import View.UI_Home;
 import java.text.ParseException;
 import java.time.ZoneId;
@@ -34,6 +36,21 @@ public class ProcessHome {
     int anchostabla[] = { 15, 65, 100, 60, 60, 40, 50, 60, 60 };
     for (int i = 0; i < anchostabla.length; i++) {
       vista.jtHome.getColumnModel().getColumn(i).setPreferredWidth(anchostabla[i]);
+    }
+  }
+
+  public static void mostrarInciEstado(UI_Home vista, PilaAsignacionPersonal pila) {
+    String[] titulos = { "ID", "Hora Registrada", "Asignador",
+        "personal asignado", "Fecha solución",
+        "Estado", "Descripcion" };
+    DefaultTableModel dm = new DefaultTableModel(null, titulos);
+    vista.jtEstado.setModel(dm);
+    for (int i = 0; i < pila.getPila().size(); i++) {
+      dm.addRow(pila.getPila().get(i).Registro(i + 1));
+    }
+    int anchostabla[] = { 5, 30, 40, 50, 60, 60, 75 };
+    for (int i = 0; i < anchostabla.length; i++) {
+      vista.jtEstado.getColumnModel().getColumn(i).setPreferredWidth(anchostabla[i]);
     }
   }
 
@@ -104,6 +121,73 @@ public class ProcessHome {
     System.out.println("Incidencias mes actual: " + mesActualIncidencias);
     System.out.println("Incidencias mes anterior: " + mesAnteriorIncidencias);
 
+  }
+
+  public static void mostrarTotalSol(UI_Home vista, PilaAsignacionPersonal pila, ColasIncidencias cola) {
+    int totalIncidencias = cola.getCola().size();
+    int totalSoluciones = pila.getPila().size();
+    int porcentajeSoluciones;
+
+    // Mostrar total histórico de soluciones
+    vista.lblSoluciones.setText("" + totalSoluciones);
+
+    // Validar y calcular porcentaje
+    if (totalIncidencias == 0) {
+      // Caso: Sin incidencias registradas
+      porcentajeSoluciones = 0; // No hay relación porcentual
+    } else if (totalSoluciones > totalIncidencias) {
+      // Caso: Más soluciones que incidencias
+      int excesoSoluciones = totalSoluciones - totalIncidencias;
+      porcentajeSoluciones = -(excesoSoluciones * 100 / totalIncidencias); // Porcentaje negativo
+    } else {
+      // Calcular porcentaje de soluciones restantes
+      int solucionesRestantes = totalIncidencias - totalSoluciones;
+      porcentajeSoluciones = (solucionesRestantes * 100) / totalIncidencias;
+    }
+
+    // Mostrar el porcentaje con el símbolo correspondiente
+    vista.lblSolucionesPercent.setText(porcentajeSoluciones + "%");
+  }
+
+  public static void mostrarTotalInciEstado(UI_Home vista, PilaAsignacionPersonal pila) {
+    int totalIncidencias = pila.getPila().size();
+    int totalSoluciones = 0;
+    int totalAtendido = 0;
+    int totalEnProceso = 0;
+    int totalDerivado = 0;
+
+    // Contar incidencias por estado
+    for (AsignarPersonal asignar : pila.getPila()) {
+      switch (asignar.getEstado()) {
+        case "ATENDIDO":
+          totalAtendido++;
+          break;
+        case "EN PROCESO":
+          totalEnProceso++;
+          break;
+        case "DERIVADO":
+          totalDerivado++;
+          break;
+      }
+    }
+
+    // Calcular total de soluciones (resueltas o derivadas)
+    totalSoluciones = totalAtendido + totalDerivado;
+    System.out.println("Total de incidencias: " + totalIncidencias);
+    System.out.println("Total de soluciones: " + totalSoluciones);
+    System.out.println("Total de incidencias atendidas: " + totalAtendido);
+    System.out.println("Total de incidencias en proceso: " + totalEnProceso);
+
+    // Mostrar total histórico de soluciones en lblSol
+    vista.lblSol.setText("" + totalSoluciones);
+
+    // Calcular porcentaje de incidencias atendidas
+    int porcentajeAtendido = totalIncidencias > 0
+        ? (totalAtendido * 100) / totalIncidencias
+        : 0;
+
+    // Mostrar porcentaje en lblSolPercent
+    vista.lblSolPercent.setText(porcentajeAtendido + "%");
   }
 
 }

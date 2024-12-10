@@ -14,9 +14,11 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 
 import Model.Incidencias;
+import Persistence.SaveAsignarPersonal;
 import Persistence.SaveIncidencias;
 import Processes.ProcessHome;
 import Structure.Colas.ColasIncidencias;
+import Structure.Pilas.PilaAsignacionPersonal;
 import java.awt.event.ActionEvent;
 
 /**
@@ -28,15 +30,20 @@ public class HomeController extends PanelController implements ActionListener {
     UI_Home home;
     Incidencias incidencia;
     ColasIncidencias cola;
+    PilaAsignacionPersonal pila;
 
     public HomeController(UI_Home panel, UI_Dashboard app) {
         super(panel, app);
         this.home = panel;
         super.showWindow(panel);
         cola = SaveIncidencias.Recuperar();
+        pila = SaveAsignarPersonal.Recuperar();
         ProcessHome.mostrarInci(panel, cola);
         addListeners();
         ProcessHome.mostrarTotalInci(home, cola);
+        ProcessHome.mostrarInciEstado(panel, pila);
+            ProcessHome.mostrarTotalSol(panel, pila, cola);
+            ProcessHome.mostrarTotalInciEstado(panel, pila);
     }
 
     @Override
