@@ -140,11 +140,11 @@ public class PersonalController extends PanelController implements ActionListene
     
     private void handleEliminarAction(){
         String id = JOptionPane.showInputDialog("➤ Ingrese el ID para eliminar");
-            if (id == null) {
-                return;
-            } 
-            int pos = Integer.parseInt(id) - 1;
-            if (pos >= 0 && pos < lista.Cantidad()) {
+        if (id == null) {
+            return;
+        } 
+        int pos = Integer.parseInt(id) - 1;
+        if (pos >= 0 && pos < lista.Cantidad()) {
             // Obtener el objeto a eliminar
             Personal pe = lista.Recuperar(pos);
 
@@ -161,14 +161,14 @@ public class PersonalController extends PanelController implements ActionListene
                     JOptionPane.YES_NO_OPTION);
 
             // Eliminar el objeto si se confirma
-                if (confirm == JOptionPane.YES_OPTION) {
-                    lista.Eliminar(pos);
-                    ProcessPersonal.MostrarEst(perso, lista);
-                    SavePersonal.GuardarPersonal(lista);
-                }
-            } else {
-            JOptionPane.showMessageDialog(perso, "ID no encontrado");
+            if (confirm == JOptionPane.YES_OPTION) {
+                lista.Eliminar(pos);
+                ProcessPersonal.MostrarEst(perso, lista);
+                SavePersonal.GuardarPersonal(lista);
             }
+        } else {
+            JOptionPane.showMessageDialog(perso, "ID no encontrado");
+        }
     }
     
     private void handleOrdenarAction(){
