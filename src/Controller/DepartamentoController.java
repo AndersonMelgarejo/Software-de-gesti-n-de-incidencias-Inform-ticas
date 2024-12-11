@@ -21,16 +21,17 @@ import javax.swing.JOptionPane;
  */
 public class DepartamentoController extends PanelController implements ActionListener {
     UI_Departamentos cate;
-    ListaDoble  lista;
+    ListaDoble lista;
     Nodo actual;
     int pos;
     boolean editing = true;
+
     public DepartamentoController(UI_Departamentos cate, UI_Dashboard api) {
         super(cate, api);
         this.cate = cate;
         super.showWindow(cate);
         addListeners();
-        
+
         lista = new ListaDoble();
         lista = SaveDepartamento.RecuperarLista();
         ProcessDepartamento.MostrarDepas(cate, lista);
@@ -48,59 +49,63 @@ public class DepartamentoController extends PanelController implements ActionLis
     @Override
     protected void reloadWindow() {
     }
-    
-    private void actualizar(){
+
+    private void actualizar() {
         ProcessDepartamento.limpiar(cate);
         SaveDepartamento.GuardarLista(lista);
         ProcessDepartamento.MostrarDepas(cate, lista);
     }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==cate.btnRegistrar){
-            Departamento depa=ProcessDepartamento.leerDepa(cate);
+        if (e.getSource() == cate.btnRegistrar) {
+            Departamento depa = ProcessDepartamento.leerDepa(cate);
+            if (depa == null) {
+                return;
+            }
             lista.InsertarAlFinal(depa);
             actualizar();
         }
-        
-        if(e.getSource()==cate.btnConsultar){
+
+        if (e.getSource() == cate.btnConsultar) {
             String id = JOptionPane.showInputDialog("Ingrese el ID del departamento a actualizar");
-        
+
             // Validar que el ID no sea nulo o vacío
             if (id == null || id.trim().isEmpty()) {
                 JOptionPane.showMessageDialog(cate, "Debe ingresar un ID válido.");
                 return;
             }
-        
+
             try {
                 pos = Integer.parseInt(id.trim()) - 1; // Convertir a número
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(cate, "El ID ingresado no es un número válido.");
                 return;
             }
-            
+
             // Validar que el ID esté dentro del rango
             if (pos >= 0 && pos < lista.contarNodos()) {
-                Departamento actuper = lista.obtenerNodo(pos);                
+                Departamento actuper = lista.obtenerNodo(pos);
                 JOptionPane.showMessageDialog(cate,
-                        "Usuario:"+actuper.getUser()+
-                        "\nNombre:"+actuper.getNombre()+
-                        "\nPabellon:"+actuper.getPabellon()+
-                        "\nPiso:"+actuper.getPiso()+
-                        "\nSalon:"+actuper.getSalon()+
-                        "\nFecha:"+actuper.getFechaResFormateada());
+                        "Usuario:" + actuper.getUser() +
+                                "\nNombre:" + actuper.getNombre() +
+                                "\nPabellon:" + actuper.getPabellon() +
+                                "\nPiso:" + actuper.getPiso() +
+                                "\nSalon:" + actuper.getSalon() +
+                                "\nFecha:" + actuper.getFechaResFormateada());
             }
         }
-        
+
         if (e.getSource() == cate.btnActualizar) {
             if (editing) {
                 String id = JOptionPane.showInputDialog("Ingrese el ID del departamento a actualizar");
-        
+
                 // Validar que el ID no sea nulo o vacío
                 if (id == null || id.trim().isEmpty()) {
                     JOptionPane.showMessageDialog(cate, "Debe ingresar un ID válido.");
                     return;
                 }
-        
+
                 try {
                     pos = Integer.parseInt(id.trim()) - 1; // Convertir a número
                 } catch (NumberFormatException ex) {
@@ -131,7 +136,7 @@ public class DepartamentoController extends PanelController implements ActionLis
 
                 // Guardar cambios en persistencia
                 SaveDepartamento.GuardarLista(lista);
-        
+
                 // Limpiar y actualizar formulario
                 ProcessDepartamento.limpiar(cate);
                 ProcessDepartamento.MostrarDepas(cate, lista);
@@ -141,8 +146,8 @@ public class DepartamentoController extends PanelController implements ActionLis
                 editing = true;
             }
         }
-        
-        if(e.getSource()==cate.btnEliminar){
+
+        if (e.getSource() == cate.btnEliminar) {
             String id = JOptionPane.showInputDialog("➤ Ingrese el ID del departamento para eliminar");
             if (id == null) {
                 return;
@@ -158,13 +163,13 @@ public class DepartamentoController extends PanelController implements ActionLis
                 if (dep != null) {
                     // Mostrar la información del departamento y solicitar confirmación
                     int confirm = JOptionPane.showConfirmDialog(
-                    cate,
-                "¿Está seguro de que desea eliminar el departamento?\n" +
-                        "ID: " + (pos + 1) + "\n" +
-                        "Nombre: " + dep.getNombre() + "\n" +
-                        "Ambiente: " + dep.getAmbiente() + "\n",
-                "Confirmar Eliminación",
-                JOptionPane.YES_NO_OPTION);
+                            cate,
+                            "¿Está seguro de que desea eliminar el departamento?\n" +
+                                    "ID: " + (pos + 1) + "\n" +
+                                    "Nombre: " + dep.getNombre() + "\n" +
+                                    "Ambiente: " + dep.getAmbiente() + "\n",
+                            "Confirmar Eliminación",
+                            JOptionPane.YES_NO_OPTION);
 
                     // Eliminar el nodo si se confirma
                     if (confirm == JOptionPane.YES_OPTION) {
@@ -186,8 +191,8 @@ public class DepartamentoController extends PanelController implements ActionLis
             }
 
         }
-        
-        if(e.getSource()==cate.btnOrdenar){
+
+        if (e.getSource() == cate.btnOrdenar) {
             switch (cate.cbxFiltro.getSelectedIndex()) {
                 case 0:
                     ListaDoble copia = new ListaDoble();
@@ -211,6 +216,6 @@ public class DepartamentoController extends PanelController implements ActionLis
                     break;
             }
         }
-        
+
     }
 }
