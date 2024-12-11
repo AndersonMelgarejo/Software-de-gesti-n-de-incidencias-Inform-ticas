@@ -163,8 +163,8 @@ public class UI_Asignacion extends javax.swing.JPanel {
             }
         });
 
+        jLabel8.setText("Incidencia ");
         jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel8.setText("ID de incidencia ");
 
         cbxPersonal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
