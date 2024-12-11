@@ -46,8 +46,7 @@ public class IncidenciaController extends PanelController implements ActionListe
         
         ProcessIncidencias.cargarComboBox(inci, arreglo);
         ProcessIncidencias.cargarComboPersonal(inci, clientes);        
-        ProcessIncidencias.cargarComboBoxDepas(inci, lista);
-        inci.cbxDepar.setSelectedIndex(0);
+        ProcessIncidencias.cargarComboBoxDepas(inci, lista);        
         mostrarDatosEnTbl();
     }
 

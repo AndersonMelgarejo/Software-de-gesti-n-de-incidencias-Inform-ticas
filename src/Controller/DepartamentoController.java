@@ -5,10 +5,8 @@
 package Controller;
 
 import Model.Departamento;
-import Model.Personal;
 import Persistence.SaveDepartamento;
 import Processes.ProcessDepartamento;
-import Processes.ProcessPersonal;
 import Structure.ListasDobles.ListaDoble;
 import Structure.ListasDobles.Nodo;
 import View.UI_Dashboard;
@@ -44,6 +42,7 @@ public class DepartamentoController extends PanelController implements ActionLis
         cate.btnConsultar.addActionListener(this);
         cate.btnActualizar.addActionListener(this);
         cate.btnEliminar.addActionListener(this);
+        cate.btnOrdenar.addActionListener(this);
     }
 
     @Override
@@ -62,21 +61,36 @@ public class DepartamentoController extends PanelController implements ActionLis
             lista.InsertarAlFinal(depa);
             actualizar();
         }
+        
         if(e.getSource()==cate.btnConsultar){
-            String amb = JOptionPane.showInputDialog("Ingrese el ambiente para buscar:");
-            actual = lista.BuscarAmbiente(amb);
-            if(actual==null){
-                JOptionPane.showMessageDialog(cate,"El ambiente no existe");
-            }else{
+            String id = JOptionPane.showInputDialog("Ingrese el ID del departamento a actualizar");
+        
+            // Validar que el ID no sea nulo o vacío
+            if (id == null || id.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(cate, "Debe ingresar un ID válido.");
+                return;
+            }
+        
+            try {
+                pos = Integer.parseInt(id.trim()) - 1; // Convertir a número
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(cate, "El ID ingresado no es un número válido.");
+                return;
+            }
+            
+            // Validar que el ID esté dentro del rango
+            if (pos >= 0 && pos < lista.contarNodos()) {
+                Departamento actuper = lista.obtenerNodo(pos);                
                 JOptionPane.showMessageDialog(cate,
-                        "Usuario:"+actual.depa.getUser()+
-                        "\nNombre:"+actual.depa.getNombre()+
-                        "\nPabellon:"+actual.depa.getPabellon()+
-                        "\nPiso:"+actual.depa.getPiso()+
-                        "\nSalon:"+actual.depa.getSalon()+
-                        "\nFecha:"+actual.depa.getFechaResFormateada());
+                        "Usuario:"+actuper.getUser()+
+                        "\nNombre:"+actuper.getNombre()+
+                        "\nPabellon:"+actuper.getPabellon()+
+                        "\nPiso:"+actuper.getPiso()+
+                        "\nSalon:"+actuper.getSalon()+
+                        "\nFecha:"+actuper.getFechaResFormateada());
             }
         }
+        
         if (e.getSource() == cate.btnActualizar) {
             if (editing) {
                 String id = JOptionPane.showInputDialog("Ingrese el ID del departamento a actualizar");
@@ -97,11 +111,11 @@ public class DepartamentoController extends PanelController implements ActionLis
                 // Validar que el ID esté dentro del rango
                 if (pos >= 0 && pos < lista.contarNodos()) {
                     Departamento actuper = lista.obtenerNodo(pos);
-                        ProcessDepartamento.llenar(cate, actuper);
-                        cate.btnRegistrar.setEnabled(false);
-                        cate.btnEliminar.setEnabled(false);
-                        cate.btnConsultar.setEnabled(false);
-                        editing = false;
+                    ProcessDepartamento.llenar(cate, actuper);
+                    cate.btnRegistrar.setEnabled(false);
+                    cate.btnEliminar.setEnabled(false);
+                    cate.btnConsultar.setEnabled(false);
+                    editing = false;
 
                 } else {
                     JOptionPane.showMessageDialog(cate, "ID fuera de rango.");
@@ -127,6 +141,7 @@ public class DepartamentoController extends PanelController implements ActionLis
                 editing = true;
             }
         }
+        
         if(e.getSource()==cate.btnEliminar){
             String id = JOptionPane.showInputDialog("➤ Ingrese el ID del departamento para eliminar");
             if (id == null) {
@@ -137,13 +152,13 @@ public class DepartamentoController extends PanelController implements ActionLis
 
             // Validar si la posición está en el rango válido
             if (pos >= 0 && pos < lista.contarNodos()) {
-            // Obtener el nodo correspondiente al departamento
-        Departamento dep = lista.obtenerNodo(pos);
+                // Obtener el nodo correspondiente al departamento
+                Departamento dep = lista.obtenerNodo(pos);
 
-        if (dep != null) {
-            // Mostrar la información del departamento y solicitar confirmación
-            int confirm = JOptionPane.showConfirmDialog(
-                cate,
+                if (dep != null) {
+                    // Mostrar la información del departamento y solicitar confirmación
+                    int confirm = JOptionPane.showConfirmDialog(
+                    cate,
                 "¿Está seguro de que desea eliminar el departamento?\n" +
                         "ID: " + (pos + 1) + "\n" +
                         "Nombre: " + dep.getNombre() + "\n" +
@@ -151,25 +166,51 @@ public class DepartamentoController extends PanelController implements ActionLis
                 "Confirmar Eliminación",
                 JOptionPane.YES_NO_OPTION);
 
-        // Eliminar el nodo si se confirma
-        if (confirm == JOptionPane.YES_OPTION) {
-            Nodo nodoEliminar = lista.ini;
-            for (int i = 0; i < pos; i++) {
-                nodoEliminar = nodoEliminar.sig;
+                    // Eliminar el nodo si se confirma
+                    if (confirm == JOptionPane.YES_OPTION) {
+                        Nodo nodoEliminar = lista.ini;
+                        for (int i = 0; i < pos; i++) {
+                            nodoEliminar = nodoEliminar.sig;
+                        }
+                        lista.EliminarNodo(nodoEliminar);
+
+                        // Refrescar la lista y guardar los cambios
+                        ProcessDepartamento.MostrarDepas(cate, lista);
+                        SaveDepartamento.GuardarLista(lista);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(cate, "Nodo no encontrado");
+                }
+            } else {
+                JOptionPane.showMessageDialog(cate, "ID fuera de rango");
             }
-            lista.EliminarNodo(nodoEliminar);
-
-            // Refrescar la lista y guardar los cambios
-            ProcessDepartamento.MostrarDepas(cate, lista);
-            SaveDepartamento.GuardarLista(lista);
-        }
-    } else {
-        JOptionPane.showMessageDialog(cate, "Nodo no encontrado");
-    }
-} else {
-    JOptionPane.showMessageDialog(cate, "ID fuera de rango");
-}
 
         }
+        
+        if(e.getSource()==cate.btnOrdenar){
+            switch (cate.cbxFiltro.getSelectedIndex()) {
+                case 0:
+                    ListaDoble copia = new ListaDoble();
+                    copia = lista;
+                    copia = ListaDoble.PorNombre(copia);
+                    ProcessDepartamento.MostrarDepas(cate, copia);
+                    break;
+                case 1:
+                    ListaDoble cp = new ListaDoble();
+                    cp = lista;
+                    cp = ListaDoble.PorPabellon(cp);
+                    ProcessDepartamento.MostrarDepas(cate, cp);
+                    break;
+                case 2:
+                    ListaDoble cpp = new ListaDoble();
+                    cpp = lista;
+                    cpp = ListaDoble.PorUsuario(cpp);
+                    ProcessDepartamento.MostrarDepas(cate, cpp);
+                    break;
+                default:
+                    break;
+            }
+        }
+        
     }
 }

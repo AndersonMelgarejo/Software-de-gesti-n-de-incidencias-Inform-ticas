@@ -44,8 +44,8 @@ public class UI_Departamentos extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         panelRound2 = new Styles.PanelRound();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jButton4 = new javax.swing.JButton();
+        cbxFiltro = new javax.swing.JComboBox<>();
+        btnOrdenar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         spPiso = new javax.swing.JSpinner();
@@ -140,12 +140,12 @@ public class UI_Departamentos extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "Pabellon", "Usuario" }));
 
-        jButton4.setBackground(new java.awt.Color(128, 228, 255));
-        jButton4.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jButton4.setText("Ordenar");
-        jButton4.setBorderPainted(false);
+        btnOrdenar.setBackground(new java.awt.Color(128, 228, 255));
+        btnOrdenar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        btnOrdenar.setText("Ordenar");
+        btnOrdenar.setBorderPainted(false);
 
         btnEliminar.setBackground(new java.awt.Color(255, 153, 0));
         btnEliminar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
@@ -216,8 +216,8 @@ public class UI_Departamentos extends javax.swing.JPanel {
                                     .addGroup(panelRound1Layout.createSequentialGroup()
                                         .addGap(0, 0, Short.MAX_VALUE)
                                         .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(btnOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(cbxFiltro, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE))))
                                 .addGap(16, 16, 16))))))
         );
@@ -271,9 +271,9 @@ public class UI_Departamentos extends javax.swing.JPanel {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
                         .addGap(22, 22, 22))
                     .addGroup(panelRound1Layout.createSequentialGroup()
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
@@ -300,11 +300,11 @@ public class UI_Departamentos extends javax.swing.JPanel {
     public javax.swing.JButton btnActualizar;
     public javax.swing.JButton btnConsultar;
     public javax.swing.JButton btnEliminar;
+    public javax.swing.JButton btnOrdenar;
     public javax.swing.JButton btnRegistrar;
     public javax.swing.JComboBox<String> cbPabellon;
+    public javax.swing.JComboBox<String> cbxFiltro;
     public Styles.DatePickerCustom datePick;
-    public javax.swing.JButton jButton4;
-    public javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
