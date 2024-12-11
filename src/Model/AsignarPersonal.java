@@ -3,8 +3,6 @@ package Model;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
@@ -23,8 +21,8 @@ public class AsignarPersonal implements Serializable {
     public AsignarPersonal() {
     }
 
-    public AsignarPersonal(String asignador, Incidencias incidencia, Personal personal, Date fecha, 
-                           Timestamp hora, String estado, String descripcion) {
+    public AsignarPersonal(String asignador, Incidencias incidencia, Personal personal, Date fecha,
+            Timestamp hora, String estado, String descripcion) {
         this.asignador = asignador;
         this.incidencia = incidencia;
         this.personal = personal;
