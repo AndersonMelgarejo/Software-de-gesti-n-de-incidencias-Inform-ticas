@@ -43,10 +43,11 @@ public class IncidenciaController extends PanelController implements ActionListe
         lista = SaveDepartamento.RecuperarLista();
         clientes =  new ListaPersonal();
         clientes= SavePersonal.RecuperarEstudiantes();
-        
+                
         ProcessIncidencias.cargarComboBox(inci, arreglo);
         ProcessIncidencias.cargarComboPersonal(inci, clientes);        
         ProcessIncidencias.cargarComboBoxDepas(inci, lista);        
+        inci.cbxDepar.setSelectedIndex(0);
         mostrarDatosEnTbl();
     }
 

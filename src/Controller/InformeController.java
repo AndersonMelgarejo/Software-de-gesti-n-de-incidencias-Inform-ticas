@@ -79,95 +79,15 @@ public class InformeController extends PanelController implements ActionListener
     public void actionPerformed(ActionEvent e) {
         try {
             if (e.getSource() == info.btnRegistrar) {
-                if (camposIncompletos()) {
-                    JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.",
-                            "Error", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-
-                
-                Informe nuevoInforme = ProcessInforme.LeerInforme(info,pila);
-                if (nuevoInforme != null) {
-                    // Verificar si ya existe un informe con el mismo ID de incidencia
-                    NodoInforme nodoExistente = arbol.BuscarPorID(nuevoInforme.getIncidencia().getId());
-                    if (nodoExistente != null) {
-                        JOptionPane.showMessageDialog(null, "Ya existe un informe registrado para esta incidencia.",
-                                "Error", JOptionPane.ERROR_MESSAGE);
-                        return;
-                    }
-
-                    // Si no existe, agregar el nuevo informe
-                    arbol.setRaiz(arbol.Agregar(arbol.getRaiz(), nuevoInforme));
-                    actualizarVista();
-                    JOptionPane.showMessageDialog(null, "Informe registrado exitosamente.");
-                }
+                handleRegistrar();
             } else if (e.getSource() == info.btnConsultar) {
-                String idText = JOptionPane.showInputDialog("Ingrese el ID del informe a buscar:");
-                if (idText == null || idText.trim().isEmpty()) {
-                    return;
-                }
-
-                try {
-                    int idBuscado = Integer.parseInt(idText);
-                    actual = arbol.BuscarPorID(idBuscado);
-
-                    if (actual == null) {
-                        JOptionPane.showMessageDialog(null, "El ID del informe no existe.",
-                                "ID no encontrado", JOptionPane.ERROR_MESSAGE);
-                    } else {
-                        ProcessInforme.MostrarDatosNodo(actual, info);
-                    }
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null, "El ID debe ser un número válido.",
-                            "Error", JOptionPane.ERROR_MESSAGE);
-                }
+                handleConsultar();
             } else if (e.getSource() == info.btnActualizar) {
-                if (actual == null) {
-                    JOptionPane.showMessageDialog(null, "Debe consultar un informe antes de actualizarlo.",
-                            "Error", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-
-                if (camposIncompletos()) {
-                    JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.",
-                            "Error", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-
-                Informe informeActualizado = ProcessInforme.LeerInforme(info,pila);
-                if (informeActualizado != null) {
-                    actual.setElemento(informeActualizado);
-                    actualizarVista();
-                    JOptionPane.showMessageDialog(null, "Informe actualizado exitosamente.");
-                }
+                handleActualizar();
             } else if (e.getSource() == info.btnEliminar) {
-                if (actual == null) {
-                    JOptionPane.showMessageDialog(null, "Debe consultar un informe antes de eliminarlo.",
-                            "Error", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-
-                int confirm = JOptionPane.showConfirmDialog(null,
-                        "¿Está seguro de que desea eliminar el informe?",
-                        "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
-
-                if (confirm == JOptionPane.YES_OPTION) {
-                    // Corrected to use the incidence ID
-                    arbol.setRaiz(arbol.Eliminar(arbol.getRaiz(), actual.getElemento().getIncidencia().getId()));
-                    actual = null;
-                    actualizarVista();
-                    JOptionPane.showMessageDialog(null, "Informe eliminado exitosamente.");
-                }
+                handleEliminar();
             } else if (e.getSource() == info.btnOrdenar) { 
-                String criterio = (String) info.cbxOrdenar.getSelectedItem();
-
-                if ("ID".equals(criterio)) {
-                    ProcessInforme.ordenarPorID(arbol, info);
-                } else if ("Estado".equals(criterio)) {
-                    ProcessInforme.ordenarPorEstado(arbol, info);
-                } else if ("Fecha".equals(criterio)) {
-                    ProcessInforme.ordenarPorFecha(arbol, info);
-                }
+                handleOrdenar();
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage(),
@@ -188,5 +108,114 @@ public class InformeController extends PanelController implements ActionListener
         }
         actualizarTabla();
     }
+    
+    private void handleRegistrar(){
+                if (camposIncompletos()) {
+                    JOptionPane.showMessageDialog(null, 
+                            "Por favor complete todos los campos.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                
+                Informe nuevoInforme = ProcessInforme.LeerInforme(info,pila);
+                if (nuevoInforme != null) {
+                    // Verificar si ya existe un informe con el mismo ID de incidencia
+                    NodoInforme nodoExistente = arbol.BuscarPorID(nuevoInforme.getIncidencia().getId());
+                    if (nodoExistente != null) {
+                        JOptionPane.showMessageDialog(null, 
+                                "Ya existe un informe registrado para esta incidencia.",
+                                "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+
+                    // Si no existe, agregar el nuevo informe
+                    arbol.setRaiz(arbol.Agregar(arbol.getRaiz(), nuevoInforme));
+                    actualizarVista();
+                    JOptionPane.showMessageDialog(null, "Informe registrado exitosamente.");
+                }
+    }
+    
+    private void handleConsultar(){
+                String idText = JOptionPane.showInputDialog("Ingrese el ID del informe a buscar:");
+                if (idText == null || idText.trim().isEmpty()) {
+                    return;
+                }
+
+                try {
+                    int idBuscado = Integer.parseInt(idText);
+                    actual = arbol.BuscarPorID(idBuscado);
+
+                    if (actual == null) {
+                        JOptionPane.showMessageDialog(null, "El ID del informe no existe.",
+                                "ID no encontrado", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        ProcessInforme.MostrarDatosNodo(actual, info);
+                    }
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "El ID debe ser un número válido.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                }
+    }
+    
+    private void handleActualizar(){
+            if (actual == null) {
+                    JOptionPane.showMessageDialog(null, 
+                            "Debe consultar un informe antes de actualizarlo.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                if (camposIncompletos()) {
+                    JOptionPane.showMessageDialog(null, 
+                            "Por favor complete todos los campos.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                Informe informeActualizado = ProcessInforme.LeerInforme(info,pila);
+                if (informeActualizado != null) {
+                    actual.setElemento(informeActualizado);
+                    actualizarVista();
+                    JOptionPane.showMessageDialog(null, 
+                            "Informe actualizado exitosamente.");
+                }
+    }
+    
+    private void handleEliminar(){
+            if (actual == null) {
+                    JOptionPane.showMessageDialog(null, 
+                            "Debe consultar un informe antes de eliminarlo.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                int confirm = JOptionPane.showConfirmDialog(null,
+                        "¿Está seguro de que desea eliminar el informe?",
+                        "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+
+                if (confirm == JOptionPane.YES_OPTION) {
+                    // Corrected to use the incidence ID
+                    arbol.setRaiz(arbol.Eliminar(arbol.getRaiz(), 
+                            actual.getElemento().getIncidencia().getId()));
+                    actual = null;
+                    actualizarVista();
+                    JOptionPane.showMessageDialog(null, 
+                            "Informe eliminado exitosamente.");
+                }
+    }
+    
+    private void handleOrdenar(){
+                String criterio = (String) info.cbxOrdenar.getSelectedItem();
+
+                if ("ID".equals(criterio)) {
+                    ProcessInforme.ordenarPorID(arbol, info);
+                } else if ("Estado".equals(criterio)) {
+                    ProcessInforme.ordenarPorEstado(arbol, info);
+                } else if ("Fecha".equals(criterio)) {
+                    ProcessInforme.ordenarPorFecha(arbol, info);
+                }
+    }
+    
 }
 

@@ -59,15 +59,32 @@ public class DepartamentoController extends PanelController implements ActionLis
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == cate.btnRegistrar) {
-            Departamento depa = ProcessDepartamento.leerDepa(cate);
-            if (depa == null) {
-                return;
-            }
-            lista.InsertarAlFinal(depa);
-            actualizar();
+            handleRegistrar();
         }
-
         if (e.getSource() == cate.btnConsultar) {
+            handleConsultar();
+        }
+        if (e.getSource() == cate.btnActualizar) {
+            handleActualizar();
+        }
+        if (e.getSource() == cate.btnEliminar) {
+            handleEliminar();
+        }
+        if (e.getSource() == cate.btnOrdenar) {
+            handleOrdenar();
+        }
+    }
+    
+    private void handleRegistrar(){
+        Departamento depa = ProcessDepartamento.leerDepa(cate);
+        if (depa == null) {
+            return;
+        }
+        lista.InsertarAlFinal(depa);
+        actualizar();
+    }
+    
+    private void handleConsultar(){
             String id = JOptionPane.showInputDialog("Ingrese el ID del departamento a actualizar");
 
             // Validar que el ID no sea nulo o vacío
@@ -94,9 +111,9 @@ public class DepartamentoController extends PanelController implements ActionLis
                                 "\nSalon:" + actuper.getSalon() +
                                 "\nFecha:" + actuper.getFechaResFormateada());
             }
-        }
-
-        if (e.getSource() == cate.btnActualizar) {
+    }
+    
+    private void handleActualizar(){
             if (editing) {
                 String id = JOptionPane.showInputDialog("Ingrese el ID del departamento a actualizar");
 
@@ -145,9 +162,9 @@ public class DepartamentoController extends PanelController implements ActionLis
                 cate.btnConsultar.setEnabled(true);
                 editing = true;
             }
-        }
-
-        if (e.getSource() == cate.btnEliminar) {
+    }
+    
+    private void handleEliminar(){
             String id = JOptionPane.showInputDialog("➤ Ingrese el ID del departamento para eliminar");
             if (id == null) {
                 return;
@@ -189,10 +206,9 @@ public class DepartamentoController extends PanelController implements ActionLis
             } else {
                 JOptionPane.showMessageDialog(cate, "ID fuera de rango");
             }
-
-        }
-
-        if (e.getSource() == cate.btnOrdenar) {
+    }
+    
+    private void handleOrdenar(){
             switch (cate.cbxFiltro.getSelectedIndex()) {
                 case 0:
                     ListaDoble copia = new ListaDoble();
@@ -215,7 +231,6 @@ public class DepartamentoController extends PanelController implements ActionLis
                 default:
                     break;
             }
-        }
-
     }
+    
 }

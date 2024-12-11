@@ -42,6 +42,11 @@ public class LoginController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == login.btnAccess) {
+            handleLogin();
+        }
+    }
+
+    private void handleLogin(){
             String user = login.txtUser.getText();
             String password = new String(login.txtAccess.getPassword());
 
@@ -60,7 +65,6 @@ public class LoginController implements ActionListener {
                 login.txtUser.putClientProperty("JComponent.outline", "error");
                 ProcessLogin.limpiar(login);
             }
-        }
     }
-
+    
 }
