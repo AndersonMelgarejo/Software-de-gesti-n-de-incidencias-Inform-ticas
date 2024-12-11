@@ -18,15 +18,16 @@ import javax.swing.JOptionPane;
  * @author franc
  */
 public class LoginController implements ActionListener {
-    
+
     public static String usuario;
+    public static String rol;
     UI_Login login;
     UI_Dashboard dashboard = new UI_Dashboard();
     ListaPersonal listaPersonal;
-    
-    public LoginController(UI_Login login,ListaPersonal listaPersonal) {
+
+    public LoginController(UI_Login login, ListaPersonal listaPersonal) {
         this.login = login;
-        this.listaPersonal=listaPersonal;
+        this.listaPersonal = listaPersonal;
         login.txtUser.putClientProperty("JTextField.placeholderText", "Ingresa tu usuario");
         login.txtUser.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
         login.txtAccess.putClientProperty("JTextField.placeholderText", "Ingresa tu contraseña");
@@ -34,25 +35,27 @@ public class LoginController implements ActionListener {
             login.jPanel2.putClientProperty(FlatClientProperties.STYLE, "arc: 90");
             login.jPanel2.setOpaque(false);
         }
-        login.btnAccess.addActionListener(this);        
+        login.btnAccess.addActionListener(this);
         ProcessLogin.initialize(login);
-    }   
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == login.btnAccess) {
             String user = login.txtUser.getText();
             String password = new String(login.txtAccess.getPassword());
-            
+
             // Validar usuario y contraseña usando ProcessLogin
             if (ProcessLogin.validarUsuario(user, password, listaPersonal)) {
                 // Credenciales correctas, abrir dashboard
-                usuario=user;
+                usuario = user;
+                rol = ProcessLogin.getRol(user, listaPersonal);
                 DashboardController controllerDash = new DashboardController(dashboard);
                 login.dispose();
             } else {
                 // Credenciales incorrectas, mostrar mensaje de error
-                JOptionPane.showMessageDialog(login, "Usuario o contraseña incorrectos", "Error de autenticación", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(login, "Usuario o contraseña incorrectos", "Error de autenticación",
+                        JOptionPane.ERROR_MESSAGE);
                 login.txtAccess.putClientProperty("JComponent.outline", "error");
                 login.txtUser.putClientProperty("JComponent.outline", "error");
                 ProcessLogin.limpiar(login);

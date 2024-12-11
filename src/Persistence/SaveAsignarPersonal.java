@@ -16,28 +16,31 @@ import javax.swing.JOptionPane;
  * @author Jim
  */
 public class SaveAsignarPersonal {
-    public static String FILE="PilasAsignarPersonal.bin";
-    public static void Guardar(PilaAsignacionPersonal pila){
-       try{
-           FileOutputStream fos=new FileOutputStream(FILE);
-           ObjectOutputStream oos =  new ObjectOutputStream(fos);
-           oos.writeObject(pila);
-           oos.close();
-       }catch(Exception ex){
-           JOptionPane.showInputDialog("ERROR no se puede guardar "+ex);
-       }       
+    public static String FILE = "PilasAsignarPersonal.bin";
+
+    public static void Guardar(PilaAsignacionPersonal pila) {
+        try {
+            FileOutputStream fos = new FileOutputStream(FILE);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(pila);
+            oos.close();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al guardar la pila de asignación de personal", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }// fin guardar
-    
-    public static PilaAsignacionPersonal Recuperar(){
-        PilaAsignacionPersonal pila =new PilaAsignacionPersonal();
-       try{
-           FileInputStream fis =  new FileInputStream(FILE);
-           ObjectInputStream ois = new ObjectInputStream(fis);
-           pila = (PilaAsignacionPersonal)ois.readObject();
-           ois.close();
-       }catch(Exception ex){
-           JOptionPane.showInputDialog("ERROR no se puede recuperar..."+ex);
-       }
-       return pila;
-    } 
+
+    public static PilaAsignacionPersonal Recuperar() {
+        PilaAsignacionPersonal pila = new PilaAsignacionPersonal();
+        try {
+            FileInputStream fis = new FileInputStream(FILE);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            pila = (PilaAsignacionPersonal) ois.readObject();
+            ois.close();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al recuperar la pila de asignación de personal", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+        return pila;
+    }
 }
