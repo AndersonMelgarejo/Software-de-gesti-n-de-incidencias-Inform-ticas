@@ -7,56 +7,40 @@ import Model.Personal;
 import Structure.Pilas.PilaAsignacionPersonal;
 import Structures.Arboles.ArbolInforme;
 import Structures.Arboles.NodoInforme;
+import View.UI_Asignacion;
 import View.UI_Informe;
+import java.time.LocalDate;
 import javax.swing.JComboBox;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JList;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.PriorityQueue;
 import javax.swing.JOptionPane;
 
 public class ProcessInforme {
 
-    // Método para cargar los JComboBox de Incidencias
-    public static void cargarCombos(UI_Informe inf, PriorityQueue<Incidencias> colaIncidencias) {
-        cargarComboBoxConIncidencias(inf.cbxIncidencias, colaIncidencias);
-    }
-
     // Carga el JComboBox de incidencias con los elementos de la cola
     public static void cargarComboBoxConIncidencias(JComboBox<Incidencias> comboBox, PriorityQueue<Incidencias> cola) {
         comboBox.removeAllItems(); // Limpiar el combo box antes de agregar los elementos
+        cola.forEach(comboBox::addItem);
+    }
 
-        // Asignar el id a cada incidencia de la cola
-        int id = 1;
-        for (Incidencias incidencia : cola) {
-            incidencia.setId(id); // Asignar el id dinámicamente
-            comboBox.addItem(incidencia); // Agregar el objeto completo a la lista
-            id++;
-        }
-
-        // Crear un renderizador para mostrar correctamente el ID y la descripción en el
-        // JComboBox
-        DefaultListCellRenderer renderer = new DefaultListCellRenderer() {
-            @Override
-            public java.awt.Component getListCellRendererComponent(JList<?> list, Object value, int index,
-                    boolean isSelected, boolean cellHasFocus) {
-                if (value instanceof Incidencias) {
-                    Incidencias incidencia = (Incidencias) value;
-                    String displayText = "" + incidencia.getId();
-                    return super.getListCellRendererComponent(list, displayText, index, isSelected, cellHasFocus);
-                }
-                return super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+    public static void seleccionarIncidencia(UI_Informe vista, Incidencias incidencia) {
+        for (int i = 0; i < vista.cbxIncidencias.getItemCount(); i++) {
+            Incidencias item = vista.cbxIncidencias.getItemAt(i);
+            if (item.getId() == incidencia.getId()) {
+                vista.cbxIncidencias.setSelectedItem(item);
+                break;
             }
-        };
-
-        comboBox.setRenderer(renderer); // Establecer el renderizador para el comboBox
+        }
     }
 
     // Método para mostrar los datos de un informe en los campos del formulario
     public static void MostrarDatosNodo(NodoInforme actual, UI_Informe inf) {
-        inf.cbxIncidencias.setSelectedItem(actual.getElemento().getIncidencia());
+        seleccionarIncidencia(inf, actual.getElemento().getIncidencia());
         inf.cbxAccionesTomadas.setSelectedItem(actual.getElemento().getAccionesTomadas());
         inf.cbxEstado.setSelectedItem(actual.getElemento().getEstado());
         inf.atxtDescripcion.setText(actual.getElemento().getDescripcion());
@@ -69,7 +53,8 @@ public class ProcessInforme {
         Incidencias incidencia = (Incidencias) Inf.cbxIncidencias.getSelectedItem();
 
         if (incidencia == null) {
-            System.out.println("No se seleccionó ninguna incidencia");
+            JOptionPane.showMessageDialog(null, "No se seleccionó ninguna incidencia", "Error",
+                    JOptionPane.ERROR_MESSAGE);
             return null;
         }
 
@@ -80,19 +65,53 @@ public class ProcessInforme {
                 .orElse(null);
 
         if (asignacion == null) {
-            JOptionPane.showMessageDialog(null, "No está aún un empleado registrado en esta incidencia",
-                    "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No está aún un empleado registrado en esta incidencia", "Error",
+                    JOptionPane.ERROR_MESSAGE);
             return null;
         }
+
+        String accionesTomadas = Inf.cbxAccionesTomadas.getSelectedItem() != null
+                ? Inf.cbxAccionesTomadas.getSelectedItem().toString()
+                : "";
+        String estado = Inf.cbxEstado.getSelectedItem() != null ? Inf.cbxEstado.getSelectedItem().toString() : "";
+        String descripcion = Inf.atxtDescripcion.getText().trim();
+
+        if (accionesTomadas.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Las acciones tomadas no pueden estar vacías", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+
+        if (estado.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El estado no puede estar vacío", "Error", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+
+        if (descripcion.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "La descripción no puede estar vacía", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+
+        LocalDate fecha = Inf.datePick.getDate();
+
+        if (fecha == null) {
+            JOptionPane.showMessageDialog(null, "La fecha seleccionada no puede ser nula", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+
+        // convertir LocalDate a java.util.Date
+        Date fechaRes = java.util.Date
+                .from(fecha.atStartOfDay().atZone(java.time.ZoneId.systemDefault()).toInstant());
 
         return new Informe(
                 incidencia,
                 asignacion,
-                Inf.cbxAccionesTomadas.getSelectedItem().toString(),
-                Inf.cbxEstado.getSelectedItem().toString(),
-                Inf.atxtDescripcion.getText(),
-                new java.util.Date() // Fecha de resolución actual
-        );
+                accionesTomadas,
+                estado,
+                descripcion,
+                fechaRes);
     }
 
     // Método para limpiar los campos del formulario
