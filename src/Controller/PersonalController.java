@@ -74,14 +74,14 @@ public class PersonalController extends PanelController implements ActionListene
 
     private void handleRegistrarAction(){
         pe = ProcessPersonal.LeerPersonal(perso);
-            if(pe==null){
-                return;
-            }
-            lista.Agregar(pe);
-            SavePersonal.GuardarPersonal(lista);
-            ProcessPersonal.Limpiar(perso);
-            ProcessPersonal.MostrarEst(perso, lista);
-            JOptionPane.showMessageDialog(null,"EL PERSONAL FUE REGISTRADO");
+        if(pe==null){
+            return;
+        }
+        lista.Agregar(pe);
+        SavePersonal.GuardarPersonal(lista);
+        ProcessPersonal.Limpiar(perso);
+        ProcessPersonal.MostrarEst(perso, lista);
+        JOptionPane.showMessageDialog(null,"EL PERSONAL FUE REGISTRADO");
     }
     
     private void handleConsultarAction(){
