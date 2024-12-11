@@ -13,22 +13,23 @@ import java.util.Date;
  *
  * @author Renzo
  */
-public class Incidencias implements Serializable{
+public class Incidencias implements Serializable {
     private int id;
     private String user;
     private Timestamp fecha;
     private Departamento departamento;
-    private String area;    
+    private String area;
     private String descripcion;
     private Date fechaincidencia;
-    private TipoIncidencia tipoincidencia;    
+    private TipoIncidencia tipoincidencia;
     private Personal personal;
 
-    public Incidencias() {  
-        this.id=id;
+    public Incidencias() {
+        this.id = id;
     }
 
-    public Incidencias(String user, Timestamp fecha, Departamento departamento, String area, String descripcion, Date fechaincidencia, TipoIncidencia tipoincidencia, Personal personal) {       
+    public Incidencias(String user, Timestamp fecha, Departamento departamento, String area, String descripcion,
+            Date fechaincidencia, TipoIncidencia tipoincidencia, Personal personal) {
         this.user = user;
         this.fecha = fecha;
         this.departamento = departamento;
@@ -37,34 +38,36 @@ public class Incidencias implements Serializable{
         this.fechaincidencia = fechaincidencia;
         this.tipoincidencia = tipoincidencia;
         this.personal = personal;
-    }    
-    
-    public Object[] Registro(int i){
-        Object[] fila={id,user,getFechaActual(),departamento.getNombre(),
-                       area,descripcion,getFechaFormat(),tipoincidencia.getNombre(),
-                       tipoincidencia.getNivel(),personal.getUser()};
-        return fila;       
     }
-    
+
+    public Object[] Registro(int i) {
+        Object[] fila = { id, user, getFechaActual(), departamento.getNombre(),
+                area, descripcion, getFechaFormat(), tipoincidencia.getNombre(),
+                tipoincidencia.getNivel(), personal.getUser() };
+        return fila;
+    }
+
     @Override
-    public String toString(){
-        return tipoincidencia.getNombre();
+    public String toString() {
+        return descripcion;
     }
-    public String detalles(){
+
+    public String detalles() {
         return String.format(
-        "ID: %d\nUsuario: %s\nFecha: %s\nDepartamento: %s\nÁrea: %s\nDescripción: %s\nFecha de la incidencia: %s\nTipo: %s\nNivel de prioridad: %s\nCliente: %s",
-        id,                   // ID
-        user,                 // Usuario
-        getFechaActual(),                // Fecha
-        departamento.getNombre(),         // Departamento
-        area,                 // Área                    
-        descripcion,          // Descripción
-        getFechaFormat(),          // Fecha de la incidencia
-        tipoincidencia.getNombre(), // Tipo
-        tipoincidencia.getNivel(),  // Nivel
-        personal.getUser()    // Cliente
-    );
+                "ID: %d\nUsuario: %s\nFecha: %s\nDepartamento: %s\nÁrea: %s\nDescripción: %s\nFecha de la incidencia: %s\nTipo: %s\nNivel de prioridad: %s\nCliente: %s",
+                id, // ID
+                user, // Usuario
+                getFechaActual(), // Fecha
+                departamento.getNombre(), // Departamento
+                area, // Área
+                descripcion, // Descripción
+                getFechaFormat(), // Fecha de la incidencia
+                tipoincidencia.getNombre(), // Tipo
+                tipoincidencia.getNivel(), // Nivel
+                personal.getUser() // Cliente
+        );
     }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -72,12 +75,12 @@ public class Incidencias implements Serializable{
     public int getId() {
         return this.id;
     }
-    
+
     public String getFechaFormat() {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         return formato.format(fechaincidencia);
     }
-    
+
     public Timestamp getFechaActual() {
         if (fecha == null) {
             // Si fecha es null, asigna la fecha actual
@@ -87,7 +90,6 @@ public class Incidencias implements Serializable{
         return timestamp;
     }
 
-    
     public TipoIncidencia getTipoincidencia() {
         return tipoincidencia;
     }
@@ -119,7 +121,7 @@ public class Incidencias implements Serializable{
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    
+
     public Departamento getDepartamento() {
         return departamento;
     }
@@ -151,6 +153,5 @@ public class Incidencias implements Serializable{
     public void setPersonal(Personal personal) {
         this.personal = personal;
     }
-    
-    
+
 }

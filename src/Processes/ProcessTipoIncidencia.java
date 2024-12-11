@@ -51,7 +51,7 @@ public class ProcessTipoIncidencia {
   }
 
   public static void MostrarTipoIncidencia(UI_Categorias vista, TipoIncidencia[] arreglo) {
-    String[] columnas = { "ID", "Nombre", "Nivel", "Categoria", "Descripcion", "Fecha Modificacion" };
+    String[] columnas = { "Pos", "Nombre", "Nivel", "Categoria", "Descripcion", "Fecha Modificacion" };
     DefaultTableModel modelo = new DefaultTableModel(null, columnas);
     vista.jtTipos.setModel(modelo);
     for (int i = 0; i < Arreglo_TipoIncidencias.contador; i++) {
