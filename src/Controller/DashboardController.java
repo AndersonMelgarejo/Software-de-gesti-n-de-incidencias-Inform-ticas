@@ -15,10 +15,23 @@ public class DashboardController implements ActionListener {
 
     public UI_Dashboard vista;
 
+    public enum Rol {
+        SOPORTE_TECNICO,
+        ADMINISTRADOR_DE_SISTEMAS,
+        ESPECIALISTA_DE_REDES,
+        SEGURIDAD_INFORMATICA,
+        CLIENTE
+    }
+
+    private Rol rol;
+
     public DashboardController(UI_Dashboard dash) {
         this.vista = dash;
+        this.rol = Rol.valueOf(LoginController.rol.toUpperCase().replace(" ", "_"));
         initializeListeners();
         launchApp();
+        vista.btnDashboard.setSelected(true);
+        configurarBotonesPorRol();
     }
 
     private void initializeListeners() {
@@ -35,7 +48,7 @@ public class DashboardController implements ActionListener {
     void launchApp() {
         vista.getRootPane().putClientProperty("JRootPane.titleBarForeground", Color.WHITE);
         vista.getRootPane().putClientProperty("JRootPane.titleBarBackground", new Color(153, 0, 51));
-        vista.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);                
+        vista.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         vista.setExtendedState(JFrame.MAXIMIZED_BOTH);
         vista.setLocationRelativeTo(null);
         vista.setVisible(true);
@@ -46,6 +59,27 @@ public class DashboardController implements ActionListener {
     private void showHome() {
         UI_Home home = new UI_Home();
         HomeController controllerHome = new HomeController(home, vista);
+    }
+
+    private void configurarBotonesPorRol() {
+        if (rol != Rol.ADMINISTRADOR_DE_SISTEMAS && rol != Rol.SOPORTE_TECNICO) {
+            vista.btnCaategoria.setEnabled(false);
+        }
+        if (rol != Rol.ADMINISTRADOR_DE_SISTEMAS && rol != Rol.ESPECIALISTA_DE_REDES) {
+            vista.btnDepartamento.setEnabled(false);
+        }
+        if (rol != Rol.ADMINISTRADOR_DE_SISTEMAS && rol != Rol.SEGURIDAD_INFORMATICA) {
+            vista.btnPersonal.setEnabled(false);
+        }
+        if (rol != Rol.ADMINISTRADOR_DE_SISTEMAS && rol != Rol.SOPORTE_TECNICO && rol != Rol.ESPECIALISTA_DE_REDES) {
+            vista.btnInforme.setEnabled(false);
+        }
+        if (rol != Rol.ADMINISTRADOR_DE_SISTEMAS && rol != Rol.SOPORTE_TECNICO && rol != Rol.CLIENTE) {
+            vista.btnIncidencias.setEnabled(false);
+        }
+        if (rol != Rol.ADMINISTRADOR_DE_SISTEMAS && rol != Rol.SOPORTE_TECNICO) {
+            vista.btnAsignar.setEnabled(false);
+        }
     }
 
     @Override
@@ -116,7 +150,7 @@ public class DashboardController implements ActionListener {
 
     private void handleIncidenciasAction() {
         UI_Incidencias inci = new UI_Incidencias();
-        
+
         IncidenciaController ctrlInci = new IncidenciaController(inci, vista);
         resetButtons();
         vista.btnIncidencias.setSelected(true);
