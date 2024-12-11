@@ -69,8 +69,8 @@ public class ProcessDepartamento {
         vista.datePick.setText("");
     }
     public static void MostrarDepas(UI_Departamentos fd,ListaDoble lista){
-        String[] titulos={"Nro","Codigo","Nombre","Condición","Horas",
-                           "Pago Hora","Pago final"};
+        String[] titulos={"ID","Usuario","Nombre","Pabellon","Piso",
+                           "Salon","Fecha Registro","Ambiente"};
         DefaultTableModel dm =new DefaultTableModel(null,titulos);
         fd.tblDepas.setModel(dm);
         int num=0;

@@ -61,6 +61,14 @@ public class HomeController extends PanelController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == home.btnFiltrar) {
+            handleFiltrar();
+        } else if (e.getSource() == home.btnFiltrarEstado) {
+            handleFiltrarPorEstado();
+        }
+
+    }
+    
+    private void handleFiltrar(){
             // formato de fecha dd/MM/yyyy
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -92,7 +100,9 @@ public class HomeController extends PanelController implements ActionListener {
             System.out.println(fechaFinStr);
 
             ProcessHome.mostrarInciFechas(home, cola, fechaInicio, fechaFin);
-        } else if (e.getSource() == home.btnFiltrarEstado) {
+    }
+
+    private void handleFiltrarPorEstado(){
             String estado = home.cbEstado.getSelectedItem().toString();
             if (estado.equals("[Seleccionar]")) {
                 ProcessHome.mostrarInciEstado(home, pila);
@@ -100,8 +110,6 @@ public class HomeController extends PanelController implements ActionListener {
 
             }
             ProcessHome.mostrarInciEstadoFiltroRecursivo(home, pila, estado);
-        }
-
     }
-
+    
 }

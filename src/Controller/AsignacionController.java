@@ -66,23 +66,56 @@ public class AsignacionController extends PanelController implements ActionListe
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == asignacion.btnRegistrar) {
-            AsignarPersonal asi = ProcessAsignarPersonal.leer(asignacion);
+            handleRegistrar();
+        }
+        if (e.getSource() == asignacion.btnConsultar) {
+            handleConsultar();
+        }
+        if (e.getSource() == asignacion.btnActualizar) {
+            handleActualizar();
+        }
+
+        if (e.getSource() == asignacion.btnDesapilar) {
+            handleDesapilar();
+        }
+
+        if (e.getSource() == asignacion.btnEliminar) {
+            handleEliminar();
+        }
+
+        if (e.getSource() == asignacion.btnPrimero) {
+            JOptionPane.showMessageDialog(asignacion, pila.PrimerObjeto().toString());
+        }
+
+        if (e.getSource() == asignacion.btnUltimo) {
+            JOptionPane.showMessageDialog(asignacion, pila.UltimoObjeto().toString());
+        }
+
+        if (e.getSource() == asignacion.btnOrdenar) {
+            handleOrdenar();
+        }
+    }
+
+    private void handleRegistrar(){
+        AsignarPersonal asi = ProcessAsignarPersonal.leer(asignacion);
             if (asi == null) {
                 return;
             }
             pila.Apilar(asi);
             ProcessAsignarPersonal.MostrarInf(asignacion, pila);
+    }
+    
+    private void handleConsultar(){
+        String codbus = JOptionPane.showInputDialog("Ingrese codigo a buscar...");
+        AsignarPersonal encontrado = pila.BuscarOperario(codbus);
+        if (encontrado == null) {
+            JOptionPane.showMessageDialog(asignacion, "Codigo " + codbus + " no existe en la pila");
+        } else {
+            JOptionPane.showMessageDialog(asignacion, encontrado.toString());
         }
-        if (e.getSource() == asignacion.btnConsultar) {
-            String codbus = JOptionPane.showInputDialog("Ingrese codigo a buscar...");
-            AsignarPersonal encontrado = pila.BuscarOperario(codbus);
-            if (encontrado == null) {
-                JOptionPane.showMessageDialog(asignacion, "Codigo " + codbus + " no existe en la pila");
-            } else {
-                JOptionPane.showMessageDialog(asignacion, encontrado.toString());
-            }
-        }
-        if (e.getSource() == asignacion.btnActualizar) {
+    }
+    
+    private void handleActualizar(){
             if (editing) {
                 // Solicitar el ID del operario a actualizar
                 String id = JOptionPane.showInputDialog("Ingrese el ID de la asignación a actualizar");
@@ -148,18 +181,18 @@ public class AsignacionController extends PanelController implements ActionListe
                 asignacion.btnConsultar.setEnabled(true);
                 editing = true;
             }
-        }
-
-        if (e.getSource() == asignacion.btnDesapilar) {
+    }
+    
+    private void handleDesapilar(){
             int resp = JOptionPane.showConfirmDialog(null, "Deseas retirar a \n" + pila.UltimoObjeto().toString(),
                     "Confirmar", JOptionPane.YES_NO_OPTION);
             if (resp == 0) {
                 pila.Desapilar();
                 ProcessAsignarPersonal.MostrarInf(asignacion, pila);
             }
-        }
-
-        if (e.getSource() == asignacion.btnEliminar) {
+    }
+    
+    private void handleEliminar(){
             try {
                 // Solicitar el ID como número entero
                 String inputId = JOptionPane.showInputDialog("Ingrese el ID de la asignación a eliminar");
@@ -181,17 +214,9 @@ public class AsignacionController extends PanelController implements ActionListe
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(asignacion, "El ID ingresado debe ser un número válido.");
             }
-        }
-
-        if (e.getSource() == asignacion.btnPrimero) {
-            JOptionPane.showMessageDialog(asignacion, pila.PrimerObjeto().toString());
-        }
-
-        if (e.getSource() == asignacion.btnUltimo) {
-            JOptionPane.showMessageDialog(asignacion, pila.UltimoObjeto().toString());
-        }
-
-        if (e.getSource() == asignacion.btnOrdenar) {
+    }
+    
+    private void handleOrdenar(){
             switch (asignacion.cbxFiltro.getSelectedIndex()) {
                 case 0:
                     pila.ordenarPorId();
@@ -208,7 +233,6 @@ public class AsignacionController extends PanelController implements ActionListe
                 default:
                     break;
             }
-        }
     }
-
+    
 }
