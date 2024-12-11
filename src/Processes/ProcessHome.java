@@ -17,6 +17,8 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
 
+import java.util.Stack;
+
 /**
  *
  * @author franc
@@ -52,6 +54,32 @@ public class ProcessHome {
     for (int i = 0; i < anchostabla.length; i++) {
       vista.jtEstado.getColumnModel().getColumn(i).setPreferredWidth(anchostabla[i]);
     }
+  }
+
+  public static void mostrarInciEstadoFiltroRecursivo(UI_Home vista, PilaAsignacionPersonal pila, String estado) {
+    String[] titulos = { "ID", "Hora Registrada", "Asignador", "personal asignado", "Fecha solución", "Estado",
+        "Descripcion" };
+    DefaultTableModel dm = new DefaultTableModel(null, titulos);
+    vista.jtEstado.setModel(dm);
+    int num = 0;
+    buscarRecursivo(vista, pila.getPila(), estado, dm, num, 0);
+    int anchostabla[] = { 5, 30, 40, 50, 60, 60, 75 };
+    for (int i = 0; i < anchostabla.length; i++) {
+      vista.jtEstado.getColumnModel().getColumn(i).setPreferredWidth(anchostabla[i]);
+    }
+  }
+
+  private static void buscarRecursivo(UI_Home vista, Stack<AsignarPersonal> pila, String estado, DefaultTableModel dm,
+      int num, int index) {
+    if (index >= pila.size()) {
+      return;
+    }
+    AsignarPersonal asignar = pila.get(index);
+    if (asignar.getEstado().equals(estado)) {
+      num++;
+      dm.addRow(asignar.Registro(num));
+    }
+    buscarRecursivo(vista, pila, estado, dm, num, index + 1);
   }
 
   // mostrar por intervalo de fechas

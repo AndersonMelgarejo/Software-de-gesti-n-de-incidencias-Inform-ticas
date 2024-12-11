@@ -42,13 +42,14 @@ public class HomeController extends PanelController implements ActionListener {
         addListeners();
         ProcessHome.mostrarTotalInci(home, cola);
         ProcessHome.mostrarInciEstado(panel, pila);
-            ProcessHome.mostrarTotalSol(panel, pila, cola);
-            ProcessHome.mostrarTotalInciEstado(panel, pila);
+        ProcessHome.mostrarTotalSol(panel, pila, cola);
+        ProcessHome.mostrarTotalInciEstado(panel, pila);
     }
 
     @Override
     protected void addListeners() {
         home.btnFiltrar.addActionListener(this);
+        home.btnFiltrarEstado.addActionListener(this);
     }
 
     @Override
@@ -91,7 +92,16 @@ public class HomeController extends PanelController implements ActionListener {
             System.out.println(fechaFinStr);
 
             ProcessHome.mostrarInciFechas(home, cola, fechaInicio, fechaFin);
+        } else if (e.getSource() == home.btnFiltrarEstado) {
+            String estado = home.cbEstado.getSelectedItem().toString();
+            if (estado.equals("[Seleccionar]")) {
+                ProcessHome.mostrarInciEstado(home, pila);
+                return;
+
+            }
+            ProcessHome.mostrarInciEstadoFiltroRecursivo(home, pila, estado);
         }
+
     }
 
 }
